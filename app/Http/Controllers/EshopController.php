@@ -19,6 +19,7 @@ use Illuminate\Session\Store;
 class EshopController extends Controller
 {
     private $user_catalog;
+
     public function __construct() {
        $user_catalog = new UserCatalog();
         $this->setUserCatalog($user_catalog);
@@ -47,6 +48,7 @@ class EshopController extends Controller
         $username = $request->input('email');
         $password = $request->input('password');
 
+<<<<<<< HEAD
     $this->getUserCatalog()->authenticate($username,$password);
 
 
@@ -54,6 +56,18 @@ class EshopController extends Controller
   }
 
     
+=======
+       $login = $this->getUserCatalog()->authenticate($username,$password);
+//        echo $login;
+        if($login){
+            return view( 'welcome');
+        } else {
+            $return = "Invalid Credentials!";
+            return view('login', ['return'=>$return]);
+        }
+
+    }
+>>>>>>> ef6ae6a10d00b43169a5ec774be9fe2cd81f7775
 
 }
 
