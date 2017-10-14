@@ -21,21 +21,23 @@ use Illuminate\Session;
 class EshopController extends Controller
 {
     private $user_catalog;
-<<<<<<< HEAD
-    private $client_log_catalog;
 
+    private $client_log_catalog;
+    private $electronic_catalog;
     public function __construct() {
         $user_catalog = new UserCatalog();
         $client_log_catalog = new ClientLogCatalog();
         $this->setUserCatalog($user_catalog);
         $this->setClientLogCatalog($client_log_catalog);
+
+        $electronic_catalog = new ElectronicCatalog();
+        $this->setElectronicCatalog($electronic_catalog);
     }
 
     /**
      * @return mixed
      */
-    public function getClientLogCatalog()
-    {
+    public function getClientLogCatalog() {
         return $this->client_log_catalog;
     }
 
@@ -45,16 +47,9 @@ class EshopController extends Controller
     public function setClientLogCatalog($client_log_catalog)
     {
         $this->client_log_catalog = $client_log_catalog;
-=======
-    private $electronic_catalog;
-    public function __construct() {
-       $user_catalog = new UserCatalog();
-       $electronic_catalog = new ElectronicCatalog();
-        $this->setUserCatalog($user_catalog);
-        $this->setElectronicCatalog($electronic_catalog);
->>>>>>> origin/master
     }
 
+    
    /* /**
      * @return mixed
      */
@@ -94,14 +89,6 @@ class EshopController extends Controller
         $username = $request->input('email');
         $password = $request->input('password');
 
-
-    $this->getUserCatalog()->authenticate($username,$password);
-
-
-      
-  
-
-    
 
        $login = $this->getUserCatalog()->authenticate($username,$password);
 //        echo $login;
