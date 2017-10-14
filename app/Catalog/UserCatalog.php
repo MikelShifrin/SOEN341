@@ -8,78 +8,70 @@
 
 namespace App\Catalog;
 
+use App\TDG\UserTDG;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Session;
 use App\Model\User;
 
 class UserCatalog
 {
-    private $users = Array();
+    private $user;
+    private $userTDG;
     public function __construct() {
-        $users = new User();
-        $this->setUsers($users);
+        $user = new User();
+        $userTDG = new UserTDG();
+        $this->setUser($user);
+        $this->setUserTDG($userTDG);
     }
 
     /**
      * @return mixed
      */
-    public function getUsers()
+    public function getUserTDG()
     {
-        return $this->users;
+        return $this->userTDG;
     }
 
     /**
-     * @param mixed $users
+     * @param mixed $userTDG
      */
-    public function setUsers($users)
+    public function setUserTDG($userTDG)
     {
-        $this->users = $users;
+        $this->userTDG = $userTDG;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
 
 
 
     public function authenticate($username, $password) {
 
-        $login = false;
-        $host        = "host = ec2-23-21-92-251.compute-1.amazonaws.com";
-        $port        = "port = 5432";
-        $dbname      = "dbname = deh4j5oag07pgv";
-        $credentials = "user = tynrrnfvnesgly password=2ceea303af5c85f704098528a6a4e5e6674ad3f481f41bda62512567522d2cbc";
-//        echo extension_loaded('pgsql') ? 'yes':'no';
-//
-//        $pdo = DB::connection()->getPdo();
-//
-//        echo  "$pdo";
-        $sql ="SELECT * FROM \"USER\" WHERE EMAIL_ID = '".$username."' AND PASSWORD = '".md5($password)."' LIMIT 1";
+       $login = $this->getUserTDG()->checkAuthentication($username, $password);
 
-//            echo $sql;
-
-
-        $db = pg_connect( "$host $port $dbname $credentials"  );
-        if(!$db) {
-//            echo "Error : Unable to open database\n";
-        } else {
-//            echo "Opened database successfully\n";
+       if($login==false){
+           return $login;
+       } else {
+//           Session::put('user', $login);
+//           $_SESSION['user'] = $login;
+           $this->setUser($login);
+           return $login;
         }
 
-        $ret = pg_query($db, $sql);
-        $row = pg_fetch_array($ret);
-//        print_r($row);
-        if($row) {
 
-//            echo $row['email_id'];
-
-            $login = true;
-            return $login;
-        } else {
-//            echo "not logged in";
-            echo pg_last_error($db);
-            $row = pg_fetch_array($ret);
-//            echo $row['email_id'];
-            return $login;
-//            return view( 'login');
-        }
-        pg_close($db);
-//        echo "$username. ' and '.$password";
     }
 }
