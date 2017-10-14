@@ -9,7 +9,38 @@
 namespace App\Catalog;
 
 
+use App\Model\User;
+
 class UserCatalog
 {
+    private $users = Array();
+    public function __construct() {
+        $users = new User();
+        $this->setUsers($users);
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param mixed $users
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+    }
+
+
+
+    public function authenticate($username, $password) {
+
+        $this->$users
+
+
+    }
 }
