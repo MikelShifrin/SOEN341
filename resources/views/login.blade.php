@@ -22,7 +22,14 @@
 
 <div class="container">
 
+
     <form class="form-signin" action="{{route('login')}}" method="post">
+        @if(isset($return))
+            <div class="alert alert-danger" role="alert">
+                <strong>Oh snap!</strong>
+                {{$return}}
+            </div>
+        @endif
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
