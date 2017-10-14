@@ -11,5 +11,8 @@ namespace App\Http\Controllers;
 
 class EshopController extends Controller
 {
+    private $user_catalog;
+
+
 
 }
