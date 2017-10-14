@@ -118,6 +118,8 @@ public function addElectronicItem(Store $session, Request $request) {
 
         echo $type;
 
+        $this->getElectronicCatalog()->viewInventory($type);
+
         return view( 'viewInventoryDesktop');
     }
 
