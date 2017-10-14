@@ -18,14 +18,8 @@ class ClientLogTDG
         $port        = "port = 5432";
         $dbname      = "dbname = deh4j5oag07pgv";
         $credentials = "user = tynrrnfvnesgly password=2ceea303af5c85f704098528a6a4e5e6674ad3f481f41bda62512567522d2cbc";
-//        echo extension_loaded('pgsql') ? 'yes':'no';
-//
-//        $pdo = DB::connection()->getPdo();
-//
-//        echo  "$pdo";
-        $sql ="INSERT INTO USER_aCTIVITY(USER_ID,LOGIN_DATETIME) VALUES(".$user_id.", localtimestamp)";
 
-//            echo $sql;
+        $sql ="INSERT INTO USER_aCTIVITY(USER_ID,LOGIN_DATETIME) VALUES(".$user_id.", localtimestamp)";
 
 
         $db = pg_connect( "$host $port $dbname $credentials"  );
@@ -39,7 +33,6 @@ class ClientLogTDG
         if(!$ret) {
             echo pg_last_error($db);
         } else {
-            echo "Logged successfully\n";
         }
         pg_close($db);
 

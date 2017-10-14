@@ -25,7 +25,7 @@ class UserTDG
 //        echo  "$pdo";
         $sql ="SELECT * FROM \"USER\" WHERE EMAIL_ID = '".$username."' AND PASSWORD = '".md5($password)."' LIMIT 1";
 
-//            echo $sql;
+
 
 
         $db = pg_connect( "$host $port $dbname $credentials"  );
@@ -39,18 +39,12 @@ class UserTDG
         $row = pg_fetch_array($ret);
 
         if($row) {
-
             $login = true;
-//            print_r($row);
             return $row;
         } else {
-//            echo "not logged in";
-//            echo pg_last_error($db);
-//            $row = pg_fetch_array($ret);
-//            echo $row['email_id'];
             return $login;
-//            return view( 'login');
         }
+
         pg_close($db);
 
 

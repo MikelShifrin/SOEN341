@@ -30,9 +30,17 @@
       <li class="nav-item ">
         <a class="nav-link" href="#">Home </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">View Inventory</a>
-      </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                View Inventory
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{route('viewInventoryDesktop',['type'=>1])}}">View Desktop</a>
+                <a class="dropdown-item" href="{{route('viewInventoryMonitor')}}">View monitor</a>
+                <a class="dropdown-item" href="{{route('viewInventoryLaptop')}}">View Laptop</a>
+                <a class="dropdown-item" href="{{route('viewInventoryTablet')}}">View Tablet</a>
+            </div>
+        </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Add inventory
@@ -42,6 +50,8 @@
           <a class="dropdown-item" href="{{route('addinventorymonitor')}}">Add monitor</a>
           <a class="dropdown-item" href="{{route('addinventoryLaptop')}}">Add Laptop</a>
           <a class="dropdown-item" href="{{route('addinventoryTablet')}}">Add Tablet</a>
+        </div>
+      </li>
     </ul>
 
     <span class="navbar-text">
@@ -49,7 +59,7 @@
   </span>
   </div>
 </nav>
-        @yield('content');
+        @yield('content')
         
     </body>
 </html>

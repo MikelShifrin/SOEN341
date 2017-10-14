@@ -107,4 +107,11 @@ class ElectronicCatalog
         return "no monitor";
 
     }
+
+    public function viewInventory($type) {
+
+
+
+    }
+
 }

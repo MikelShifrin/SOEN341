@@ -17,6 +17,7 @@ class ClientLogCatalog
     private $client_log;
     private $client_log_TDG;
     public function __construct() {
+
         $client_log = new ClientLog();
         $client_log_TDG = new ClientLogTDG();
         $this->setClientLog($client_log);
