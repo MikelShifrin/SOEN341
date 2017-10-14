@@ -16,8 +16,10 @@ Route::get('/', function () {
 });
 
 
-Route::post('/login', function() {
+Route::post('/login', function(Illuminate\Http\Request $request) {
 
 
    return view( 'welcome');
 });
+
+?>
