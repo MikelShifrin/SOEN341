@@ -1,10 +1,16 @@
 @extends('layouts.master')
 @section('content')
+<div class="container">
 
-<div class="jumbotron">
-  <h1 class="display-3">Hello, world!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <form class="form-signin" action="{{route('submit')}}" method='post'>
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only" >Email address</label>
+        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        {{csrf_field()}}
+      </form>
 
-</div>
-
+    </div> <!-- /container -->
 @endsection

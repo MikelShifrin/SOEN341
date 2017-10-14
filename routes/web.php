@@ -21,8 +21,24 @@ Route::post('/login', [
     'as'    => 'login'
 ]);
 
+Route::post('addElectronicItem', [
+    'uses'  => 'EshopController@addElectronicItem',
+    'as'    => 'addElectronicItem'
+]);
+Route::get('addinventorymonitor', function () {
+    return view('addinventorymonitor');
+})->name('addinventorymonitor');
 
-//   return view( 'welcome');
+Route::get('addinventoryTablet', function () {
+    return view('addinventoryTablet');
+})->name('addinventoryTablet');
 
+Route::get('addinventoryLaptop', function () {
+    return view('addinventoryLaptop');
+})->name('addinventoryLaptop');
+
+Route::get('addinventoryDesktop', function () {
+    return view('addinventoryDesktop');
+})->name('addinventoryDesktop');
 
 ?>
