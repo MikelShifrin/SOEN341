@@ -10,6 +10,8 @@ namespace App\Http\Controllers;
 
 
 use App\Catalog\UserCatalog;
+use App\Catalog\ElectronicCatalog;
+
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 
@@ -18,16 +20,16 @@ class EshopController extends Controller
 {
     private $user_catalog;
     public function __construct() {
-        $user_catalog = new UserCatalog();
+       $user_catalog = new UserCatalog();
         $this->setUserCatalog($user_catalog);
     }
 
-    /**
+   /* /**
      * @return mixed
      */
     public function getUserCatalog()
     {
-        return $this->user_catalog;
+       return $this->user_catalog;
     }
 
     /**
@@ -35,7 +37,7 @@ class EshopController extends Controller
      */
     public function setUserCatalog($user_catalog)
     {
-        $this->user_catalog = $user_catalog;
+       $this->user_catalog = $user_catalog;
     }
 
 
@@ -45,11 +47,13 @@ class EshopController extends Controller
         $username = $request->input('email');
         $password = $request->input('password');
 
-       $this->getUserCatalog()->authenticate($username,$password);
+    $this->getUserCatalog()->authenticate($username,$password);
 
 
-        return view( 'welcome');
-    }
+      return view( 'welcome');
+  }
+
+    
 
 }
 
