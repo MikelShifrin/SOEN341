@@ -31,7 +31,7 @@ class ElectronicCatalog
 
         $brandName= $e->getbrandName();
 
-        DB::insert('insert into electronics (ELECTRONICS_ID , BRAND) values (?, ?)', [1, $brandName]);
+        DB::insert('insert into electronics (ELECTRONICS_ID , BRAND) values (?, ?)', [2, $brandName]);
 
         return $brandName;
 

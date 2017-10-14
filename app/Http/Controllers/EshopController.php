@@ -19,10 +19,12 @@ use Illuminate\Session\Store;
 class EshopController extends Controller
 {
     private $user_catalog;
-
+    private $electronic_catalog;
     public function __construct() {
        $user_catalog = new UserCatalog();
+       $electronic_catalog = new ElectronicCatalog();
         $this->setUserCatalog($user_catalog);
+        $this->setElectronicCatalog($electronic_catalog);
     }
 
    /* /**
@@ -41,6 +43,22 @@ class EshopController extends Controller
        $this->user_catalog = $user_catalog;
     }
 
+    /* /**
+     * @return mixed
+     */
+    public function getElectronicCatalog()
+    {
+       return $this->electronic_catalog;
+    }
+
+    /**
+     * @param mixed $user_catalog
+     */
+    public function setElectronicCatalog($electronic_catalog)
+    {
+       $this->electronic_catalog = $electronic_catalog;
+    }
+
 
 
     public function login(Store $session, Request $request) {
@@ -48,15 +66,15 @@ class EshopController extends Controller
         $username = $request->input('email');
         $password = $request->input('password');
 
-<<<<<<< HEAD
+
     $this->getUserCatalog()->authenticate($username,$password);
 
 
-      return view( 'welcome');
-  }
+      
+  
 
     
-=======
+
        $login = $this->getUserCatalog()->authenticate($username,$password);
 //        echo $login;
         if($login){
@@ -67,7 +85,23 @@ class EshopController extends Controller
         }
 
     }
->>>>>>> ef6ae6a10d00b43169a5ec774be9fe2cd81f7775
+public function addElectronicItem(Store $session, Request $request) {
+
+        $brandName   = $request->input('brandName');
+        $modelNumber = $request->input('modelNumber');
+        $price       = $request->input('price');
+        $weight      = $request->input('weight');
+        $displaySize = $request->input('displaySize');
+        $type        = $request->input('type');
+
+        
+
+        $brandName=$this->getElectronicCatalog()->additem($request);
+
+
+
+        return $brandName;
+    }
 
 }
 
