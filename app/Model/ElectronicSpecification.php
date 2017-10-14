@@ -16,7 +16,6 @@ class ElectronicSpecification
    private $modelNumber;
    private $price;
    private $weight;
-   private $displaySize;
    private $type;
 
    /**
@@ -70,15 +69,6 @@ class ElectronicSpecification
     
     public function setweight($weight){
         $this->weight = $weight;
-    }
-
-    public function getdisplaySize(){
-        return $this->displaySize;
-    }
-
-    
-    public function setdisplaySize($displaySize){
-        $this->displaySize = $displaySize;
     }
 
     public function gettype(){

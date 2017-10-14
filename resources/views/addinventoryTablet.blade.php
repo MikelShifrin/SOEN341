@@ -23,7 +23,6 @@
   <div class="form-group">
     <label for="exampleInputEmail1">Length</label>
     <input type="input" class="form-control" id=""  placeholder="Length" name='length'>
-    <input type="hidden" class="form-control" id=""  placeholder="Enter Display Size" name='type' value="D">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">width</label>
@@ -50,9 +49,12 @@
     <input type="input" class="form-control" id=""  placeholder="Enter the size of Hard Disk" name='hard_disk_size'>
   </div>
   <div class="form-group">
+    <label for="exampleInputEmail1">Operating System</label>
+    <input type="input" class="form-control" id=""  placeholder="Enter operating system" name='operatingSystem'>
+  </div>
+  <div class="form-group">
     <label for="exampleInputEmail1">Display Size</label>
     <input type="input" class="form-control" id=""  placeholder="Enter Display Size" name='displaySize'>
-    <input type="hidden" class="form-control" id=""  placeholder="Enter Display Size" name='type' value="L">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Battery Info</label>
@@ -60,7 +62,7 @@
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Camera info</label>
-    <input type="input" class="form-control" id=""  placeholder="Enter Camera Info" name='displaySize'>
+    <input type="input" class="form-control" id=""  placeholder="Enter Camera Info" name='cameraInfo'>
     <input type="hidden" class="form-control" id=""  placeholder="Enter Display Size" name='type' value="t">
   </div>
   {{csrf_field()}}

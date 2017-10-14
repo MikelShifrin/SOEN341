@@ -23,7 +23,7 @@
   <div class="form-group">
     <label for="exampleInputEmail1">Length</label>
     <input type="input" class="form-control" id=""  placeholder="Length" name='length'>
-    <input type="hidden" class="form-control" id=""  placeholder="Enter Display Size" name='type' value="D">
+    <input type="hidden" class="form-control" id=""  placeholder="Enter Display Size" name='type' value="d">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">width</label>

@@ -37,9 +37,13 @@
     <input type="input" class="form-control" id=""  placeholder="Enter the size of Hard Disk" name='hard_disk_size'>
   </div>
   <div class="form-group">
+    <label for="exampleInputEmail1">Operating System</label>
+    <input type="input" class="form-control" id=""  placeholder="Enter operating system" name='operatingSystem'>
+  </div>
+  <div class="form-group">
     <label for="exampleInputEmail1">Display Size</label>
     <input type="input" class="form-control" id=""  placeholder="Enter Display Size" name='displaySize'>
-    <input type="hidden" class="form-control" id=""  placeholder="Enter Display Size" name='type' value="L">
+    <input type="hidden" class="form-control" id=""  placeholder="Enter Display Size" name='type' value="l">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Battery Info</label>
