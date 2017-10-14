@@ -16,10 +16,13 @@ Route::get('/', function () {
 });
 
 
-Route::post('/login', function(Illuminate\Http\Request $request) {
+Route::post('/login', [
+    'uses'  => 'EshopController@login',
+    'as'    => 'login'
+]);
 
 
-   return view( 'welcome');
-});
+//   return view( 'welcome');
+
 
 ?>

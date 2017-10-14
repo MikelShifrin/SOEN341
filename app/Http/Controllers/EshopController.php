@@ -9,10 +9,23 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Http\Request;
+use Illuminate\Session\Store;
+
+
 class EshopController extends Controller
 {
     private $user_catalog;
 
 
+
+
+    public function login(Store $session, Request $request) {
+
+
+        
+
+        return view( 'welcome');
+    }
 
 }
