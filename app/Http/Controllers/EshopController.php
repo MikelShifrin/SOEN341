@@ -11,6 +11,8 @@ namespace App\Http\Controllers;
 
 use App\Catalog\ClientLogCatalog;
 use App\Catalog\UserCatalog;
+use App\Catalog\ElectronicCatalog;
+
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 use Illuminate\Session;
@@ -19,6 +21,7 @@ use Illuminate\Session;
 class EshopController extends Controller
 {
     private $user_catalog;
+<<<<<<< HEAD
     private $client_log_catalog;
 
     public function __construct() {
@@ -42,14 +45,22 @@ class EshopController extends Controller
     public function setClientLogCatalog($client_log_catalog)
     {
         $this->client_log_catalog = $client_log_catalog;
+=======
+    private $electronic_catalog;
+    public function __construct() {
+       $user_catalog = new UserCatalog();
+       $electronic_catalog = new ElectronicCatalog();
+        $this->setUserCatalog($user_catalog);
+        $this->setElectronicCatalog($electronic_catalog);
+>>>>>>> origin/master
     }
 
-    /**
+   /* /**
      * @return mixed
      */
     public function getUserCatalog()
     {
-        return $this->user_catalog;
+       return $this->user_catalog;
     }
 
     /**
@@ -57,7 +68,23 @@ class EshopController extends Controller
      */
     public function setUserCatalog($user_catalog)
     {
-        $this->user_catalog = $user_catalog;
+       $this->user_catalog = $user_catalog;
+    }
+
+    /* /**
+     * @return mixed
+     */
+    public function getElectronicCatalog()
+    {
+       return $this->electronic_catalog;
+    }
+
+    /**
+     * @param mixed $user_catalog
+     */
+    public function setElectronicCatalog($electronic_catalog)
+    {
+       $this->electronic_catalog = $electronic_catalog;
     }
 
 
@@ -66,6 +93,15 @@ class EshopController extends Controller
 
         $username = $request->input('email');
         $password = $request->input('password');
+
+
+    $this->getUserCatalog()->authenticate($username,$password);
+
+
+      
+  
+
+    
 
        $login = $this->getUserCatalog()->authenticate($username,$password);
 //        echo $login;
@@ -82,6 +118,23 @@ class EshopController extends Controller
             return view( 'welcome');
         }
 
+    }
+public function addElectronicItem(Store $session, Request $request) {
+
+        $brandName   = $request->input('brandName');
+        $modelNumber = $request->input('modelNumber');
+        $price       = $request->input('price');
+        $weight      = $request->input('weight');
+        $displaySize = $request->input('displaySize');
+        $type        = $request->input('type');
+
+        
+
+        $brandName=$this->getElectronicCatalog()->additem($request);
+
+
+
+        return $brandName;
     }
 
 }

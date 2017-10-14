@@ -38,14 +38,14 @@
           Add inventory
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Add Desktop</a>
-          <a class="dropdown-item" href="#">Add monitor</a>
-          <a class="dropdown-item" href="#">Add Laptop</a>
-          <a class="dropdown-item" href="#">Add Tablet</a>
+          <a class="dropdown-item" href="{{route('addinventoryDesktop')}}">Add Desktop</a>
+          <a class="dropdown-item" href="{{route('addinventorymonitor')}}">Add monitor</a>
+          <a class="dropdown-item" href="{{route('addinventoryLaptop')}}">Add Laptop</a>
+          <a class="dropdown-item" href="{{route('addinventoryTablet')}}">Add Tablet</a>
     </ul>
 
     <span class="navbar-text">
-        Hello User Name!
+        Hello User Name
   </span>
   </div>
 </nav>
