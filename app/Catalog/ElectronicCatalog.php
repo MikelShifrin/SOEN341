@@ -20,7 +20,29 @@ use Illuminate\Support\Facades\DB;
 class ElectronicCatalog
 {
     
+    private $electronicsTDG;
 
+    /**
+     * @return mixed
+     */
+    public function getElectronicsTDG()
+    {
+        return $this->electronicsTDG;
+    }
+
+    /**
+     * @param mixed $electronicsTDG
+     */
+    public function setElectronicsTDG($electronicsTDG)
+    {
+        $this->electronicsTDG = $electronicsTDG;
+    }
+
+    public function __construct() {
+        $electronicsTDG = new ElectronicsTDG();
+
+        $this->setElectronicsTDG($electronicsTDG);
+    }
     
 
     public function additem($request) {
@@ -39,7 +61,12 @@ class ElectronicCatalog
 
 
             $e->setSize($request->input('size'));
-            $electronics_TDG->insertMonitorintoDB($e);
+
+            //DB::insert('insert into electronics (ELECTRONICS_ID , BRAND) values (?, ?)', [2, $brandName]);
+
+            $this->getElectronicsTDG()->insertMonitorintoDB($e);
+
+
         }
 
         //if request is coming from laptop
@@ -58,7 +85,7 @@ class ElectronicCatalog
             $e->setOperatingSystem($request->input('operatingSystem'));
             $e->setDisplaySize($request->input('displaySize'));
             $e->setBatteryInfo($request->input('battery_info'));
-            $electronics_TDG->insertLaptopintoDB($e);
+            $this->getElectronicsTDG()->insertLaptopintoDB($e);
 
         }
 
@@ -82,7 +109,7 @@ class ElectronicCatalog
             $e->setBatteryInfo($request->input('battery_info'));
             $e->setCameraInfo($request->input('cameraInfo'));
 
-            $electronics_TDG->insertTabletintoDB($e);
+            $this->getElectronicsTDG()->insertTabletintoDB($e);
 
         }
 
@@ -101,7 +128,7 @@ class ElectronicCatalog
             $e->setRamSize($request->input('ram_size'));
             $e->setNumberOfCpuCores($request->input('number_of_cpu_cores'));
             $e->setHardDiskSize($request->input('hard_disk_size'));
-            $electronics_TDG->insertDesktopintoDB($e);
+            $this->getElectronicsTDG()->insertDesktopintoDB($e);
 
 
         }
@@ -112,8 +139,9 @@ class ElectronicCatalog
 
     public function viewInventory($type) {
 
+        $ret = $this->getElectronicsTDG()->viewInventory($type);
 
-
+        return $ret;
     }
 
 }
