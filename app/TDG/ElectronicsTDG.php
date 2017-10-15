@@ -133,7 +133,7 @@ public function viewInventory($type) {
 
         }
     }
-}
+
 
     public function insertTabletintoDB($monitor){
 
