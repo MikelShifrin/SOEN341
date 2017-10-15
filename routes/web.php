@@ -21,6 +21,11 @@ Route::post('/login', [
     'as'    => 'login'
 ]);
 
+Route::get('welcome', function () {
+    session_start();
+    return view('welcome');
+})->name('welcome');
+
 Route::post('addElectronicItem', [
     'uses'  => 'EshopController@addElectronicItem',
     'as'    => 'addElectronicItem'
@@ -60,4 +65,10 @@ Route::get('viewInventoryTablet/{type}',[
     'uses'  => 'EshopController@viewInventory',
     'as'    => 'viewInventoryTablet'
 ]);
+
+Route::get('logOut',[
+    'uses'  => 'EshopController@logout',
+    'as'    => 'logOut'
+]);
+
 ?>

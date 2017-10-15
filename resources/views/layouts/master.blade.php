@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
@@ -24,7 +25,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ">
-        <a class="nav-link" href="#">Home </a>
+        <a class="nav-link" href="{{route('welcome')}}">Home </a>
       </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,14 +52,16 @@
     </ul>
 
     <span class="navbar-text">
+        <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Username
+          {{$_SESSION['email']}}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="{{route('addinventoryDesktop')}}">Add Desktop</a>
+          <a class="dropdown-item" href="{{route('logOut')}}">Sign Out</a>
         </div>
       </li>
+        </ul>
   </span>
   </div>
 </nav>
