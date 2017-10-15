@@ -20,7 +20,29 @@ use Illuminate\Support\Facades\DB;
 class ElectronicCatalog
 {
     
+    private $electronicsTDG;
 
+    /**
+     * @return mixed
+     */
+    public function getElectronicsTDG()
+    {
+        return $this->electronicsTDG;
+    }
+
+    /**
+     * @param mixed $electronicsTDG
+     */
+    public function setElectronicsTDG($electronicsTDG)
+    {
+        $this->electronicsTDG = $electronicsTDG;
+    }
+
+    public function __construct() {
+        $electronicsTDG = new ElectronicsTDG();
+
+        $this->setElectronicsTDG($electronicsTDG);
+    }
     
 
     public function additem($request) {
@@ -36,8 +58,10 @@ class ElectronicCatalog
 
 
             $e->setSize($request->input('size'));
-            $electronics_TDG= new ElectronicsTDG();
-            $electronics_TDG->insertMonitorintoDB($e);
+            //DB::insert('insert into electronics (ELECTRONICS_ID , BRAND) values (?, ?)', [2, $brandName]);
+
+            $this->getElectronicsTDG()->insertMonitorintoDB($e);
+
         }
 
         //if request is coming from laptop
@@ -110,8 +134,9 @@ class ElectronicCatalog
 
     public function viewInventory($type) {
 
+        $ret = $this->getElectronicsTDG()->viewInventory($type);
 
-
+        return $ret;
     }
 
 }

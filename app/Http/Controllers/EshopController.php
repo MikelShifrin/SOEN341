@@ -96,6 +96,8 @@ class EshopController extends Controller
         } else {
             $user_id = $login['user_id'];
             //$this->getClientLogCatalog()->logActivity($user_id);
+            session_start();
+            $_SESSION['user'] = $login;
             return view( 'welcome');
         }
 
@@ -116,9 +118,16 @@ public function addElectronicItem(Store $session, Request $request) {
 
     public function viewInventory($type) {
 
-        echo $type;
-
-        return view( 'viewInventoryDesktop');
+        $ret = $this->getElectronicCatalog()->viewInventory($type);
+        if($type=='1'){
+        return view( 'viewInventoryDesktop',['ret'=>$ret]);
+        } elseif ($type=='2') {
+            return view( 'viewInventoryMonitor',['ret'=>$ret]);
+        } elseif ($type=='3') {
+            return view( 'viewInventoryLaptop',['ret'=>$ret]);
+        } elseif($type=='4') {
+            return view( 'viewInventoryTablet',['ret'=>$ret]);
+        }
     }
 
 }
