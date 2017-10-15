@@ -34,8 +34,8 @@ class ElectronicCatalog
             $e->setweight($request->input('weight'));
             $e->settype($request->input('type'));
 
+
             $e->setSize($request->input('size'));
-            //DB::insert('insert into electronics (ELECTRONICS_ID , BRAND) values (?, ?)', [2, $brandName]);
             $electronics_TDG= new ElectronicsTDG();
             $electronics_TDG->insertMonitorintoDB($e);
         }
@@ -60,7 +60,7 @@ class ElectronicCatalog
 
         }
 
-        if($request->input('type')=='t') {
+        elseif($request->input('type')=='t') {
             $e = new Tablet();
             $e->setbrandName($request->input('brandName'));
             $e->setmodelNumber($request->input('modelNumber'));
@@ -84,7 +84,7 @@ class ElectronicCatalog
 
         }
 
-        if($request->input('type')=='d') {
+        elseif($request->input('type')=='d') {
             $e = new Desktop();
             $e->setbrandName($request->input('brandName'));
             $e->setmodelNumber($request->input('modelNumber'));
