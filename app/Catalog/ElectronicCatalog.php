@@ -133,7 +133,7 @@ class ElectronicCatalog
 
         }
 
-        return "no monitor";
+
 
     }
 
