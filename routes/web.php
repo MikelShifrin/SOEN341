@@ -31,18 +31,22 @@ Route::post('addElectronicItem', [
     'as'    => 'addElectronicItem'
 ]);
 Route::get('addinventorymonitor', function () {
+    session_start();
     return view('addinventorymonitor');
 })->name('addinventorymonitor');
 
 Route::get('addinventoryTablet', function () {
+    session_start();
     return view('addinventoryTablet');
 })->name('addinventoryTablet');
 
 Route::get('addinventoryLaptop', function () {
+    session_start();
     return view('addinventoryLaptop');
 })->name('addinventoryLaptop');
 
 Route::get('addinventoryDesktop', function () {
+    session_start();
     return view('addinventoryDesktop');
 })->name('addinventoryDesktop');
 

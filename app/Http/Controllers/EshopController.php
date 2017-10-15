@@ -111,7 +111,7 @@ class EshopController extends Controller
         return view( 'login');
     }
 public function addElectronicItem(Store $session, Request $request) {
-
+    session_start();
         $brandName   = $request->input('brandName');
         $modelNumber = $request->input('modelNumber');
         $price       = $request->input('price');
@@ -120,8 +120,8 @@ public function addElectronicItem(Store $session, Request $request) {
         $type        = $request->input('type');
 
         $brandName=$this->getElectronicCatalog()->additem($request);
-
-        return $brandName;
+    $return="Deatils added successfully";
+    return view( 'welcome',['return'=>$return]);
     }
 
     public function viewInventory($type) {

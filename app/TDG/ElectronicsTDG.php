@@ -158,7 +158,6 @@ public function viewInventory($type) {
             return false;
         }
         $row = pg_fetch_array($ret);
-        echo $row[0];
         $sql="insert into tablet (electronics_id,processor_type,ram_size,number_of_cpu_cores,hard_disk_size,operating_system,display_size,battery_info,camera_info,length,width,height) values ('".$row[0]."','". $tablet->getProcessorType()."','". $tablet->getRamSize()."','". $tablet->getNumberOfCpuCores()."','". $tablet->getHardDiskSize()."','". $tablet->getOperatingSystem()."','". $tablet->getDisplaySize()."','". $tablet->getBatteryInfo()."','". $tablet->getCameraInfo()."','". $tablet->getLength()."','". $tablet->getWidth()."','". $tablet->getHeight()."')";
         $ret = pg_query($db, $sql);
         if(!$ret) {
@@ -192,7 +191,7 @@ public function viewInventory($type) {
             return false;
         }
         $row = pg_fetch_array($ret);
-        echo $row[0];
+
         $sql="insert into laptop  (electronics_id,processor_type,ram_size,number_of_cpu_cores,hard_disk_size,operating_system,display_size,battery_info) values ('".$row[0]."','". $laptop->getProcessorType()."','". $laptop->getRamSize()."','". $laptop->getNumberOfCpuCores()."','". $laptop->getHardDiskSize()."','". $laptop->getOperatingSystem()."','". $laptop->getDisplaySize()."','". $laptop->getBatteryInfo()."')";
         $ret = pg_query($db, $sql);
         if(!$ret) {
@@ -226,7 +225,7 @@ public function viewInventory($type) {
             return false;
         }
         $row = pg_fetch_array($ret);
-        echo $row[0];
+
         $sql="insert into desktop (electronics_id,processor_type,ram_size,number_of_cpu_cores,hard_disk_size,length,width,height) values ('".$row[0]."','". $desktop->getProcessorType()."','". $desktop->getRamSize()."','". $desktop->getNumberOfCpuCores()."','". $desktop->getHardDiskSize()."','". $desktop->getLength()."','". $desktop->getWidth()."','". $desktop->getHeight()."')";
         $ret = pg_query($db, $sql);
         if(!$ret) {
