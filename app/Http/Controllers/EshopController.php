@@ -49,7 +49,7 @@ class EshopController extends Controller
         $this->client_log_catalog = $client_log_catalog;
     }
 
-    
+
    /* /**
      * @return mixed
      */
@@ -83,7 +83,6 @@ class EshopController extends Controller
     }
 
 
-
     public function login(Store $session, Request $request) {
 
         $username = $request->input('email');
@@ -91,17 +90,12 @@ class EshopController extends Controller
 
 
        $login = $this->getUserCatalog()->authenticate($username,$password);
-//        echo $login;
         if($login==false){
             $return = "Invalid Credentials!";
             return view('login', ['return'=>$return]);
-
         } else {
-
-//            print_r($login);
             $user_id = $login['user_id'];
-//            echo "$user_id";
-            $this->getClientLogCatalog()->logActivity($user_id);
+            //$this->getClientLogCatalog()->logActivity($user_id);
             return view( 'welcome');
         }
 
@@ -115,13 +109,16 @@ public function addElectronicItem(Store $session, Request $request) {
         $displaySize = $request->input('displaySize');
         $type        = $request->input('type');
 
-        
-
         $brandName=$this->getElectronicCatalog()->additem($request);
 
-
-
         return $brandName;
+    }
+
+    public function viewInventory($type) {
+
+        echo $type;
+
+        return view( 'viewInventoryDesktop');
     }
 
 }

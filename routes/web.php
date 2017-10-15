@@ -41,4 +41,20 @@ Route::get('addinventoryDesktop', function () {
     return view('addinventoryDesktop');
 })->name('addinventoryDesktop');
 
+Route::get('viewInventoryDesktop/{type}', [
+    'uses'  => 'EshopController@viewInventory',
+    'as'    => 'viewInventoryDesktop'
+]);
+
+Route::get('viewInventoryMonitor', function() {
+    return view('viewInventoryMonitor');
+})->name('viewInventoryMonitor');
+
+Route::get('viewInventoryLaptop', function() {
+    return view('viewInventoryLaptop');
+})->name('viewInventoryLaptop');
+
+Route::get('viewInventoryTablet', function() {
+    return view('viewInventoryTablet');
+})->name('viewInventoryTablet');
 ?>
