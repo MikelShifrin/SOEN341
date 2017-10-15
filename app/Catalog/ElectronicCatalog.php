@@ -47,6 +47,9 @@ class ElectronicCatalog
 
     public function additem($request) {
 
+        $electronics_TDG= new ElectronicsTDG();
+
+
        // if Request is coming from monitor
         if($request->input('type')=='m') {
             $e = new Monitor();
@@ -58,14 +61,16 @@ class ElectronicCatalog
 
 
             $e->setSize($request->input('size'));
+
             //DB::insert('insert into electronics (ELECTRONICS_ID , BRAND) values (?, ?)', [2, $brandName]);
 
             $this->getElectronicsTDG()->insertMonitorintoDB($e);
 
+
         }
 
         //if request is coming from laptop
-        if($request->input('type')=='l') {
+        elseif($request->input('type')=='l') {
             $e = new Laptop();
             $e->setbrandName($request->input('brandName'));
             $e->setmodelNumber($request->input('modelNumber'));
@@ -80,7 +85,7 @@ class ElectronicCatalog
             $e->setOperatingSystem($request->input('operatingSystem'));
             $e->setDisplaySize($request->input('displaySize'));
             $e->setBatteryInfo($request->input('battery_info'));
-            //DB::insert('insert into electronics (ELECTRONICS_ID , BRAND) values (?, ?)', [2, $brandName]);
+            $this->getElectronicsTDG()->insertLaptopintoDB($e);
 
         }
 
@@ -103,8 +108,8 @@ class ElectronicCatalog
             $e->setDisplaySize($request->input('displaySize'));
             $e->setBatteryInfo($request->input('battery_info'));
             $e->setCameraInfo($request->input('cameraInfo'));
-            //DB::insert('insert into electronics (ELECTRONICS_ID , BRAND) values (?, ?)', [2, $brandName]);
 
+            $this->getElectronicsTDG()->insertTabletintoDB($e);
 
         }
 
@@ -123,7 +128,7 @@ class ElectronicCatalog
             $e->setRamSize($request->input('ram_size'));
             $e->setNumberOfCpuCores($request->input('number_of_cpu_cores'));
             $e->setHardDiskSize($request->input('hard_disk_size'));
-            //DB::insert('insert into electronics (ELECTRONICS_ID , BRAND) values (?, ?)', [2, $brandName]);
+            $this->getElectronicsTDG()->insertDesktopintoDB($e);
 
 
         }
