@@ -45,7 +45,7 @@ class ElectronicSpecification
     }
     
     public function getmodelNumber(){
-        return $this->modelName;
+        return $this->modelNumber;
     }
 
     
