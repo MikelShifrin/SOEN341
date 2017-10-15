@@ -135,12 +135,8 @@ class ElectronicCatalog
     public function viewInventory($type) {
 
         $ret = $this->getElectronicsTDG()->viewInventory($type);
-        $rows = pg_fetch_array($ret);
-        foreach($rows as $row)
-        {
-            echo $row[0]."\n";
-        }
 
+        return $ret;
     }
 
 }

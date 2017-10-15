@@ -14,10 +14,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-
-
-        
-        
     </head>
     <body>
         <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
@@ -36,9 +32,9 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="{{route('viewInventoryDesktop',['type'=>1])}}">View Desktop</a>
-                <a class="dropdown-item" href="{{route('viewInventoryMonitor')}}">View monitor</a>
-                <a class="dropdown-item" href="{{route('viewInventoryLaptop')}}">View Laptop</a>
-                <a class="dropdown-item" href="{{route('viewInventoryTablet')}}">View Tablet</a>
+                <a class="dropdown-item" href="{{route('viewInventoryMonitor',['type'=>2])}}">View monitor</a>
+                <a class="dropdown-item" href="{{route('viewInventoryLaptop',['type'=>3])}}">View Laptop</a>
+                <a class="dropdown-item" href="{{route('viewInventoryTablet',['type'=>4])}}">View Tablet</a>
             </div>
         </li>
       <li class="nav-item dropdown">
@@ -55,7 +51,14 @@
     </ul>
 
     <span class="navbar-text">
-        Hello User Name
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Username
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{{route('addinventoryDesktop')}}">Add Desktop</a>
+        </div>
+      </li>
   </span>
   </div>
 </nav>
