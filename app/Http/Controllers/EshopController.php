@@ -98,9 +98,17 @@ class EshopController extends Controller
             //$this->getClientLogCatalog()->logActivity($user_id);
             session_start();
             $_SESSION['user'] = $login;
+            $_SESSION['email'] = $login['email_id'];
             return view( 'welcome');
         }
 
+    }
+
+    public function logout() {
+        session_start();
+        session_destroy();
+
+        return view( 'login');
     }
 public function addElectronicItem(Store $session, Request $request) {
 
@@ -117,7 +125,7 @@ public function addElectronicItem(Store $session, Request $request) {
     }
 
     public function viewInventory($type) {
-
+        session_start();
         $ret = $this->getElectronicCatalog()->viewInventory($type);
         if($type=='1'){
         return view( 'viewInventoryDesktop',['ret'=>$ret]);
