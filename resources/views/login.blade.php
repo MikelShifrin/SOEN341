@@ -11,7 +11,10 @@
     <title>Signin</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{URL::to('css/bootstrap.min.css')}}">
+    <!--<link rel="stylesheet" href="{{URL::to('css/bootstrap.min.css')}}">-->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
     <link href="{{URL::to('css/signin.css')}}" rel="stylesheet">
