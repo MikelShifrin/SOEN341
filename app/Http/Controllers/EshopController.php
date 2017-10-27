@@ -138,6 +138,19 @@ public function addElectronicItem(Store $session, Request $request) {
         }
     }
 
+    public function deleteInventory($type) {
+        session_start();
+        $ret = $this->getElectronicCatalog()->deleteInventory($type);
+        if($type=='1'){
+        return view( 'deleteInventoryDesktop',['ret'=>$ret]);
+        } elseif ($type=='2') {
+            return view( 'deleteInventoryMonitor',['ret'=>$ret]);
+        } elseif ($type=='3') {
+            return view( 'deleteInventoryLaptop',['ret'=>$ret]);
+        } elseif($type=='4') {
+            return view( 'deleteInventoryTablet',['ret'=>$ret]);
+        }
+    }
+    
 }
-
 ?>

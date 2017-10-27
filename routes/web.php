@@ -70,6 +70,32 @@ Route::get('viewInventoryTablet/{type}',[
     'as'    => 'viewInventoryTablet'
 ]);
 
+Route::post('addElectronicItem', [
+    'uses'  => 'EshopController@addElectronicItem',
+    'as'    => 'addElectronicItem'
+]);
+
+Route::get('deleteInventoryDesktop/{type}', [
+    'uses'  => 'EshopController@deleteInventory',
+    'as'    => 'deleteInventoryDesktop'
+]);
+
+Route::get('deleteInventoryMonitor/{type}',[
+    'uses'  => 'EshopController@deleteInventory',
+    'as'    => 'deleteInventoryMonitor'
+]);
+
+Route::get('deleteInventoryLaptop/{type}', [
+    'uses'  => 'EshopController@deleteInventory',
+    'as'    => 'deleteInventoryLaptop'
+]);
+
+Route::get('deleteInventoryTablet/{type}',[
+    'uses'  => 'EshopController@deleteInventory',
+    'as'    => 'deleteInventoryTablet'
+]);
+
+
 Route::get('logOut',[
     'uses'  => 'EshopController@logout',
     'as'    => 'logOut'

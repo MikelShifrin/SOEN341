@@ -49,6 +49,17 @@
           <a class="dropdown-item" href="{{route('addinventoryTablet')}}">Add Tablet</a>
         </div>
       </li>
+      <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Delete Inventory
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{route('deleteInventoryDesktop',['type'=>1])}}">Delete Desktop</a>
+                <a class="dropdown-item" href="{{route('deleteInventoryMonitor',['type'=>2])}}">Delete monitor</a>
+                <a class="dropdown-item" href="{{route('deleteInventoryLaptop',['type'=>3])}}">Delete Laptop</a>
+                <a class="dropdown-item" href="{{route('deleteInventoryTablet',['type'=>4])}}">Delete Tablet</a>
+            </div>
+        </li>
     </ul>
 
     <span class="navbar-text">
