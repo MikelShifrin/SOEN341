@@ -32,22 +32,22 @@ Route::post('addElectronicItem', [
 ]);
 Route::get('addinventorymonitor', function () {
     session_start();
-    return view('addinventorymonitor');
+    return view('add.addinventorymonitor');
 })->name('addinventorymonitor');
 
 Route::get('addinventoryTablet', function () {
     session_start();
-    return view('addinventoryTablet');
+    return view('add.addinventoryTablet');
 })->name('addinventoryTablet');
 
 Route::get('addinventoryLaptop', function () {
     session_start();
-    return view('addinventoryLaptop');
+    return view('add.addinventoryLaptop');
 })->name('addinventoryLaptop');
 
 Route::get('addinventoryDesktop', function () {
     session_start();
-    return view('addinventoryDesktop');
+    return view('add.addinventoryDesktop');
 })->name('addinventoryDesktop');
 
 Route::get('viewInventoryDesktop/{type}', [
@@ -70,14 +70,21 @@ Route::get('viewInventoryTablet/{type}',[
     'as'    => 'viewInventoryTablet'
 ]);
 
+/*
 Route::post('addElectronicItem', [
     'uses'  => 'EshopController@addElectronicItem',
     'as'    => 'addElectronicItem'
 ]);
+*/
 
 Route::get('deleteInventoryDesktop/{type}', [
     'uses'  => 'EshopController@deleteInventory',
     'as'    => 'deleteInventoryDesktop'
+]);
+
+Route::post('deleteElectronicItem', [
+    'uses'  => 'EshopController@deleteElectronicItem',
+    'as'    => 'deleteElectronicItem'
 ]);
 
 Route::get('deleteInventoryMonitor/{type}',[
