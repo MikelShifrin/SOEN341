@@ -22,7 +22,7 @@ class ClientLogTDG
         $sql ="INSERT INTO USER_aCTIVITY(USER_ID,LOGIN_DATETIME) VALUES(".$user_id.", localtimestamp)";
 
 
-        $db = pg_connect( "$host $port $dbname $credentials"  );
+        $db = pg_connect("$host $port $dbname $credentials");
         if(!$db) {
 //            echo "Error : Unable to open database\n";
         } else {

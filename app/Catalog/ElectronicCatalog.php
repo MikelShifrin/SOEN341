@@ -144,4 +144,11 @@ class ElectronicCatalog
         return $ret;
     }
 
+    public function deleteInventory($type) {
+        
+                $ret = $this->getElectronicsTDG()->deleteInventory($type);
+        
+                return $ret;
+            }
+
 }

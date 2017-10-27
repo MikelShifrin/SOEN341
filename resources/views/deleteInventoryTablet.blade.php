@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-
+<form action="{{route('addElectronicItem')}} " method="post">
     <table class="table table-striped">
         <thead>
         <tr>
@@ -15,6 +15,10 @@
             <th>Operating System</th>
             <th>Display Size</th>
             <th>Battery Info</th>
+            <th>Camera Info</th>
+            <th>Length</th>
+            <th>Height</th>
+            <th>Width</th>
             <th>weight</th>
         </tr>
         </thead>
@@ -23,8 +27,9 @@
         $i = 1;
         while($row = pg_fetch_assoc($ret)){
             print "<tr>";
-            print "<th scope='row'>$i</th>";            
+            print "<th scope='row'>$i</th>";
             print "<td>".$row['brand']."</td>";
+            print "<td><input type ='checkbox' name ='checkbox' value ='radio'/td>";  
             echo "<td>".$row['model_number']."</td>";
             echo "<td>".$row['price']."</td>";
             echo "<td>".$row['processor_type']."</td>";
@@ -34,6 +39,10 @@
             echo "<td>".$row['operating_system']."</td>";
             echo "<td>".$row['display_size']."</td>";
             echo "<td>".$row['battery_info']."</td>";
+            echo "<td>".$row['camera_info']."</td>";
+            echo "<td>".$row['length']."</td>";
+            echo "<td>".$row['height']."</td>";
+            echo "<td>".$row['width']."</td>";
             echo "<td>".$row['weight']."</td>";
             $i = $i + 1;
             echo "</tr>";
@@ -41,4 +50,6 @@
         ?>
         </tbody>
     </table>
+    
+</form>
 @endsection
