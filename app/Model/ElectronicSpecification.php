@@ -11,73 +11,71 @@ namespace App\Model;
 
 class ElectronicSpecification
 {
-   private $electronics_id;
-   private $brandName; 
-   private $modelNumber;
-   private $price;
-   private $weight;
-   private $type;
+    private int $electronicsId;
+    private String $brandName;
+    private String $modelNumber;
+    private int $price;
+    private int $weight;
+    private $type;
 
-   /**
-     * @return mixed
-     */
+    public function __construct(int $electronicsId = null,
+     String $brandName = null, String $modelNummber = null, int $price = null,
+     int $weight = null, $type = null){
+        $this->$electronicsId = $electronicsId;
+        $this->$brandName = $brandName;
+        $this->$modelNumber = $modelNumber;
+        $this->$price = $price;
+        $this->weight = $weight;
+        $this->$type = $type;
+    }
+
+    //mutators (setters)
+    public function setElectronicsId(int $electronics_id)
+    {
+        $this->electronics_id = $electronics_id;
+    }
+    public function setBrandName(String $brandName)
+    {
+        $this->brandName = $brandName;
+    }
+    public function setModelNumber(String $modelNumber)
+    {
+        $this->modelNumber = $modelNumber;
+    }
+    public function setPrice(int $price)
+    {
+        $this->price = $price;
+    }
+    public function setWeight(int $weight)
+    {
+        $this->weight = $weight;
+    }
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    //accessors (getters)
     public function getElectronicsId()
     {
         return $this->electronics_id;
     }
-
-   /**
-     * @param mixed $electronics_id
-     */
-    public function setElectronicsId($electronics_id)
-    {
-        $this->electronics_id = $electronics_id;
-    }
-
-
-   public function getbrandName(){
+    public function getBrandName(){
         return $this->brandName;
     }
-
-    
-    public function setbrandName($brandName){
-        $this->brandName = $brandName;
-    }
-    
-    public function getmodelNumber(){
+    public function getModelNumber(){
         return $this->modelNumber;
     }
-
-    
-    public function setmodelNumber($modelNumber){
-        $this->modelNumber = $modelNumber;
-    }
-
-    public function getprice(){
+    public function getPrice(){
         return $this->price;
     }
-
-    
-    public function setprice($price){
-        $this->price = $price;
-    }
-
-    public function getweight(){
+    public function getWeight()
+    {
         return $this->weight;
     }
 
-    
-    public function setweight($weight){
-        $this->weight = $weight;
-    }
-
-    public function gettype(){
+    public function getType()
+    {
         return $this->type;
     }
-
-    
-    public function settype($type){
-        $this->type = $type;
-    }
-
 }

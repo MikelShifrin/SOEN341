@@ -21,13 +21,14 @@ use Illuminate\Session;
 class EshopController extends Controller
 {
     private $user_catalog;
-
     private $client_log_catalog;
     private $electronic_catalog;
+
     public function __construct() {
         $user_catalog = new UserCatalog();
-        $client_log_catalog = new ClientLogCatalog();
         $this->setUserCatalog($user_catalog);
+
+        $client_log_catalog = new ClientLogCatalog();
         $this->setClientLogCatalog($client_log_catalog);
 
         $electronic_catalog = new ElectronicCatalog();
@@ -112,6 +113,7 @@ class EshopController extends Controller
     }
 public function addElectronicItem(Store $session, Request $request) {
     session_start();
+
         $brandName   = $request->input('brandName');
         $modelNumber = $request->input('modelNumber');
         $price       = $request->input('price');

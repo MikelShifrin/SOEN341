@@ -5,158 +5,108 @@ namespace App\Model;
 
 class Desktop extends ElectronicSpecification
 {
-Private $desktop_id;
-private $electronics_id;
-private $length;
-private $height;
-private $width;
-private $processor_type;
-private $ram_size;
-private $number_of_cpu_cores;
-private $hard_disk_size;
+    private int $desktopId;
+    private int $length;
+    private int $height;
+    private int $width;
+    private String $processorType;
+    private int $ramSize;
+    private int $numberOfCpuCores;
+    private int $hardDiskSize;
 
-/**
-     * @return mixed
-     */
-    public function getDesktopId()
+    public function __construct(int $desktopId = null, int $length = null,
+    int $height = null, int $width = null, String $processorType = null,
+    int $ramSize = null, int $numberOfCpuCores = null,
+    int $hardDiskSize = null, int $electronicsId = null,
+    String $brandName = null, String $modelNumber = null, int $price = null,
+    int $weight = null, $type = null)
     {
-        return $this->desktop_id;
+        $this->$desktopId = $desktopId;
+        $this->$length = $length;
+        $this->$height = $height;
+        $this->$width = $width;
+        $this->$processorType = $processorType;
+        $this->$ramSize = $ramSize;
+        $this->$numberOfCpuCores = $numberOfCpuCores;
+        $this->hardDiskSize = $hardDiskSize;
+
+        parent::__construct($electronicsId, $brandName, $modelNumber, $price,
+        $weight, $type);
     }
 
-   /**
-     * @param mixed $desktop_id
-     */
-    public function setDesktopId($desktop_id)
+    //mutators (setters)
+    public function setDesktopId($desktopId)
     {
-        $this->desktop_id = $desktop_id;
+        $this->desktopId = $desktopId;
     }
-
-   /**
-     * @return mixed
-     */
-    public function getElectronicsId()
+    public function setElectronicsId($electronicsId)
     {
-        return $this->electronics_id;
+        $this->electronicsId = $electronicsId;
     }
-
-   /**
-     * @param mixed $electronics_id
-     */
-    public function setElectronicsId($electronics_id)
-    {
-        $this->electronics_id = $electronics_id;
-    }
-
-   /**
-     * @return mixed
-     */
-    public function getLength()
-    {
-        return $this->length;
-    }
-
-   /**
-     * @param mixed $length
-     */
     public function setLength($length)
     {
         $this->length = $length;
     }
-
-   /**
-     * @return mixed
-     */
-    public function getHeight()
-    {
-        return $this->height;
-    }
-
-   /**
-     * @param mixed $height
-     */
     public function setHeight($height)
     {
         $this->height = $height;
     }
+    public function setWidth($width)
+    {
+       $this->width = $width;
+    }
+    public function setProcessorType($processorType)
+    {
+        $this->processorType = $processorType;
+    }
+    public function setRamSize($ramSize)
+    {
+        $this->ramSize = $ramSize;
+    }
+    public function setNumberOfCpuCores($numberOfCpuCores)
+    {
+        $this->numberOfCpuCores = $numberOfCpuCores;
+    }
+    public function setHardDiskSize($hardDiskSize)
+    {
+        $this->hardDiskSize = $hardDiskSize;
+    }
 
-   /**
-     * @return mixed
-     */
+    //accessors (getters)
+    public function getDesktopId()
+    {
+        return $this->desktopId;
+    }
+    public function getElectronicsId()
+    {
+        return $this->electronicsId;
+    }
+    public function getLength()
+    {
+        return $this->length;
+    }
+    public function getHeight()
+    {
+        return $this->height;
+    }
     public function getWidth()
     {
         return $this->width;
     }
-
-   /**
-     * @param mixed $width
-     */
-    public function setWidth($width)
-    {
-        $this->width = $width;
-    }
-
-   /**
-     * @return mixed
-     */
     public function getProcessorType()
     {
-        return $this->processor_type;
+        return $this->processorType;
     }
-
-   /**
-     * @param mixed $processor_type
-     */
-    public function setProcessorType($processor_type)
-    {
-        $this->processor_type = $processor_type;
-    }
-
-   /**
-     * @return mixed
-     */
     public function getRamSize()
     {
-        return $this->ram_size;
+        return $this->ramSize;
     }
-
-   /**
-     * @param mixed $ram_size
-     */
-    public function setRamSize($ram_size)
-    {
-        $this->ram_size = $ram_size;
-    }
-
-   /**
-     * @return mixed
-     */
     public function getNumberOfCpuCores()
     {
-        return $this->number_of_cpu_cores;
+        return $this->numberOfCpuCores;
     }
-
-   /**
-     * @param mixed $number_of_cpu_cores
-     */
-    public function setNumberOfCpuCores($number_of_cpu_cores)
-    {
-        $this->number_of_cpu_cores = $number_of_cpu_cores;
-    }
-
-   /**
-     * @return mixed
-     */
     public function getHardDiskSize()
     {
-        return $this->hard_disk_size;
+        return $this->hardDiskSize;
     }
-
-   /**
-     * @param mixed $hard_disk_size
-     */
-    public function setHardDiskSize($hard_disk_size)
-    {
-        $this->hard_disk_size = $hard_disk_size;
-    }
-    
-}  
+}

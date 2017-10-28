@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<form action="{{route('addElectronicItem')}} " method="post">
+<form action="{{route('deleteElectronicItem')}} " method="post">
     <table class="table table-striped">
         <thead>
         <tr>
@@ -18,7 +18,9 @@
         while($row = pg_fetch_assoc($ret)){
             print "<tr>";
             print "<th scope='row'>$i</th>";
-            print "<td><input type ='checkbox' name ='checkbox' value ='radio'/td>";  
+            print "<td><input type ='checkbox' name ='check_list[]'
+            value ='" . "display_id = " . $row['display_id']
+            . " electronics_id = " . $row['electronics_id'] . "' /> </td>";
             print "<td>".$row['brand']."</td>";
             echo "<td>".$row['model_number']."</td>";
             echo "<td>".$row['price']."</td>";
@@ -29,7 +31,10 @@
         }
         ?>
         </tbody>
+
     </table>
-    
-</form>    
+    {{csrf_field()}}
+    <br/>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 @endsection
