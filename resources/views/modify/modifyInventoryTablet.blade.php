@@ -5,7 +5,6 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>Delete</th>
             <th>Brand</th>
             <th>Model Number</th>
             <th>Price</th>
@@ -29,28 +28,27 @@
         while($row = pg_fetch_assoc($ret)){
             print "<tr>";
             print "<th scope='row'>$i</th>";
-            print "<td><input type ='checkbox' name ='checkbox' value ='radio'/td>"; 
-            print "<td>".$row['brand']."</td>";           
-            echo "<td>".$row['model_number']."</td>";
-            echo "<td>".$row['price']."</td>";
-            echo "<td>".$row['processor_type']."</td>";
-            echo "<td>".$row['ram_size']."</td>";
-            echo "<td>".$row['number_of_cpu_cores']."</td>";
-            echo "<td>".$row['hard_disk_size']."</td>";
-            echo "<td>".$row['operating_system']."</td>";
-            echo "<td>".$row['display_size']."</td>";
-            echo "<td>".$row['battery_info']."</td>";
-            echo "<td>".$row['camera_info']."</td>";
-            echo "<td>".$row['length']."</td>";
-            echo "<td>".$row['height']."</td>";
-            echo "<td>".$row['width']."</td>";
-            echo "<td>".$row['weight']."</td>";
+            print "<td><input type='text' class='form-control' placeholder='".$row['brand']."'></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['model_number']."'></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['price']."'></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['processor_type']."'></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['ram_size']."'></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['number_of_cpu_cores']."'></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['hard_disk_size']."'></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['operating_system']."'></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['display_size']."'></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['battery_info']."'></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['camera_info']."'></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['length']."'></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['height']."'></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['width']."'></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['weight']."'></td>";
             $i = $i + 1;
             echo "</tr>";
         }
         ?>
         </tbody>
     </table>
-    
+
 </form>
 @endsection
