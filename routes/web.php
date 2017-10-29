@@ -103,6 +103,27 @@ Route::get('deleteInventoryTablet/{type}',[
 ]);
 
 
+Route::get('modifyInventoryDesktop/{type}', [
+    'uses'  => 'EshopController@modifyInventory',
+    'as'    => 'modifyInventoryDesktop'
+]);
+
+Route::get('modifyInventoryMonitor/{type}',[
+    'uses'  => 'EshopController@modifyInventory',
+    'as'    => 'modifyInventoryMonitor'
+]);
+
+Route::get('modifyInventoryLaptop/{type}', [
+    'uses'  => 'EshopController@modifyInventory',
+    'as'    => 'modifyInventoryLaptop'
+]);
+
+Route::get('modifyInventoryTablet/{type}',[
+    'uses'  => 'EshopController@modifyInventory',
+    'as'    => 'modifyInventoryTablet'
+]);
+
+
 Route::get('logOut',[
     'uses'  => 'EshopController@logout',
     'as'    => 'logOut'

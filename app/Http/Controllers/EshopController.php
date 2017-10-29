@@ -135,23 +135,28 @@ class EshopController extends Controller
     */
     public function deleteElectronicItem(Store $session, Request $request) {
         session_start();
-        if(!empty($_POST['check_list'])) {
-            foreach($_POST['check_list'] as $check) {
-                echo $check . "<br/>"; //echoes the value set in the HTML form for each checked checkbox.
-                         //so, if I were to check 1, 3, and 5 it would echo value 1, value 3, value 5.
-                         //in your case, it would echo whatever $row['Report ID'] is equivalent to.
-             }
-        }
-            //$brandName   = $request->input('brandName');
-            //$modelNumber = $request->input('modelNumber');
-            //$price       = $request->input('price');
-            //$weight      = $request->input('weight');
-            //$displaySize = $request->input('displaySize');
-            //$type        = $request->input('type');
 
-            //$brandName=$this->getElectronicCatalog()->additem($request);
-        //$return="Deleted successfully";
-        //return view( 'welcome',['return'=>$return]);
+                $electronics_id = $request -> input('radio');
+               // $type = $request -> input('type');
+
+                $electronics_id = $this->getElectronicCatalog()->deleteitem($electronics_id);
+                return view( 'welcome');
+            }
+
+
+        public function modifyInventory($type) {
+            session_start();
+            $ret = $this->getElectronicCatalog()->deleteInventory($type);
+            if($type=='1'){
+            return view( 'modify.modifyInventoryDesktop',['ret'=>$ret]);
+            } elseif ($type=='2') {
+                return view( 'modify.modifyInventoryMonitor',['ret'=>$ret]);
+            } elseif ($type=='3') {
+                return view( 'modify.modifyInventoryLaptop',['ret'=>$ret]);
+            } elseif($type=='4') {
+                return view( 'modify.modifyInventoryTablet',['ret'=>$ret]);
+            }
         }
-}
+
+    }
 ?>

@@ -43,6 +43,10 @@ class ElectronicCatalog
         $this->setElectronicsTDG($electronicsTDG);
     }
 
+    public function deleteitem($electronics_id) {
+        $electronics_TDG = new ElectronicsTDG();
+        $this->getElectronicsTDG()->deleterows($electronics_id);
+        }
 
     public function additem($request) {
 
@@ -129,4 +133,11 @@ class ElectronicCatalog
                 $ret = $this->getElectronicsTDG()->deleteInventory($type);
                 return $ret;
             }
+
+    public function modifyInventory($type) {
+
+                $ret = $this->getElectronicsTDG()->deleteInventory($type);
+
+                return $ret;
+                    }
 }

@@ -38,6 +38,19 @@
                 <a class="dropdown-item" href="{{route('viewInventoryTablet',['type'=>4])}}">View Tablet</a>
             </div>
         </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Modify Inventory
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{route('modifyInventoryDesktop',['type'=>1])}}">Modify Desktop</a>
+                <a class="dropdown-item" href="{{route('modifyInventoryMonitor',['type'=>2])}}">Modify monitor</a>
+                <a class="dropdown-item" href="{{route('modifyInventoryLaptop',['type'=>3])}}">Modify Laptop</a>
+                <a class="dropdown-item" href="{{route('modifyInventoryTablet',['type'=>4])}}">Modify Tablet</a>
+            </div>
+      </li>
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Add inventory
