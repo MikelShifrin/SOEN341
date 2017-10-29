@@ -14,6 +14,7 @@ class Mapper
 
     public function __construct()
     {
+
     }
 
     //all mutators (setters)
@@ -33,21 +34,21 @@ class Mapper
     {
         $this->$electronicCatalog = $electronicCatalog;
     }
-    public function setUserCatalog()
+    public function setUserCatalog($userCatalog)
     {
-
+        $this->$userCatalog = $userCatalog;
     }
-    public function setClientLogTDG()
+    public function setClientLogTDG($clientLogTDG)
     {
-
+        $this->$clientLogTDG = $clientLogTDG;
     }
-    public function setElectronicsTDG()
+    public function setElectronicsTDG($electronicsTDG)
     {
-
+        $this->$electronicsTDG = $electronicsTDG;
     }
-    public function setUserTDG()
+    public function setUserTDG($userTDG)
     {
-
+        $this->$userTDG = $userTDG;
     }
 
     //all accessors (getters)

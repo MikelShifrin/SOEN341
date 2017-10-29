@@ -20,69 +20,32 @@ use Illuminate\Session;
 
 class EshopController extends Controller
 {
-    private $user_catalog;
-    private $client_log_catalog;
-    private $electronic_catalog;
+    //private $user_catalog;
+    //private $client_log_catalog;
+    //private $electronic_catalog;
+    private $mapper;
 
     public function __construct() {
-        $user_catalog = new UserCatalog();
-        $this->setUserCatalog($user_catalog);
 
-        $client_log_catalog = new ClientLogCatalog();
-        $this->setClientLogCatalog($client_log_catalog);
+        //$user_catalog = new UserCatalog();
+        //$this->setUserCatalog($user_catalog);
 
-        $electronic_catalog = new ElectronicCatalog();
-        $this->setElectronicCatalog($electronic_catalog);
+        //$client_log_catalog = new ClientLogCatalog();
+        //$this->setClientLogCatalog($client_log_catalog);
+
+        //$electronic_catalog = new ElectronicCatalog();
+        //$this->setElectronicCatalog($electronic_catalog);
     }
 
-    /**
-     * @return mixed
-     */
-    public function getClientLogCatalog() {
-        return $this->client_log_catalog;
-    }
-
-    /**
-     * @param mixed $client_log_catalog
-     */
-    public function setClientLogCatalog($client_log_catalog)
+    public function setMapper($mapper)
     {
-        $this->client_log_catalog = $client_log_catalog;
+        $this->$mapper = $mapper;
     }
 
-
-   /* /**
-     * @return mixed
-     */
-    public function getUserCatalog()
+    public function getMapper()
     {
-       return $this->user_catalog;
+        return $this->$mapper;
     }
-
-    /**
-     * @param mixed $user_catalog
-     */
-    public function setUserCatalog($user_catalog)
-    {
-       $this->user_catalog = $user_catalog;
-    }
-
-    /* /**
-     * @return mixed
-     */
-    public function getElectronicCatalog()
-    {
-       return $this->electronic_catalog;
-    }
-
-    /**
-     * @param mixed $user_catalog
-     */
-    public function setElectronicCatalog($electronic_catalog)
-    {
-       $this->electronic_catalog = $electronic_catalog;
-    }
-
 
     public function login(Store $session, Request $request) {
 
@@ -90,13 +53,13 @@ class EshopController extends Controller
         $password = $request->input('password');
 
 
-       $login = $this->getUserCatalog()->authenticate($username,$password);
+       $login = $this->$mapper->getUserCatalog()->authenticate($username,$password);
         if($login==false){
             $return = "Invalid Credentials!";
             return view('login', ['return'=>$return]);
         } else {
             $user_id = $login['user_id'];
-            //$this->getClientLogCatalog()->logActivity($user_id);
+
             session_start();
             $_SESSION['user'] = $login;
             $_SESSION['email'] = $login['email_id'];
@@ -105,44 +68,56 @@ class EshopController extends Controller
 
     }
 
-    public function logout() {
+    public function logout()
+    {
         session_start();
         session_destroy();
 
         return view( 'login');
     }
-public function addElectronicItem(Store $session, Request $request) {
-    session_start();
 
-        $brandName   = $request->input('brandName');
-        $modelNumber = $request->input('modelNumber');
-        $price       = $request->input('price');
-        $weight      = $request->input('weight');
-        $displaySize = $request->input('displaySize');
-        $type        = $request->input('type');
+    public function addElectronicItem(Store $session, Request $request)
+    {
+        session_start();
 
-        $brandName=$this->getElectronicCatalog()->additem($request);
-    $return="Deatils added successfully";
-    return view( 'welcome',['return'=>$return]);
+        //$brandName   = $request->input('brandName');
+        //$modelNumber = $request->input('modelNumber');
+        //$price       = $request->input('price');
+        //$weight      = $request->input('weight');
+        //$displaySize = $request->input('displaySize');
+        //$type        = $request->input('type');
+
+        //$brandName=
+        $this->$mapper->getElectronicCatalog()->additem($request);
+        $return="Deatils added successfully";
+        return view( 'welcome',['return'=>$return]);
     }
 
-    public function viewInventory($type) {
+    public function viewInventory($type)
+    {
         session_start();
-        $ret = $this->getElectronicCatalog()->viewInventory($type);
-        if($type=='1'){
+        $ret = $this->$mapper->getElectronicCatalog()->viewInventory($type);
+        if($type=='1')
+        {
         return view( 'view.viewInventoryDesktop',['ret'=>$ret]);
-        } elseif ($type=='2') {
+        }
+        elseif ($type=='2')
+        {
             return view( 'view.viewInventoryMonitor',['ret'=>$ret]);
-        } elseif ($type=='3') {
+        }
+        elseif ($type=='3')
+        {
             return view( 'view.viewInventoryLaptop',['ret'=>$ret]);
-        } elseif($type=='4') {
+        }
+        elseif($type=='4')
+        {
             return view( 'view.viewInventoryTablet',['ret'=>$ret]);
         }
     }
 
-    public function deleteInventory($type) {
+    public function deleteViewInventory($type) {
         session_start();
-        $ret = $this->getElectronicCatalog()->deleteInventory($type);
+        $ret = $this->$mapper->getElectronicCatalog()->deleteInventory($type);
         if($type=='1'){
         return view( 'delete.deleteInventoryDesktop',['ret'=>$ret]);
         } elseif ($type=='2') {

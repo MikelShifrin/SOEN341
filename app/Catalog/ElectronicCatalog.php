@@ -21,7 +21,6 @@ class ElectronicCatalog
 {
 
     private $electronicsTDG;
-
     /**
      * @return mixed
      */
