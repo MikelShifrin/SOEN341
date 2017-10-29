@@ -78,7 +78,7 @@ Route::post('addElectronicItem', [
 */
 
 Route::get('deleteInventoryDesktop/{type}', [
-    'uses'  => 'EshopController@deleteInventory',
+    'uses'  => 'EshopController@deleteViewInventory',
     'as'    => 'deleteInventoryDesktop'
 ]);
 
@@ -88,17 +88,17 @@ Route::post('deleteElectronicItem', [
 ]);
 
 Route::get('deleteInventoryMonitor/{type}',[
-    'uses'  => 'EshopController@deleteInventory',
+    'uses'  => 'EshopController@deleteViewInventory',
     'as'    => 'deleteInventoryMonitor'
 ]);
 
 Route::get('deleteInventoryLaptop/{type}', [
-    'uses'  => 'EshopController@deleteInventory',
+    'uses'  => 'EshopController@deleteViewInventory',
     'as'    => 'deleteInventoryLaptop'
 ]);
 
 Route::get('deleteInventoryTablet/{type}',[
-    'uses'  => 'EshopController@deleteInventory',
+    'uses'  => 'EshopController@deleteViewInventory',
     'as'    => 'deleteInventoryTablet'
 ]);
 

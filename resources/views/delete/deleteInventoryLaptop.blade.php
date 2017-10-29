@@ -26,7 +26,7 @@
             print "<tr>";
             print "<th scope='row'>$i</th>";
             print "<td><input type ='radio' name ='radio'
-            value ='". $row['electronics_id'] . "' /> </td>"; 
+            value ='". $row['electronics_id'] . "' /> </td>";
             print "<td>".$row['brand']."</td>";
             echo "<td>".$row['model_number']."</td>";
             echo "<td>".$row['price']."</td>";
@@ -46,6 +46,6 @@
     </table>
    {{csrf_field()}}
   <br/>
-  <button type="submit" class="btn btn-primary">Submit</button>  
+  <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 @endsection

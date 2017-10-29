@@ -35,6 +35,7 @@
             echo "<td><input type='text' class='form-control' placeholder='".$row['number_of_cpu_cores']."'></td>";
             echo "<td><input type='text' class='form-control' placeholder='".$row['hard_disk_size']."'></td>";
             echo "<td><input type='text' class='form-control' placeholder='".$row['weight']."'></td>";
+
             $i = $i + 1;
             echo "</tr>";
         }
