@@ -29,14 +29,8 @@
         while($row = pg_fetch_assoc($ret)){
             print "<tr>";
             print "<th scope='row'>$i</th>";
-<<<<<<< HEAD
-            print "<td><input type ='checkbox' name ='check_list[]'
-            value ='" . "tablet_id = " . $row['tablet_id']
-            . " electronics_id = " . $row['electronics_id'] . "' /> </td>";
-=======
             print "<td><input type ='radio' name ='radio'
-            value ='". $row['electronics_id'] . "' /> </td>"; 
->>>>>>> a60f925f7ad688aec83f45126b2e40bab907e321
+            value ='". $row['electronics_id'] . "' /> </td>";
             print "<td>".$row['brand']."</td>";
             echo "<td>".$row['model_number']."</td>";
             echo "<td>".$row['price']."</td>";
@@ -58,14 +52,8 @@
         ?>
         </tbody>
     </table>
-<<<<<<< HEAD
-    {{csrf_field()}}
-    <br/>
-    <button type="submit" class="btn btn-primary">Submit</button>
-=======
   {{csrf_field()}}
   <br/>
-  <button type="submit" class="btn btn-primary">Submit</button>   
->>>>>>> a60f925f7ad688aec83f45126b2e40bab907e321
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 @endsection

@@ -8,7 +8,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Mapper\Mapper;
 use App\Catalog\ClientLogCatalog;
 use App\Catalog\UserCatalog;
 use App\Catalog\ElectronicCatalog;
@@ -26,7 +26,7 @@ class EshopController extends Controller
     private $mapper;
 
     public function __construct() {
-
+        $mapper = new Mapper();
         //$user_catalog = new UserCatalog();
         //$this->setUserCatalog($user_catalog);
 

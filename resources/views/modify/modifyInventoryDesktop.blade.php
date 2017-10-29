@@ -5,7 +5,6 @@
     <thead>
     <tr>
         <th>#</th>
-        <th>Delete</th>
         <th>Brand</th>
         <th>Model Number</th>
         <th>Price</th>
@@ -25,10 +24,8 @@
         while($row = pg_fetch_assoc($ret)){
             print "<tr>";
             print "<th scope='row'>$i</th>";
-            print "<td><input type ='radio' name ='radio'
-            value ='"$row['electronics_id']"' /> </td>";
-            print "<td>".$row['brand']."</td>";
-            echo "<td>".$row['model_number']."</td>";
+            print "<td><input type='text' class='form-control' placeholder='".$row['brand']."'/></td>";
+            echo "<td><input type='text' class='form-control' placeholder='".$row['model_number']."'/>'</td>";
             echo "<td>".$row['price']."</td>";
             echo "<td>".$row['length']."</td>";
             echo "<td>".$row['height']."</td>";
@@ -44,6 +41,6 @@
         ?>
     </tbody>
   </table>
- 
+
 </form>
 @endsection

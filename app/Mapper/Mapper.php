@@ -14,7 +14,6 @@ class Mapper
 
     public function __construct()
     {
-
     }
 
     //all mutators (setters)
