@@ -93,12 +93,12 @@ Route::get('deleteInventoryMonitor/{type}',[
 ]);
 
 Route::get('deleteInventoryLaptop/{type}', [
-    'uses'  => 'EshopController@deleteInventory',
+    'uses'  => 'EshopController@deleteViewInventory',
     'as'    => 'deleteInventoryLaptop'
 ]);
 
 Route::get('deleteInventoryTablet/{type}',[
-    'uses'  => 'EshopController@deleteInventory',
+    'uses'  => 'EshopController@deleteViewInventory',
     'as'    => 'deleteInventoryTablet'
 ]);
 

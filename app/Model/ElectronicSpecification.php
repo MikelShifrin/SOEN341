@@ -11,15 +11,15 @@ namespace App\Model;
 
 class ElectronicSpecification
 {
-    private int $electronicsId;
-    private String $brandName;
-    private String $modelNumber;
-    private int $price;
-    private int $weight;
+    private $electronicsId;
+    private $brandName;
+    private $modelNumber;
+    private $price;
+    private $weight;
     private $type;
 
     public function __construct(int $electronicsId = null,
-     String $brandName = null, String $modelNummber = null, int $price = null,
+     String $brandName = null, String $modelNumber = null, int $price = null,
      int $weight = null, $type = null){
         $this->$electronicsId = $electronicsId;
         $this->$brandName = $brandName;
@@ -30,9 +30,9 @@ class ElectronicSpecification
     }
 
     //mutators (setters)
-    public function setElectronicsId(int $electronics_id)
+    public function setElectronicsId(int $electronicsId)
     {
-        $this->electronics_id = $electronics_id;
+        $this->electronicsId = $electronicsId;
     }
     public function setBrandName(String $brandName)
     {
@@ -58,7 +58,7 @@ class ElectronicSpecification
     //accessors (getters)
     public function getElectronicsId()
     {
-        return $this->electronics_id;
+        return $this->electronicsId;
     }
     public function getBrandName(){
         return $this->brandName;

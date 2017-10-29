@@ -14,14 +14,13 @@ use App\TDG\ClientLogTDG;
 
 class ClientLogCatalog
 {
-    private $client_log;
-    private $client_log_TDG;
-    public function __construct() {
+    private $clientLog;
+    private $clientLogTDG;
+    public function __construct()
+    {
 
-        $client_log = new ClientLog();
-        $client_log_TDG = new ClientLogTDG();
-        $this->setClientLog($client_log);
-        $this->setClientLogTDG($client_log_TDG);
+        $this->clientLog = new ClientLog();
+        $this->clientLogTDG = new ClientLogTDG();
     }
 
     /**
@@ -29,15 +28,15 @@ class ClientLogCatalog
      */
     public function getClientLog()
     {
-        return $this->client_log;
+        return $this->clientLog;
     }
 
     /**
      * @param mixed $client_log
      */
-    public function setClientLog($client_log)
+    public function setClientLog($clientLog)
     {
-        $this->client_log = $client_log;
+        $this->clientLog = $clientLog;
     }
 
     /**
@@ -45,20 +44,20 @@ class ClientLogCatalog
      */
     public function getClientLogTDG()
     {
-        return $this->client_log_TDG;
+        return $this->clientLogTDG;
     }
 
     /**
      * @param mixed $client_log_TDG
      */
-    public function setClientLogTDG($client_log_TDG)
+    public function setClientLogTDG($clientLogTDG)
     {
-        $this->client_log_TDG = $client_log_TDG;
+        $this->clientLogTDG = $clientLogTDG;
     }
 
-    public function logActivity($user_id) {
+    public function logActivity($userId) {
 
-        $this->getClientLogTDG()->logActivity($user_id);
+        $this->getClientLogTDG()->logActivity($userId);
     }
 
 }

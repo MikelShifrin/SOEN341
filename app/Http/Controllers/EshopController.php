@@ -48,12 +48,12 @@ class EshopController extends Controller
     }
 
     public function login(Store $session, Request $request) {
-
+        $this->mapper = new Mapper();
         $username = $request->input('email');
         $password = $request->input('password');
 
 
-       $login = $this->$mapper->getUserCatalog()->authenticate($username,$password);
+       $login = $this->mapper->getUserCatalog()->authenticate($username,$password);
         if($login==false){
             $return = "Invalid Credentials!";
             return view('login', ['return'=>$return]);
@@ -79,7 +79,7 @@ class EshopController extends Controller
     public function addElectronicItem(Store $session, Request $request)
     {
         session_start();
-
+        $this->mapper = new Mapper();
         //$brandName   = $request->input('brandName');
         //$modelNumber = $request->input('modelNumber');
         //$price       = $request->input('price');
@@ -88,7 +88,7 @@ class EshopController extends Controller
         //$type        = $request->input('type');
 
         //$brandName=
-        $this->$mapper->getElectronicCatalog()->additem($request);
+        $this->mapper->getElectronicCatalog()->additem($request);
         $return="Deatils added successfully";
         return view( 'welcome',['return'=>$return]);
     }
@@ -96,7 +96,8 @@ class EshopController extends Controller
     public function viewInventory($type)
     {
         session_start();
-        $ret = $this->$mapper->getElectronicCatalog()->viewInventory($type);
+        $this->mapper = new Mapper();
+        $ret = $this->mapper->getElectronicCatalog()->viewInventory($type);
         if($type=='1')
         {
         return view( 'view.viewInventoryDesktop',['ret'=>$ret]);
@@ -117,7 +118,8 @@ class EshopController extends Controller
 
     public function deleteViewInventory($type) {
         session_start();
-        $ret = $this->$mapper->getElectronicCatalog()->deleteInventory($type);
+        $this->mapper = new Mapper();
+        $ret = $this->mapper->getElectronicCatalog()->deleteInventory($type);
         if($type=='1'){
         return view( 'delete.deleteInventoryDesktop',['ret'=>$ret]);
         } elseif ($type=='2') {
@@ -133,30 +135,33 @@ class EshopController extends Controller
     delete function gets it's parameters from deleteInventoryDesktop.blade.php view
     it is redirected here through a post request in web.php
     */
-    public function deleteElectronicItem(Store $session, Request $request) {
+    public function deleteElectronicItem(Store $session, Request $request)
+    {
         session_start();
+        $this->mapper = new Mapper();
 
-                $electronics_id = $request -> input('radio');
-               // $type = $request -> input('type');
+        $electronics_id = $request -> input('radio');
+        // $type = $request -> input('type');
 
-                $electronics_id = $this->getElectronicCatalog()->deleteitem($electronics_id);
-                return view( 'welcome');
-            }
+        $electronics_id = $this->mapper->getElectronicCatalog()->deleteitem($electronics_id);
+        return view( 'welcome');
+    }
 
 
-        public function modifyInventory($type) {
-            session_start();
-            $ret = $this->getElectronicCatalog()->deleteInventory($type);
-            if($type=='1'){
-            return view( 'modify.modifyInventoryDesktop',['ret'=>$ret]);
-            } elseif ($type=='2') {
-                return view( 'modify.modifyInventoryMonitor',['ret'=>$ret]);
-            } elseif ($type=='3') {
-                return view( 'modify.modifyInventoryLaptop',['ret'=>$ret]);
-            } elseif($type=='4') {
-                return view( 'modify.modifyInventoryTablet',['ret'=>$ret]);
-            }
+    public function modifyInventory($type) {
+        session_start();
+        $this->mapper = new Mapper();
+        $ret = $this->mapper->getElectronicCatalog()->deleteInventory($type);
+        if($type=='1'){
+        return view( 'modify.modifyInventoryDesktop',['ret'=>$ret]);
+        } elseif ($type=='2') {
+            return view( 'modify.modifyInventoryMonitor',['ret'=>$ret]);
+        } elseif ($type=='3') {
+            return view( 'modify.modifyInventoryLaptop',['ret'=>$ret]);
+        } elseif($type=='4') {
+            return view( 'modify.modifyInventoryTablet',['ret'=>$ret]);
         }
+    }
 
     }
 ?>

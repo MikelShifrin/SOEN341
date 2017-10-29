@@ -5,14 +5,14 @@ namespace App\Model;
 
 class Desktop extends ElectronicSpecification
 {
-    private int $desktopId;
-    private int $length;
-    private int $height;
-    private int $width;
-    private String $processorType;
-    private int $ramSize;
-    private int $numberOfCpuCores;
-    private int $hardDiskSize;
+    private $desktopId;
+    private $length;
+    private $height;
+    private $width;
+    private $processorType;
+    private $ramSize;
+    private $numberOfCpuCores;
+    private $hardDiskSize;
 
     public function __construct(int $desktopId = null, int $length = null,
     int $height = null, int $width = null, String $processorType = null,
@@ -39,7 +39,7 @@ class Desktop extends ElectronicSpecification
     {
         $this->desktopId = $desktopId;
     }
-    public function setElectronicsId($electronicsId)
+    public function setElectronicsId(int $electronicsId)
     {
         $this->electronicsId = $electronicsId;
     }

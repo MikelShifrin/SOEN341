@@ -11,24 +11,28 @@ namespace App\Model;
 
 class ClientLog
 {
-    private $user_id;
-    private $activity_id;
-    private $login_datetime;
+    private $userId;
+    private $activityId;
+    private $loginDateTime;
 
+    public function __construct()
+    {
+
+    }
     /**
      * @return mixed
      */
     public function getUserId()
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
     /**
      * @param mixed $user_id
      */
-    public function setUserId($user_id)
+    public function setUserId($userId)
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
     }
 
     /**
@@ -36,15 +40,15 @@ class ClientLog
      */
     public function getActivityId()
     {
-        return $this->activity_id;
+        return $this->activityId;
     }
 
     /**
      * @param mixed $activity_id
      */
-    public function setActivityId($activity_id)
+    public function setActivityId($activityId)
     {
-        $this->activity_id = $activity_id;
+        $this->activityId = $activityId;
     }
 
     /**
@@ -52,15 +56,15 @@ class ClientLog
      */
     public function getLoginDatetime()
     {
-        return $this->login_datetime;
+        return $this->loginDateTime;
     }
 
     /**
      * @param mixed $login_datetime
      */
-    public function setLoginDatetime($login_datetime)
+    public function setLoginDatetime($loginDateTime)
     {
-        $this->login_datetime = $login_datetime;
+        $this->loginDateTime = $loginDateTime;
     }
 
 

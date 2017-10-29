@@ -5,30 +5,30 @@ namespace App\Model;
 
 class Laptop extends ElectronicSpecification
 {
-private $laptop_id;
-private $electronics_id;
-private $processor_type;
-private $ram_size;
-private $number_of_cpu_cores;
-private $hard_disk_size;
-private $operating_System;
-private $display_size;
-private $battery_info; 
+private $laptopId;
+private $electronicsId;
+private $processorType;
+private $ramSize;
+private $numberOfCpuCores;
+private $hardDiskSize;
+private $operatingSystem;
+private $displaySize;
+private $batteryInfo;
 
 /**
      * @return mixed
      */
     public function getLaptopId()
     {
-        return $this->laptop_id;
+        return $this->laptopId;
     }
 
    /**
      * @param mixed $laptop_id
      */
-    public function setLaptopId($laptop_id)
+    public function setLaptopId(int $laptopId)
     {
-        $this->laptop_id = $laptop_id;
+        $this->laptopId = $laptopId;
     }
 
    /**
@@ -36,15 +36,15 @@ private $battery_info;
      */
     public function getElectronicsId()
     {
-        return $this->electronics_id;
+        return $this->electronicsId;
     }
 
    /**
      * @param mixed $electronics_id
      */
-    public function setElectronicsId($electronics_id)
+    public function setElectronicsId(int $electronicsId)
     {
-        $this->electronics_id = $electronics_id;
+        $this->electronicsId = $electronicsId;
     }
 
    /**
@@ -52,15 +52,15 @@ private $battery_info;
      */
     public function getProcessorType()
     {
-        return $this->processor_type;
+        return $this->processorType;
     }
 
    /**
      * @param mixed $processor_type
      */
-    public function setProcessorType($processor_type)
+    public function setProcessorType(String $processorType)
     {
-        $this->processor_type = $processor_type;
+        $this->processorType = $processorType;
     }
 
    /**
@@ -68,15 +68,15 @@ private $battery_info;
      */
     public function getRamSize()
     {
-        return $this->ram_size;
+        return $this->ramSize;
     }
 
    /**
      * @param mixed $ram_size
      */
-    public function setRamSize($ram_size)
+    public function setRamSize(int $ramSize)
     {
-        $this->ram_size = $ram_size;
+        $this->ramSize = $ramSize;
     }
 
    /**
@@ -84,15 +84,15 @@ private $battery_info;
      */
     public function getNumberOfCpuCores()
     {
-        return $this->number_of_cpu_cores;
+        return $this->numberOfCpuCores;
     }
 
    /**
      * @param mixed $number_of_cpu_cores
      */
-    public function setNumberOfCpuCores($number_of_cpu_cores)
+    public function setNumberOfCpuCores(int $numberOfCpuCores)
     {
-        $this->number_of_cpu_cores = $number_of_cpu_cores;
+        $this->numberOfCpuCores = $numberOfCpuCores;
     }
 
    /**
@@ -100,15 +100,15 @@ private $battery_info;
      */
     public function getHardDiskSize()
     {
-        return $this->hard_disk_size;
+        return $this->hardDiskSize;
     }
 
    /**
      * @param mixed $hard_disk_size
      */
-    public function setHardDiskSize($hard_disk_size)
+    public function setHardDiskSize(int $hardDiskSize)
     {
-        $this->hard_disk_size = $hard_disk_size;
+        $this->hardDiskSize = $hardDiskSize;
     }
 
    /**
@@ -116,15 +116,15 @@ private $battery_info;
      */
     public function getOperatingSystem()
     {
-        return $this->operating_System;
+        return $this->operatingSystem;
     }
 
    /**
      * @param mixed $operating_System
      */
-    public function setOperatingSystem($operating_System)
+    public function setOperatingSystem(String $operatingSystem)
     {
-        $this->operating_System = $operating_System;
+        $this->operatingSystem = $operatingSystem;
     }
 
    /**
@@ -132,15 +132,15 @@ private $battery_info;
      */
     public function getDisplaySize()
     {
-        return $this->display_size;
+        return $this->displaySize;
     }
 
    /**
      * @param mixed $display_size
      */
-    public function setDisplaySize($display_size)
+    public function setDisplaySize(int $displaySize)
     {
-        $this->display_size = $display_size;
+        $this->displaySize = $displaySize;
     }
 
    /**
@@ -148,15 +148,14 @@ private $battery_info;
      */
     public function getBatteryInfo()
     {
-        return $this->battery_info;
+        return $this->batteryInfo;
     }
 
    /**
      * @param mixed $battery_info
      */
-    public function setBatteryInfo($battery_info)
+    public function setBatteryInfo(int $batteryInfo)
     {
-        $this->battery_info = $battery_info;
+        $this->batteryInfo = $batteryInfo;
     }
 }
-   

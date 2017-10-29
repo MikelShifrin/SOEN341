@@ -1,5 +1,13 @@
 <?php
 
+namespace App\Mapper;
+
+use App\Catalog\ClientLogCatalog;
+use App\Catalog\ElectronicCatalog;
+use App\Catalog\UserCatalog;
+use App\TDG\ClientLogTDG;
+use App\TDG\ElectronicsTDG;
+use App\TDG\UserTDG;
 
 class Mapper
 {
@@ -14,62 +22,68 @@ class Mapper
 
     public function __construct()
     {
+        $this->clientCatalog = new ClientLogCatalog();
+        $this->electronicCatalog = new ElectronicCatalog();
+        $this->userCatalog = new UserCatalog();
+        $this->clientLogTDG = new ClientLogTDG();
+        $this->electronicsTDG = new ElectronicsTDG();
+
     }
 
     //all mutators (setters)
     public function setIdentityMap($identityMap)
     {
-        $this->$identityMap = $identityMap;
+        $this->identityMap = $identityMap;
     }
     public function setUnitOfWork($unitOfWork)
     {
-        $this->$unitOfWork = $unitOfWork;
+        $this->unitOfWork = $unitOfWork;
     }
     public function setClientCatalog($clientCatalog)
     {
-        $this->$clientCatalog = $clientCatalog;
+        $this->clientCatalog = $clientCatalog;
     }
     public function setElectronicCatalog($electronicCatalog)
     {
-        $this->$electronicCatalog = $electronicCatalog;
+        $this->electronicCatalog = $electronicCatalog;
     }
     public function setUserCatalog($userCatalog)
     {
-        $this->$userCatalog = $userCatalog;
+        $this->userCatalog = $userCatalog;
     }
     public function setClientLogTDG($clientLogTDG)
     {
-        $this->$clientLogTDG = $clientLogTDG;
+        $this->clientLogTDG = $clientLogTDG;
     }
     public function setElectronicsTDG($electronicsTDG)
     {
-        $this->$electronicsTDG = $electronicsTDG;
+        $this->electronicsTDG = $electronicsTDG;
     }
     public function setUserTDG($userTDG)
     {
-        $this->$userTDG = $userTDG;
+        $this->userTDG = $userTDG;
     }
 
     //all accessors (getters)
     public function getIdentityMap()
     {
-        return $this->$identityMap;
+        return $this->identityMap;
     }
     public function getUnitOfWork()
     {
-        return $this->$unitOfWork;
+        return $this->unitOfWork;
     }
     public function getClientCatalog()
     {
-        return $this->$clientCatalog;
+        return $this->clientCatalog;
     }
     public function getElectronicCatalog()
     {
-        return $this->$electronicCatalog;
+        return $this->electronicCatalog;
     }
     public function getUserCatalog()
     {
-        return $this->$userCatalog;
+        return $this->userCatalog;
     }
     public function getClientLogTDG()
     {
@@ -83,5 +97,4 @@ class Mapper
     {
         return $this->userTDG;
     }
-
 }
