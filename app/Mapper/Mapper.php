@@ -97,4 +97,9 @@ class Mapper
     {
         return $this->userTDG;
     }
+
+    public function createElectronicItem(){}
+    public function retrieveElectronicItem(){}
+    public function modifyElectronicItem(){}
+    public function deleteElectronicItem(){}            
 }
