@@ -31,19 +31,23 @@ Route::post('addElectronicItem', [
     'as'    => 'addElectronicItem'
 ]);
 Route::get('addinventorymonitor', function () {
-    return view('addinventorymonitor');
+    session_start();
+    return view('add.addinventorymonitor');
 })->name('addinventorymonitor');
 
 Route::get('addinventoryTablet', function () {
-    return view('addinventoryTablet');
+    session_start();
+    return view('add.addinventoryTablet');
 })->name('addinventoryTablet');
 
 Route::get('addinventoryLaptop', function () {
-    return view('addinventoryLaptop');
+    session_start();
+    return view('add.addinventoryLaptop');
 })->name('addinventoryLaptop');
 
 Route::get('addinventoryDesktop', function () {
-    return view('addinventoryDesktop');
+    session_start();
+    return view('add.addinventoryDesktop');
 })->name('addinventoryDesktop');
 
 Route::get('viewInventoryDesktop/{type}', [
@@ -65,6 +69,60 @@ Route::get('viewInventoryTablet/{type}',[
     'uses'  => 'EshopController@viewInventory',
     'as'    => 'viewInventoryTablet'
 ]);
+
+/*
+Route::post('addElectronicItem', [
+    'uses'  => 'EshopController@addElectronicItem',
+    'as'    => 'addElectronicItem'
+]);
+*/
+
+Route::get('deleteInventoryDesktop/{type}', [
+    'uses'  => 'EshopController@deleteViewInventory',
+    'as'    => 'deleteInventoryDesktop'
+]);
+
+Route::post('deleteElectronicItem', [
+    'uses'  => 'EshopController@deleteElectronicItem',
+    'as'    => 'deleteElectronicItem'
+]);
+
+Route::get('deleteInventoryMonitor/{type}',[
+    'uses'  => 'EshopController@deleteViewInventory',
+    'as'    => 'deleteInventoryMonitor'
+]);
+
+Route::get('deleteInventoryLaptop/{type}', [
+    'uses'  => 'EshopController@deleteViewInventory',
+    'as'    => 'deleteInventoryLaptop'
+]);
+
+Route::get('deleteInventoryTablet/{type}',[
+    'uses'  => 'EshopController@deleteViewInventory',
+    'as'    => 'deleteInventoryTablet'
+]);
+
+
+Route::get('modifyInventoryDesktop/{type}', [
+    'uses'  => 'EshopController@modifyInventory',
+    'as'    => 'modifyInventoryDesktop'
+]);
+
+Route::get('modifyInventoryMonitor/{type}',[
+    'uses'  => 'EshopController@modifyInventory',
+    'as'    => 'modifyInventoryMonitor'
+]);
+
+Route::get('modifyInventoryLaptop/{type}', [
+    'uses'  => 'EshopController@modifyInventory',
+    'as'    => 'modifyInventoryLaptop'
+]);
+
+Route::get('modifyInventoryTablet/{type}',[
+    'uses'  => 'EshopController@modifyInventory',
+    'as'    => 'modifyInventoryTablet'
+]);
+
 
 Route::get('logOut',[
     'uses'  => 'EshopController@logout',

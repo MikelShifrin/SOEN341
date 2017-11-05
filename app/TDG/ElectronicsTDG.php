@@ -45,6 +45,43 @@ class ElectronicsTDG
         pg_close($db);
         return true;
     }
+public function deleterows($electronics_id){
+    $login = false;
+    $host        = "host = ec2-23-21-92-251.compute-1.amazonaws.com";
+    $port        = "port = 5432";
+    $dbname      = "dbname = deh4j5oag07pgv";
+    $credentials = "user = tynrrnfvnesgly password=2ceea303af5c85f704098528a6a4e5e6674ad3f481f41bda62512567522d2cbc";
+
+    $sql="Delete from Desktop where Electronics_id = $electronics_id" ;
+    $db = pg_connect( "$host $port $dbname $credentials"  );
+    $ret = pg_query($db, $sql);
+
+    $sql="Delete from Laptop where Electronics_id = $electronics_id" ;
+    $db = pg_connect( "$host $port $dbname $credentials"  );
+    $ret = pg_query($db, $sql);
+
+    $sql="Delete from Monitor where Electronics_id = $electronics_id" ;
+    $db = pg_connect( "$host $port $dbname $credentials"  );
+    $ret = pg_query($db, $sql);
+
+
+    $sql="Delete from Tablet where Electronics_id = $electronics_id" ;
+    $db = pg_connect( "$host $port $dbname $credentials"  );
+    $ret = pg_query($db, $sql);
+
+    $sql="Delete from Electronics where Electronics_id = $electronics_id" ;
+    $db = pg_connect( "$host $port $dbname $credentials"  );
+    $ret = pg_query($db, $sql);
+    if(!$ret) {
+    pg_close($db);
+    return false;
+
+    }
+    pg_close($db);
+    return true;
+
+}
+
 public function viewInventory($type) {
 
         if($type==1) {
@@ -60,9 +97,9 @@ public function viewInventory($type) {
             } else {
 //                echo "Opened database successfully\n";
             }
-            $sql ="SELECT DISTINCT a.*,b.* 
+            $sql ="SELECT DISTINCT a.*,b.*
                   FROM Desktop a
-                  inner join electronics b 
+                  inner join electronics b
                   on a.ELECTRONICS_ID = B.ELECTRONICS_ID
                   WHERE B.TYPE = 'd'";
             $ret = pg_query($db, $sql);
@@ -80,9 +117,9 @@ public function viewInventory($type) {
             } else {
 //                echo "Opened database successfully\n";
             }
-            $sql ="SELECT distinct a.*,b.* 
+            $sql ="SELECT distinct a.*,b.*
                   FROM Monitor a
-                  inner join electronics b 
+                  inner join electronics b
                   on a.ELECTRONICS_ID = B.ELECTRONICS_ID
                   WHERE B.TYPE = 'm'";
             $ret = pg_query($db, $sql);
@@ -101,9 +138,9 @@ public function viewInventory($type) {
             } else {
 //                echo "Opened database successfully\n";
             }
-            $sql ="SELECT distinct a.*,b.* 
+            $sql ="SELECT distinct a.*,b.*
                   FROM Laptop a
-                  inner join electronics b 
+                  inner join electronics b
                   on a.ELECTRONICS_ID = B.ELECTRONICS_ID
                   WHERE B.TYPE = 'l'";
             $ret = pg_query($db, $sql);
@@ -122,9 +159,9 @@ public function viewInventory($type) {
             } else {
 //                echo "Opened database successfully\n";
             }
-            $sql ="SELECT distinct a.*,b.* 
+            $sql ="SELECT distinct a.*,b.*
                   FROM tablet a
-                  inner join electronics b 
+                  inner join electronics b
                   on a.ELECTRONICS_ID = B.ELECTRONICS_ID
                   WHERE B.TYPE = 't'";
             $ret = pg_query($db, $sql);
@@ -133,6 +170,100 @@ public function viewInventory($type) {
 
         }
     }
+
+
+
+
+    public function deleteInventory($type) {
+
+                if($type==1) {
+
+                    $host        = "host = ec2-23-21-92-251.compute-1.amazonaws.com";
+                    $port        = "port = 5432";
+                    $dbname      = "dbname = deh4j5oag07pgv";
+                    $credentials = "user = tynrrnfvnesgly password=2ceea303af5c85f704098528a6a4e5e6674ad3f481f41bda62512567522d2cbc";
+
+                    $db = pg_connect( "$host $port $dbname $credentials"  );
+                    if(!$db) {
+        //                echo "Error : Unable to open database\n";
+                    } else {
+        //                echo "Opened database successfully\n";
+                    }
+                    $sql ="SELECT DISTINCT a.*,b.*
+                          FROM Desktop a
+                          inner join electronics b
+                          on a.ELECTRONICS_ID = B.ELECTRONICS_ID
+                          WHERE B.TYPE = 'd'";
+                    $ret = pg_query($db, $sql);
+                    return $ret;
+
+                } elseif ($type==2) {
+                    $host        = "host = ec2-23-21-92-251.compute-1.amazonaws.com";
+                    $port        = "port = 5432";
+                    $dbname      = "dbname = deh4j5oag07pgv";
+                    $credentials = "user = tynrrnfvnesgly password=2ceea303af5c85f704098528a6a4e5e6674ad3f481f41bda62512567522d2cbc";
+
+                    $db = pg_connect( "$host $port $dbname $credentials"  );
+                    if(!$db) {
+        //                echo "Error : Unable to open database\n";
+                    } else {
+        //                echo "Opened database successfully\n";
+                    }
+                    $sql ="SELECT distinct a.*,b.*
+                          FROM Monitor a
+                          inner join electronics b
+                          on a.ELECTRONICS_ID = B.ELECTRONICS_ID
+                          WHERE B.TYPE = 'm'";
+                    $ret = pg_query($db, $sql);
+                    return $ret;
+                }
+                elseif ($type==3) {
+
+                    $host        = "host = ec2-23-21-92-251.compute-1.amazonaws.com";
+                    $port        = "port = 5432";
+                    $dbname      = "dbname = deh4j5oag07pgv";
+                    $credentials = "user = tynrrnfvnesgly password=2ceea303af5c85f704098528a6a4e5e6674ad3f481f41bda62512567522d2cbc";
+
+                    $db = pg_connect( "$host $port $dbname $credentials"  );
+                    if(!$db) {
+        //                echo "Error : Unable to open database\n";
+                    } else {
+        //                echo "Opened database successfully\n";
+                    }
+                    $sql ="SELECT distinct a.*,b.*
+                          FROM Laptop a
+                          inner join electronics b
+                          on a.ELECTRONICS_ID = B.ELECTRONICS_ID
+                          WHERE B.TYPE = 'l'";
+                    $ret = pg_query($db, $sql);
+                    return $ret;
+
+                } else {
+
+                    $host        = "host = ec2-23-21-92-251.compute-1.amazonaws.com";
+                    $port        = "port = 5432";
+                    $dbname      = "dbname = deh4j5oag07pgv";
+                    $credentials = "user = tynrrnfvnesgly password=2ceea303af5c85f704098528a6a4e5e6674ad3f481f41bda62512567522d2cbc";
+
+                    $db = pg_connect( "$host $port $dbname $credentials"  );
+                    if(!$db) {
+        //                echo "Error : Unable to open database\n";
+                    } else {
+        //                echo "Opened database successfully\n";
+                    }
+                    $sql ="SELECT distinct a.*,b.*
+                          FROM tablet a
+                          inner join electronics b
+                          on a.ELECTRONICS_ID = B.ELECTRONICS_ID
+                          WHERE B.TYPE = 't'";
+                    $ret = pg_query($db, $sql);
+                    return $ret;
+
+
+                }
+            }
+
+
 
 
     public function insertTabletintoDB($tablet){
@@ -158,7 +289,6 @@ public function viewInventory($type) {
             return false;
         }
         $row = pg_fetch_array($ret);
-        echo $row[0];
         $sql="insert into tablet (electronics_id,processor_type,ram_size,number_of_cpu_cores,hard_disk_size,operating_system,display_size,battery_info,camera_info,length,width,height) values ('".$row[0]."','". $tablet->getProcessorType()."','". $tablet->getRamSize()."','". $tablet->getNumberOfCpuCores()."','". $tablet->getHardDiskSize()."','". $tablet->getOperatingSystem()."','". $tablet->getDisplaySize()."','". $tablet->getBatteryInfo()."','". $tablet->getCameraInfo()."','". $tablet->getLength()."','". $tablet->getWidth()."','". $tablet->getHeight()."')";
         $ret = pg_query($db, $sql);
         if(!$ret) {
@@ -192,7 +322,7 @@ public function viewInventory($type) {
             return false;
         }
         $row = pg_fetch_array($ret);
-        echo $row[0];
+
         $sql="insert into laptop  (electronics_id,processor_type,ram_size,number_of_cpu_cores,hard_disk_size,operating_system,display_size,battery_info) values ('".$row[0]."','". $laptop->getProcessorType()."','". $laptop->getRamSize()."','". $laptop->getNumberOfCpuCores()."','". $laptop->getHardDiskSize()."','". $laptop->getOperatingSystem()."','". $laptop->getDisplaySize()."','". $laptop->getBatteryInfo()."')";
         $ret = pg_query($db, $sql);
         if(!$ret) {
@@ -226,7 +356,7 @@ public function viewInventory($type) {
             return false;
         }
         $row = pg_fetch_array($ret);
-        echo $row[0];
+
         $sql="insert into desktop (electronics_id,processor_type,ram_size,number_of_cpu_cores,hard_disk_size,length,width,height) values ('".$row[0]."','". $desktop->getProcessorType()."','". $desktop->getRamSize()."','". $desktop->getNumberOfCpuCores()."','". $desktop->getHardDiskSize()."','". $desktop->getLength()."','". $desktop->getWidth()."','". $desktop->getHeight()."')";
         $ret = pg_query($db, $sql);
         if(!$ret) {
@@ -240,4 +370,3 @@ public function viewInventory($type) {
 
 
   }
-
