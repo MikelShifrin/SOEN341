@@ -135,7 +135,7 @@ public function viewInventory($type) {
     }
 
 
-    public function insertTabletintoDB($monitor){
+    public function insertTabletintoDB($tablet){
 
 
         $login = false;
@@ -144,7 +144,7 @@ public function viewInventory($type) {
         $dbname      = "dbname = deh4j5oag07pgv";
         $credentials = "user = tynrrnfvnesgly password=2ceea303af5c85f704098528a6a4e5e6674ad3f481f41bda62512567522d2cbc";
 
-        $sql="insert into electronics (BRAND,model_number,price,weight,type) values ('".$monitor->getbrandName()."','". $monitor->getmodelNumber()."','".$monitor->getprice()."','".$monitor->getweight()."','".$monitor->gettype()."')";
+        $sql="insert into electronics (BRAND,model_number,price,weight,type) values ('".$tablet->getbrandName()."','". $tablet->getmodelNumber()."','".$tablet->getprice()."','".$tablet->getweight()."','".$tablet->gettype()."')";
         $db = pg_connect( "$host $port $dbname $credentials"  );
         $ret = pg_query($db, $sql);
         if(!$ret) {
@@ -159,7 +159,7 @@ public function viewInventory($type) {
         }
         $row = pg_fetch_array($ret);
         echo $row[0];
-        $sql="insert into monitor (electronics_id,display_size) values ('".$row[0]."','". $monitor->getSize()."')";
+        $sql="insert into tablet (electronics_id,processor_type,ram_size,number_of_cpu_cores,hard_disk_size,operating_system,display_size,battery_info,camera_info,length,width,height) values ('".$row[0]."','". $tablet->getProcessorType()."','". $tablet->getRamSize()."','". $tablet->getNumberOfCpuCores()."','". $tablet->getHardDiskSize()."','". $tablet->getOperatingSystem()."','". $tablet->getDisplaySize()."','". $tablet->getBatteryInfo()."','". $tablet->getCameraInfo()."','". $tablet->getLength()."','". $tablet->getWidth()."','". $tablet->getHeight()."')";
         $ret = pg_query($db, $sql);
         if(!$ret) {
             pg_close($db);
@@ -169,7 +169,7 @@ public function viewInventory($type) {
         pg_close($db);
         return true;
     }
-    public function insertLaptopintoDB($monitor){
+    public function insertLaptopintoDB($laptop){
 
 
         $login = false;
@@ -178,7 +178,7 @@ public function viewInventory($type) {
         $dbname      = "dbname = deh4j5oag07pgv";
         $credentials = "user = tynrrnfvnesgly password=2ceea303af5c85f704098528a6a4e5e6674ad3f481f41bda62512567522d2cbc";
 
-        $sql="insert into electronics (BRAND,model_number,price,weight,type) values ('".$monitor->getbrandName()."','". $monitor->getmodelNumber()."','".$monitor->getprice()."','".$monitor->getweight()."','".$monitor->gettype()."')";
+        $sql="insert into electronics (BRAND,model_number,price,weight,type) values ('".$laptop->getbrandName()."','". $laptop->getmodelNumber()."','".$laptop->getprice()."','".$laptop->getweight()."','".$laptop->gettype()."')";
         $db = pg_connect( "$host $port $dbname $credentials"  );
         $ret = pg_query($db, $sql);
         if(!$ret) {
@@ -193,7 +193,7 @@ public function viewInventory($type) {
         }
         $row = pg_fetch_array($ret);
         echo $row[0];
-        $sql="insert into monitor (electronics_id,display_size) values ('".$row[0]."','". $monitor->getSize()."')";
+        $sql="insert into laptop  (electronics_id,processor_type,ram_size,number_of_cpu_cores,hard_disk_size,operating_system,display_size,battery_info) values ('".$row[0]."','". $laptop->getProcessorType()."','". $laptop->getRamSize()."','". $laptop->getNumberOfCpuCores()."','". $laptop->getHardDiskSize()."','". $laptop->getOperatingSystem()."','". $laptop->getDisplaySize()."','". $laptop->getBatteryInfo()."')";
         $ret = pg_query($db, $sql);
         if(!$ret) {
             pg_close($db);
@@ -203,7 +203,7 @@ public function viewInventory($type) {
         pg_close($db);
         return true;
     }
-    public function insertDesktopintoDB($monitor){
+    public function insertDesktopintoDB($desktop){
 
 
         $login = false;
@@ -212,7 +212,7 @@ public function viewInventory($type) {
         $dbname      = "dbname = deh4j5oag07pgv";
         $credentials = "user = tynrrnfvnesgly password=2ceea303af5c85f704098528a6a4e5e6674ad3f481f41bda62512567522d2cbc";
 
-        $sql="insert into electronics (BRAND,model_number,price,weight,type) values ('".$monitor->getbrandName()."','". $monitor->getmodelNumber()."','".$monitor->getprice()."','".$monitor->getweight()."','".$monitor->gettype()."')";
+        $sql="insert into electronics (BRAND,model_number,price,weight,type) values ('".$desktop->getbrandName()."','". $desktop->getmodelNumber()."','".$desktop->getprice()."','".$desktop->getweight()."','".$desktop->gettype()."')";
         $db = pg_connect( "$host $port $dbname $credentials"  );
         $ret = pg_query($db, $sql);
         if(!$ret) {
@@ -227,7 +227,7 @@ public function viewInventory($type) {
         }
         $row = pg_fetch_array($ret);
         echo $row[0];
-        $sql="insert into monitor (electronics_id,display_size) values ('".$row[0]."','". $monitor->getSize()."')";
+        $sql="insert into desktop (electronics_id,processor_type,ram_size,number_of_cpu_cores,hard_disk_size,length,width,height) values ('".$row[0]."','". $desktop->getProcessorType()."','". $desktop->getRamSize()."','". $desktop->getNumberOfCpuCores()."','". $desktop->getHardDiskSize()."','". $desktop->getLength()."','". $desktop->getWidth()."','". $desktop->getHeight()."')";
         $ret = pg_query($db, $sql);
         if(!$ret) {
             pg_close($db);
