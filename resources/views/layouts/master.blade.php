@@ -25,7 +25,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ">
-        <a class="nav-link" href="{{route('welcome')}}">Home </a>
+         @if($_SESSION['user_type'] == 'admin')
+            <a class="nav-link" href="{{route('welcome')}}">Home </a>
+         @else
+            <a class="nav-link" href="{{route('welcomeUser')}}">Home </a>
+          @endif
       </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -38,7 +42,7 @@
                 <a class="dropdown-item" href="{{route('viewInventoryTablet',['type'=>4])}}">View Tablet</a>
             </div>
         </li>
-
+        @if($_SESSION['user_type'] == 'admin')
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Modify Inventory
@@ -73,6 +77,7 @@
                 <a class="dropdown-item" href="{{route('deleteInventoryTablet',['type'=>4])}}">Delete Tablet</a>
             </div>
         </li>
+            @endif
     </ul>
 
     <span class="navbar-text">

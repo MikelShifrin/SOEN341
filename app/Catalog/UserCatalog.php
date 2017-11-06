@@ -59,9 +59,9 @@ class UserCatalog
 
 
 
-    public function authenticate($username, $password) {
+    public function authenticate($username, $password,$user_type) {
 
-       $login = $this->getUserTDG()->checkAuthentication($username, $password);
+       $login = $this->getUserTDG()->checkAuthentication($username, $password,$user_type);
 
        if($login==false){
            return $login;
@@ -72,6 +72,22 @@ class UserCatalog
            return $login;
         }
 
+    }
+
+    public function createNewUser($username,$password,$firstName,$lastName,$addressLineOne,$addressLineTwo,$telephone) {
+
+        $this->getUser()->setEmailId($username);
+        $this->getUser()->setPassword($password);
+        $this->getUser()->setFirstName($firstName);
+        $this->getUser()->setLastName($lastName);
+        $this->getUser()->setPhysicalAddressLine1($addressLineOne);
+        $this->getUser()->setPhysicalAddressLine2($addressLineTwo);
+        $this->getUser()->setPhoneNumber($telephone);
+        $this->getUser()->setUserType("user");
+
+        return $this->getUser();
 
     }
 }
+
+?>
