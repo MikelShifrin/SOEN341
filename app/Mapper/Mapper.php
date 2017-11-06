@@ -27,6 +27,7 @@ class Mapper
         $this->userCatalog = new UserCatalog();
         $this->clientLogTDG = new ClientLogTDG();
         $this->electronicsTDG = new ElectronicsTDG();
+        $this->userTDG = new UserTDG();
 
     }
 

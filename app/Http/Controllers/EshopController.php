@@ -51,21 +51,50 @@ class EshopController extends Controller
         $this->mapper = new Mapper();
         $username = $request->input('email');
         $password = $request->input('password');
+        $user_type = $request->input('asAdmin');
+        if($user_type=="on") {
+            $user_type = "admin";
+        } else {
+            $user_type = "user";
+        }
 
-
-       $login = $this->mapper->getUserCatalog()->authenticate($username,$password);
+       $login = $this->mapper->getUserCatalog()->authenticate($username,$password,$user_type);
         if($login==false){
             $return = "Invalid Credentials!";
             return view('login', ['return'=>$return]);
         } else {
             $user_id = $login['user_id'];
-
             session_start();
             $_SESSION['user'] = $login;
             $_SESSION['email'] = $login['email_id'];
-            return view( 'welcome');
+
+            if($user_type=="admin") {
+                $_SESSION['user_type'] = "admin";
+                return view( 'welcome');
+            } else {
+                $_SESSION['user_type'] = "user";
+                return view('welcomeUser');
+            }
         }
 
+    }
+
+    public function registerUser(Store $session, Request $request) {
+        $this->mapper = new Mapper();
+        $username       = $request->input('email');
+        $password       = $request->input('password');
+        $firstName      = $request->input('firstName');
+        $lastName       = $request->input('lastName');
+        $addressLineOne = $request->input('addressLineOne');
+        $addressLineTwo = $request->input('addressLineTwo');
+        $telephone      = $request->input('telephone');
+
+        $user = $this->mapper->getUserCatalog()->createNewUser($username,$password,$firstName,$lastName,$addressLineOne,$addressLineTwo,$telephone);
+        //print_r($user);
+        $this->mapper->getUserTDG()->addNewUser($user);
+
+        $return = "Please Login in!";
+        return view('login', ['return'=>$return]);
     }
 
     public function logout()

@@ -21,10 +21,20 @@ Route::post('/login', [
     'as'    => 'login'
 ]);
 
+Route::post('/registerUser', [
+    'uses'  => 'EshopController@registerUser',
+    'as'    => 'registerUser'
+]);
+
 Route::get('welcome', function () {
     session_start();
     return view('welcome');
 })->name('welcome');
+
+Route::get('welcomeUser', function () {
+    session_start();
+    return view('welcomeUser');
+})->name('welcomeUser');
 
 Route::post('addElectronicItem', [
     'uses'  => 'EshopController@addElectronicItem',
