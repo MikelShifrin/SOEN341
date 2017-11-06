@@ -3,7 +3,7 @@
 <div class="container ">
   <div class="jumbotron">
     <h1>Add Tablet</h1> 
-<form action="{{route('addElectronicItem')}} " method="post">
+<form action="{{route('addElectronicItem')}} " onsubmit="return validateForm()" method="post" name="myForm">
   <div class="form-group">
     <label for="exampleInputEmail1">Brand Name</label>
     <input type="input" class="form-control" id=""  placeholder="Enter Brand Name" name='brandName'>
@@ -71,3 +71,200 @@
 </div>
 </div>
 @endsection
+<script>
+    function validateForm() {
+        var x = document.forms["myForm"]["brandName"].value;
+        if (x == "") {
+            alert("Brand name must be filled out");
+            document.forms["myForm"]["brandName"].focus();
+            return false;
+        }
+        if( /[^a-zA-Z0-9\-\/]/.test(x) ) {
+            alert('Brand name is not alphanumeric');
+            document.forms["myForm"]["brandName"].focus();
+            return false;
+        }
+        x = document.forms["myForm"]["modelNumber"].value;
+        if (x == "") {
+            alert("Model number must be filled out");
+            document.forms["myForm"]["modelNumber"].focus();
+            return false;
+        }
+        if( /[^a-zA-Z0-9\-\/]/.test(x) ) {
+            alert('Model Number is not alphanumeric');
+            document.forms["myForm"]["modelNumber"].focus();
+            return false;
+        }
+
+        x = document.forms["myForm"]["price"].value;
+        if (x == "") {
+            alert("Price must be filled out");
+            document.forms["myForm"]["price"].focus();
+            return false;
+        }
+        if( isNaN(x)) {
+            alert('Price should be numeric');
+            document.forms["myForm"]["price"].focus();
+            return false;
+        }
+        x = document.forms["myForm"]["weight"].value;
+        if (x == "") {
+            alert("weight must be filled out");
+            document.forms["myForm"]["weight"].focus();
+            return false;
+        }
+        if( isNaN(x)) {
+            alert('weight should be numeric');
+            document.forms["myForm"]["weight"].focus();
+            return false;
+        }
+        x = document.forms["myForm"]["length"].value;
+        if (x == "") {
+            alert("length must be filled out");
+            document.forms["myForm"]["length"].focus();
+            return false;
+        }
+        if( isNaN(x)) {
+            alert('length should be numeric');
+            document.forms["myForm"]["length"].focus();
+            return false;
+        }
+        x = document.forms["myForm"]["width"].value;
+        if (x == "") {
+            alert("width must be filled out");
+            document.forms["myForm"]["width"].focus();
+            return false;
+        }
+        if( isNaN(x)) {
+            alert('width should be numeric');
+            document.forms["myForm"]["width"].focus();
+            return false;
+        }
+        x = document.forms["myForm"]["height"].value;
+        if (x == "") {
+            alert("height must be filled out");
+            document.forms["myForm"]["height"].focus();
+            return false;
+        }
+        if( isNaN(x)) {
+            alert('height should be numeric');
+            document.forms["myForm"]["height"].focus();
+            return false;
+        }
+        x = document.forms["myForm"]["processor_type"].value;
+        if (x == "") {
+            alert("Processor type must be filled out");
+            document.forms["myForm"]["processor_type"].focus();
+            return false;
+        }
+        if( /[^a-zA-Z0-9\-\/]/.test(x) ) {
+            alert('Processor Type is not alphanumeric');
+            document.forms["myForm"]["processor_type"].focus();
+            return false;
+        }
+        x = document.forms["myForm"]["ram_size"].value;
+        if (x == "") {
+            alert("Ram Size must be filled out");
+            document.forms["myForm"]["ram_size"].focus();
+            return false;
+        }
+        if( isNaN(x)) {
+            alert('Ram Size should be an Integer');
+            document.forms["myForm"]["ram_size"].focus();
+            return false;
+        }
+        if( !isNaN(x)) {
+            if(x.indexOf(".")!=-1) {
+                alert('Ram Size should be an Integer');
+                document.forms["myForm"]["ram_size"].focus();
+                return false;
+            }
+        }
+        x = document.forms["myForm"]["number_of_cpu_cores"].value;
+        if (x == "") {
+            alert("No of CPU cores must be filled out");
+            document.forms["myForm"]["number_of_cpu_cores"].focus();
+            return false;
+        }
+        if( isNaN(x)) {
+            alert('Number of CPU cores should be integer');
+            document.forms["myForm"]["number_of_cpu_cores"].focus();
+            return false;
+        }
+        if( !isNaN(x)) {
+            if(x.indexOf(".")!=-1) {
+                alert('Number of CPU cores should be integer');
+                document.forms["myForm"]["number_of_cpu_cores"].focus();
+                return false;
+            }
+        }
+        x = document.forms["myForm"]["hard_disk_size"].value;
+        if (x == "") {
+            alert("Hard Disk Size must be filled out");
+            document.forms["myForm"]["hard_disk_size"].focus();
+            return false;
+        }
+        if( isNaN(x)) {
+            alert('Hard disk size should be integer');
+            document.forms["myForm"]["hard_disk_size"].focus();
+            return false;
+        }
+        if( !isNaN(x)) {
+            if(x.indexOf(".")!=-1){
+                alert('Hard disk size should be integer');
+                document.forms["myForm"]["hard_disk_size"].focus();
+                return false;
+            }
+        }
+        x = document.forms["myForm"]["displaySize"].value;
+        if (x == "") {
+            alert("Display Size must be filled out");
+            document.forms["myForm"]["displaySize"].focus();
+            return false;
+        }
+        if( isNaN(x)) {
+            alert('Display size should be integer');
+            document.forms["myForm"]["displaySize"].focus();
+            return false;
+        }
+        if( !isNaN(x)) {
+            if(x.indexOf(".")!=-1){
+                alert('Dispaly size should be integer');
+                document.forms["myForm"]["displaySize"].focus();
+                return false;
+            }
+        }
+        x = document.forms["myForm"]["battery_info"].value;
+        if (x == "") {
+            alert("Battery info must be filled out");
+            document.forms["myForm"]["battery_info"].focus();
+            return false;
+        }
+        if( isNaN(x)) {
+            alert('Battery info should be integer');
+            document.forms["myForm"]["battery_info"].focus();
+            return false;
+        }
+        if( !isNaN(x)) {
+            if(x.indexOf(".")!=-1){
+                alert('Battery info should be integer');
+                document.forms["myForm"]["battery_info"].focus();
+                return false;
+            }
+        }
+        x = document.forms["myForm"]["cameraInfo"].value;
+        if (x == "") {
+            alert("Battery info must be filled out");
+            document.forms["myForm"]["cameraInfo"].focus();
+            return false;
+        }
+        if( isNaN(x)) {
+            alert('Camera info should be numeric');
+            document.forms["myForm"]["cameraInfo"].focus();
+            return false;
+        }
+
+
+
+    }
+</script>
