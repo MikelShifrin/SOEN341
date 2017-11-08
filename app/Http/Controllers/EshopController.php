@@ -200,6 +200,11 @@ class EshopController extends Controller
             $return="Desktop Updated Successfully";
             return view( 'welcome',['return'=>$return]);
         }
+        if($type=='3'){
+            $this->mapper->getElectronicsTDG()->modifyLaptop($request);
+            $return="Laptop Updated Successfully";
+            return view( 'welcome',['return'=>$return]);
+        }
 
     }
 
