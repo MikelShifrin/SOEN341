@@ -2,6 +2,8 @@
 
 namespace App\Mapper;
 
+use App\IdentityMap;
+use App\UnitOfWork;
 use App\Catalog\ClientLogCatalog;
 use App\Catalog\ElectronicCatalog;
 use App\Catalog\UserCatalog;
@@ -22,6 +24,8 @@ class Mapper
 
     public function __construct()
     {
+        $this->identityMap = new IdentityMap();
+        $this->unitOfWork = new UnitOfWork();
         $this->clientCatalog = new ClientLogCatalog();
         $this->electronicCatalog = new ElectronicCatalog();
         $this->userCatalog = new UserCatalog();
@@ -100,7 +104,30 @@ class Mapper
     }
 
     public function createElectronicItem(){}
-    public function retrieveElectronicItem(){}
+
+    public function retrieveDesktop(int $desktopId)
+    {
+        $identityMap = new IdentityMap();
+
+        $desktop = $identityMap->findDesktop($desktopId);
+        if($desktop == null)
+        {
+
+        }
+        else
+        {
+            return $desktop;
+        }
+    }
+    public function retrieveLaptop(int $laptopId){}
+    public function retrieveMonitor(int $monitorId){}
+    public function retrieveTablet(int $tabletId){}
+    
+
     public function modifyElectronicItem(){}
-    public function deleteElectronicItem(){}            
+
+    public function deleteDesktop(){}
+    public function deleteLaptop(){}
+    public function deleteMonitor(){}
+    public function deleteTablet(){}
 }
