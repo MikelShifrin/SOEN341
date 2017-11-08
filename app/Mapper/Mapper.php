@@ -2,8 +2,8 @@
 
 namespace App\Mapper;
 
-use App\IdentityMap;
-use App\UnitOfWork;
+use App\IdentityMap\IdentityMap;
+use App\UnitOfWork\UnitOfWork;
 use App\Catalog\ClientLogCatalog;
 use App\Catalog\ElectronicCatalog;
 use App\Catalog\UserCatalog;
@@ -122,7 +122,7 @@ class Mapper
     public function retrieveLaptop(int $laptopId){}
     public function retrieveMonitor(int $monitorId){}
     public function retrieveTablet(int $tabletId){}
-    
+
 
     public function modifyElectronicItem(){}
 
