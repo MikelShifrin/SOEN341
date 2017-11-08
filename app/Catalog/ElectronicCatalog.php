@@ -139,5 +139,5 @@ class ElectronicCatalog
                 $ret = $this->getElectronicsTDG()->deleteInventory($type);
 
                 return $ret;
-                    }
+    }
 }
