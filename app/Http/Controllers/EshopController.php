@@ -192,5 +192,16 @@ class EshopController extends Controller
         }
     }
 
+    public function modifyElectronics(Request $request,$type) {
+        session_start();
+        $this->mapper = new Mapper();
+        if($type=='1'){
+            $this->mapper->getElectronicsTDG()->modifyDesktop($request);
+            $return="Desktop Updated Successfully";
+            return view( 'welcome',['return'=>$return]);
+        }
+
+    }
+
     }
 ?>

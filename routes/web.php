@@ -118,6 +118,16 @@ Route::get('modifyInventoryDesktop/{type}', [
     'as'    => 'modifyInventoryDesktop'
 ]);
 
+Route::post('modifyDesktop/{type}', [
+    'uses'  => 'EshopController@modifyElectronics',
+    'as'    => 'modifyDesktop'
+]);
+
+Route::post('modifyLaptop/{type}', [
+    'uses'  => 'EshopController@modifyElectronics',
+    'as'    => 'modifyLaptop'
+]);
+
 Route::get('modifyInventoryMonitor/{type}',[
     'uses'  => 'EshopController@modifyInventory',
     'as'    => 'modifyInventoryMonitor'
