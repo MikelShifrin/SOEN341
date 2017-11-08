@@ -451,4 +451,50 @@ class ElectronicsTDG
 
 
     }
+
+    public function modifyLaptop($request) {
+
+        $brand          = $request -> input('brand');
+        $modelNumber    = $request -> input('modelNumber');
+        $price          = $request -> input('price');
+        $processorType  = $request -> input('processorType');
+        $ramSize        = $request -> input('ramSize');
+        $cpuCores       = $request -> input('cpuCores');
+        $hardDiskSize   = $request -> input('hardDiskSize');
+        $operatingSystem= $request -> input('operatingSystem');
+        $displaySize    = $request -> input('displaySize');
+        $batteryInfo    = $request -> input('batteryInfo');
+        $weight         = $request -> input('weight');
+        $electronicsId  = $request -> input('hiddenElectronicsId');
+
+        $host        = "host = ec2-23-21-92-251.compute-1.amazonaws.com";
+        $port        = "port = 5432";
+        $dbname      = "dbname = deh4j5oag07pgv";
+        $credentials = "user = tynrrnfvnesgly password=2ceea303af5c85f704098528a6a4e5e6674ad3f481f41bda62512567522d2cbc";
+
+
+        $db = pg_connect( "$host $port $dbname $credentials"  );
+
+        $sql1 = "UPDATE ELECTRONICS
+        SET BRAND = '".$brand."',
+        MODEL_NUMBER = '".$modelNumber."',
+        PRICE = ".$price.",
+        WEIGHT = ".$weight."
+        WHERE ELECTRONICS_ID = ".$electronicsId;
+
+        $sql2 = "UPDATE LAPTOP
+        SET PROCESSOR_TYPE = '".$processorType."',
+        RAM_SIZE = ".$ramSize.",
+        NUMBER_OF_CPU_CORES = ".$cpuCores.",
+        HARD_DISK_SIZE = '".$hardDiskSize."',
+        OPERATING_SYSTEM = '".$operatingSystem."',
+        DISPLAY_SIZE = ".$displaySize.",
+        BATTERY_INFO = ".$batteryInfo."
+        WHERE ELECTRONICS_ID = ".$electronicsId;
+
+        pg_query($db, $sql1);
+        pg_query($db, $sql2);
+
+
+    }
   }

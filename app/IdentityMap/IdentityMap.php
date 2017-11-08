@@ -9,16 +9,16 @@ use App\Model\Tablet;
 
 class IdentityMap
 {
-    private $desktopArray;
-    private $laptopArray;
-    private $monitorArray;
-    private $tabletArray;
+    private $desktopArray = [];
+    private $laptopArray = [];
+    private $monitorArray = [];
+    private $tabletArray = [];
 
 
 
-    public function findDestop(int $desktopId)
+    public function findDesktop(int $electronicsId)
     {
-        $desktop = $this->desktopArray[$desktopId];
+        $desktop = $this->desktopArray[$electronicsId];
         return $desktop;
     }
 

@@ -196,8 +196,24 @@ class EshopController extends Controller
         session_start();
         $this->mapper = new Mapper();
         if($type=='1'){
-            $this->mapper->getElectronicsTDG()->modifyDesktop($request);
+
+            $electronicsId = $request->input('hiddenElectronicsId');                //get electronics id
+            $desktop = $this->mapper->getIdentityMap()->findDesktop($electronicsId);    //get the persistent object from idmap
+            $this->mapper->getUnitOfWork()->registerDirty($desktop,$type);              //register dirty with uow
+//            $this->mapper->getElectronicsTDG()->modifyDesktop($request);
+            $this->mapper->getIdentityMap()->addDesktop($desktop);
             $return="Desktop Updated Successfully";
+            return view( 'welcome',['return'=>$return]);
+
+        }
+        if($type=='3'){
+
+            $electronicsId = $request->input('hiddenElectronicsId');                //get electronics id
+            $laptop = $this->mapper->getIdentityMap()->findLaptop($electronicsId);      //get the persistent object from idmap
+            $this->mapper->getUnitOfWork()->registerDirty($laptop,$type);              //register dirty with uow
+//            $this->mapper->getElectronicsTDG()->modifyDesktop($request);
+            $this->mapper->getIdentityMap()->addLaptop($laptop);
+            $return="Laptop Updated Successfully";
             return view( 'welcome',['return'=>$return]);
         }
 
