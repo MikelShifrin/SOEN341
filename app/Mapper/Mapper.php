@@ -102,43 +102,33 @@ class Mapper
         return $this->userTDG;
     }
 
-    public function createElectronicItem(){}
+    public function createDesktop(){}
+    public function createLaptop(){}
+    public function createMonitor(){}
+    public function createTablet(){}
 
-    public function findDesktop(int $desktopId)
+    public function findDesktop(int $electronicsId)
     {
 
-        $desktopArray = $this->identityMap->getAllDesktop();
-        print_r($desktopArray);
-        foreach($desktopArray as $d) {
-                print_r($d);
-      }
-//        if($desktop == null)
-//        {
-//            $electronicsTDG = new ElectronicsTDG();
-//            $ret = $electronicsTDG->retrieveDesktop();
-//            $desktop = new Desktop($ret['desktop_id'],$ret['length'],$ret['height'],$ret['width'],$ret['processor_type'],$ret['ram_size'],$ret['number_of_cpu_cores'],$ret['hard_disk_size'],$ret['electronicsid'],$ret['brand'],$ret['model_number'],$ret['price'],$ret['weight'],$ret['type']);
-//        }
-//        else
-//        {
-//            return $desktop;
-//        }
-    }
-    public function findLaptop(int $laptopId)
-    {
+        $desktop = $this->identityMap->getDesktop();
 
-
-        $laptop = $this->identityMap->getLaptop($LaptopId);
-        if($laptop == null)
+        if($desktop == null)
         {
-
+            $electronicsTDG = new ElectronicsTDG();
+            $ret = $electronicsTDG->retrieveDesktop();
+            $desktop = new Desktop($ret['desktop_id'],$ret['length'],$ret['height'],$ret['width'],$ret['processor_type'],$ret['ram_size'],$ret['number_of_cpu_cores'],$ret['hard_disk_size'],$ret['electronicsid'],$ret['brand'],$ret['model_number'],$ret['price'],$ret['weight'],$ret['type']);
         }
         else
         {
-            return $laptop;
+            return $desktop;
         }
+
+        $this->identityMap->addDesktop($desktop);
+        return $desktop;
     }
-    public function findMonitor(int $monitorId){}
-    public function findTablet(int $tabletId){}
+    public function findLaptop(int $electronicsId){}
+    public function findMonitor(int $electronicsId){}
+    public function findTablet(int $electronicsId){}
 
     public function findAllDesktop()
     {
@@ -208,7 +198,10 @@ class Mapper
         return $tabletArray ;
     }
 
-    public function modifyElectronicItem(){}
+    public function modifyDesktop(){}
+    public function modifyLaptop(){}
+    public function modifyMonitor(){}
+    public function modifyTablet(){}            
 
     public function deleteDesktop(){}
     public function deleteLaptop(){}
