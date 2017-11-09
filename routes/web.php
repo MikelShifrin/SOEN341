@@ -123,6 +123,11 @@ Route::post('modifyDesktop/{type}', [
     'as'    => 'modifyDesktop'
 ]);
 
+Route::get('modifyInventoryLaptop/{type}', [
+    'uses'  => 'EshopController@modifyInventory',
+    'as'    => 'modifyInventoryLaptop'
+]);
+
 Route::post('modifyLaptop/{type}', [
     'uses'  => 'EshopController@modifyElectronics',
     'as'    => 'modifyLaptop'
@@ -133,14 +138,20 @@ Route::get('modifyInventoryMonitor/{type}',[
     'as'    => 'modifyInventoryMonitor'
 ]);
 
-Route::get('modifyInventoryLaptop/{type}', [
-    'uses'  => 'EshopController@modifyInventory',
-    'as'    => 'modifyInventoryLaptop'
+Route::post('modifyMonitor/{type}', [
+    'uses'  => 'EshopController@modifyElectronics',
+    'as'    => 'modifyMonitor'
 ]);
+
 
 Route::get('modifyInventoryTablet/{type}',[
     'uses'  => 'EshopController@modifyInventory',
     'as'    => 'modifyInventoryTablet'
+]);
+
+Route::post('modifyTablet/{type}', [
+    'uses'  => 'EshopController@modifyElectronics',
+    'as'    => 'modifyTablet'
 ]);
 
 
