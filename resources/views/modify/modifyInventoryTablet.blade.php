@@ -86,7 +86,7 @@
 
                 <div class="form-group">
                 <label for="m4">Processor Type</label>
-                <input type="number" name="Processor Type" class="form-control" id="m4"  style="width: 75%;float: right" placeholder="">
+                <input type="text" name="Processor Type" class="form-control" id="m4"  style="width: 75%;float: right" placeholder="">
             </div>
 
                 <div class="form-group">
@@ -191,7 +191,7 @@
                 document.getElementById("m4").value = rowIdArray['Processor Type'];
                 document.getElementById("m5").value = rowIdArray['Ram Size'];
                 document.getElementById("m6").value = rowIdArray['Cpu Cores'];
-                document.getElementById("m7").value = rowIdArray['HDisk Size'];
+                document.getElementById("m7").value = rowIdArray['Hard Disk Size'];
                 document.getElementById("m8").value = rowIdArray['Operating System'];
                 document.getElementById("m9").value = rowIdArray['Display Size'];
                 document.getElementById("m10").value = rowIdArray['Battery Info'];
