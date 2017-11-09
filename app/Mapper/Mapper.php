@@ -24,7 +24,8 @@ class Mapper
 
     public function __construct()
     {
-        $this->identityMap = new IdentityMap();
+        $identityMap = new IdentityMap();
+        $this->setIdentityMap($identityMap);
         $this->unitOfWork = new UnitOfWork();
         $this->clientCatalog = new ClientLogCatalog();
         $this->electronicCatalog = new ElectronicCatalog();
@@ -110,22 +111,28 @@ class Mapper
     public function findDesktop(int $electronicsId)
     {
 
-        $desktop = $this->identityMap->getDesktop();
+        $desktopArray = $this->getIdentityMap()->getAllDesktop();
+        if($this->getIdentityMap() == null) {
+            print "idmap null";
+        }
+        print_r($desktopArray);
+
+        $desktop = $this->getIdentityMap()->getDesktop($electronicsId);
 
         if($desktop == null)
         {
             $electronicsTDG = new ElectronicsTDG();
             $ret = $electronicsTDG->retrieveDesktop();
             $desktop = new Desktop($ret['desktop_id'],$ret['length'],$ret['height'],$ret['width'],$ret['processor_type'],$ret['ram_size'],$ret['number_of_cpu_cores'],$ret['hard_disk_size'],$ret['electronicsid'],$ret['brand'],$ret['model_number'],$ret['price'],$ret['weight'],$ret['type']);
+            $this->identityMap->addDesktop($desktop);
         }
         else
         {
             return $desktop;
         }
-
-        $this->identityMap->addDesktop($desktop);
         return $desktop;
     }
+
     public function findLaptop(int $electronicsId){}
     public function findMonitor(int $electronicsId){}
     public function findTablet(int $electronicsId){}
@@ -133,18 +140,15 @@ class Mapper
     public function findAllDesktop()
     {
         $desktopArray = array();
-        $desktopArray = $this->identityMap->getAllDesktop();                                 //Message to idmap to get all desktops
+        $desktopArray = $this->getIdentityMap()->getAllDesktop();                                 //Message to idmap to get all desktops
 
         if($desktopArray == null)
         {
             $desktopArray = $this->electronicsTDG->viewInventory(1);                   //Fetch from DB
             $desktopArray = $this->electronicCatalog->createDesktopArray($desktopArray);    //create objects through catalog
 
-//            foreach($desktopArray as $d) {
-//                print_r($d);
-//            }
 
-            $this->identityMap->setDesktopArray($desktopArray);                             //add array to idmap
+            $this->getIdentityMap()->setDesktopArray($desktopArray);                             //add array to idmap
 
         }
         return $desktopArray;

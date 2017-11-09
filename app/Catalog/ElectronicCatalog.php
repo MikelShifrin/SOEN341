@@ -68,7 +68,7 @@ class ElectronicCatalog
             $desktop->setWeight($row['weight']);
             $desktop->setType($row['type']);
 
-            $this->desktopArray[$row['electronics_id']] = $desktop;
+            $this->desktopArray[$desktop->getElectronicsId()] = $desktop;
 
         }
 

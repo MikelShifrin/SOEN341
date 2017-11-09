@@ -13,6 +13,24 @@ class IdentityMap
     private $laptopArray = [];
     private $monitorArray = [];
     private $tabletArray = [];
+    private static $identityMap;
+
+    /**
+     * @return mixed
+     */
+    public static function getIdentityMap()
+    {
+        return self::$identityMap;
+    }
+
+    /**
+     * @param mixed $identityMap
+     */
+    public static function setIdentityMap($identityMap)
+    {
+        self::$identityMap = $identityMap;
+    }
+
 
 
     /**
@@ -20,11 +38,8 @@ class IdentityMap
      */
     public function setDesktopArray(array $desktopArray)
     {
-
         $this->desktopArray = $desktopArray;
-//        foreach($desktopArray as $d) {
-//                print_r($d);
-//      }
+
     }
 
     /**
@@ -53,14 +68,17 @@ class IdentityMap
 
 
     public function __construct()
-    {}
+    {
+
+        $this->identityMap = new IdentityMap();
+    }
 
 
     public function getDesktop(int $electronicsId)
     {
 
 //        $desktop = $this->desktopArray[$electronicsId];
-        print_r($this->desktopArray);
+//        print_r($this->desktopArray);
 
 //        return $desktop;
 
