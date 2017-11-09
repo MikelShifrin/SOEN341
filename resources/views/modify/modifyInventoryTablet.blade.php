@@ -185,11 +185,11 @@
                 var rowIdArray = [];
                 rowIdArray = array[id-1];
 
-                document.getElementById("m1").value = rowIdArray['brand'];
+                document.getElementById("m1").value = rowIdArray['Brand'];
                 document.getElementById("m2").value = rowIdArray['Model Number'];
                 document.getElementById("m3").value = rowIdArray['Price'];
                 document.getElementById("m4").value = rowIdArray['Processor Type'];
-                document.getElementById("m5").value = rowIdArray['Ram Size'];
+                document.getElementById("m5").value = rowIdArray['RSize'];
                 document.getElementById("m6").value = rowIdArray['Cpu Cores'];
                 document.getElementById("m7").value = rowIdArray['Hard Disk Size'];
                 document.getElementById("m8").value = rowIdArray['Operating System'];
