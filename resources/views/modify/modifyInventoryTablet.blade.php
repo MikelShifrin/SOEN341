@@ -85,9 +85,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="m4">Processor Type</label>
-                    <input type="number" name="length" class="form-control" id="m4"  style="width: 75%;float: right" placeholder="">
-                </div>
+                <label for="m4">Processor Type</label>
+                <input type="number" name="price" class="form-control" id="m4"  style="width: 75%;float: right" placeholder="">
+            </div>
 
                 <div class="form-group">
                     <label for="m5">Ram Size</label>
@@ -185,7 +185,7 @@
                 var rowIdArray = [];
                 rowIdArray = array[id-1];
 
-                document.getElementById("m1").value = rowIdArray['Bnd'];
+                document.getElementById("m1").value = rowIdArray['Brand'];
                 document.getElementById("m2").value = rowIdArray['Model Number'];
                 document.getElementById("m3").value = rowIdArray['Price'];
                 document.getElementById("m4").value = rowIdArray['Processor Type'];
