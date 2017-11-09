@@ -105,24 +105,83 @@ class Mapper
 
     public function createElectronicItem(){}
 
-    public function retrieveDesktop(int $desktopId)
+    public function findDesktop(int $desktopId)
     {
         $identityMap = new IdentityMap();
 
-        $desktop = $identityMap->findDesktop($desktopId);
+        $desktop = $identityMap->getDesktop($desktopId);
         if($desktop == null)
         {
-
+            $electronicsTDG = new ElectronicsTDG();
+            $ret = $electronicsTDG->retrieveDesktop();
+            $desktop = new Desktop($ret['desktop_id'],$ret['length'],$ret['height'],$ret['width'],$ret['processor_type'],$ret['ram_size'],$ret['number_of_cpu_cores'],$ret['hard_disk_size'],$ret['electronicsid'],$ret['brand'],$ret['model_number'],$ret['price'],$ret['weight'],$ret['type']);    
         }
         else
         {
             return $desktop;
         }
     }
-    public function retrieveLaptop(int $laptopId){}
-    public function retrieveMonitor(int $monitorId){}
-    public function retrieveTablet(int $tabletId){}
+    public function findLaptop(int $laptopId)
+    {
+        $identityMap = new IdentityMap();
 
+        $laptop = $identityMap->getLaptop($LaptopId);
+        if($laptop == null)
+        {
+
+        }
+        else
+        {
+            return $laptop;
+        }
+    }
+    public function findMonitor(int $monitorId){}
+    public function findTablet(int $tabletId){}
+
+    public function findAllDesktop()
+    {
+        $identityMap = new IdentityMap();
+        $desktopArray = $identityMap->getAllDestop();
+
+        if($desktopArray == null)
+        {
+            $electronicsTDG = new ElectronicsTDG();
+            return $electronicsTDG->viewInventory(1);
+        }
+    }
+    public function findAllLaptop()
+    {
+        $identityMap = new IdentityMap();
+        $laptopArray = $identityMap->getAllLaptop();
+
+        if($laptopArray == null)
+        {
+            $electronicsTDG = new ElectronicsTDG();
+            return $electronicsTDG->viewInventory(2);
+        }
+    }
+    public function findAllMonitor()
+    {
+        $identityMap = new IdentityMap();
+        $monitorArray = $identityMap->getAllMonitor();
+
+        if($monitorArray == null)
+        {
+            $electronicsTDG = new ElectronicsTDG();
+            return $electronicsTDG->viewInventory(3);
+        }
+    }
+    public function findAllTablet()
+    {
+        $identityMap = new IdentityMap();
+        $tabletArray = $identityMap->getAllTablet();
+
+        if($tabletArray == null)
+        {
+            $electronicsTDG = new ElectronicsTDG();
+            return $electronicsTDG->viewInventory(4);
+        }
+    }
 
     public function modifyElectronicItem(){}
 
