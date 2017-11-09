@@ -54,7 +54,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <form action="{{route('modifyDe sktop',['type'=>1])}}" method="post">
+            <form action="{{route('modifyDesktop',['type'=>1])}}" method="post">
             <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title">Update Desktop</h4>

@@ -71,77 +71,77 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="m1">Brand</label>
-                    <input type="text" name="brand" class="form-control" id="m1" style="width: 75%;float: right" placeholder="">
+                    <input type="text" name="Brand" class="form-control" id="m1" style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="m2">Model Number</label>
-                    <input type="text" name="modelNumber" class="form-control" id="m2"  style="width: 75%;float: right" placeholder="">
+                    <input type="text" name="Model Number" class="form-control" id="m2"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="m3">Price</label>
-                    <input type="number" name="price" class="form-control" id="m3"  style="width: 75%;float: right" placeholder="">
+                    <input type="number" name="Price" class="form-control" id="m3"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
                 <label for="m4">Processor Type</label>
-                <input type="number" name="price" class="form-control" id="m4"  style="width: 75%;float: right" placeholder="">
+                <input type="number" name="Processor Type" class="form-control" id="m4"  style="width: 75%;float: right" placeholder="">
             </div>
 
                 <div class="form-group">
                     <label for="m5">Ram Size</label>
-                    <input type="number" name="height" class="form-control" id="m5"  style="width: 75%;float: right" placeholder="">
+                    <input type="number" name="Ram Size" class="form-control" id="m5"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="m6">Cpu Cores</label>
-                     <input type="number" name="width" class="form-control" id="m6"  style="width: 75%;float: right" placeholder="">
+                     <input type="number" name="Cpu Cores" class="form-control" id="m6"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="m7">Hard Disk Size</label>
-                    <input type="text" name="processorType" class="form-control" id="m7"  style="width: 75%;float: right" placeholder="">
+                    <input type="text" name="Hard Disk Size" class="form-control" id="m7"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="m8">Operating System </label>
-                <input type="number" class="form-control" name="ramSize" id="m8"  style="width: 75%;float: right" placeholder="">
+                <input type="number" class="form-control" name="Operating System" id="m8"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="m9">Display Size</label>
-                    <input type="number" name="cpuCores" class="form-control" id="m9"  style="width: 75%;float: right" placeholder="">
+                    <input type="number" name="Display Size" class="form-control" id="m9"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="m10">Battery Info</label>
-                    <input type="number" name="hardDiskSize" class="form-control" id="m10"  style="width: 75%;float: right" placeholder="">
+                    <input type="number" name="Battery Info" class="form-control" id="m10"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="m11">Camer Info</label>
-                    <input type="number" name="weight" class="form-control" id="m11"  style="width: 75%;float: right" placeholder="">
+                    <input type="number" name="Camer Info" class="form-control" id="m11"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="m11">Length</label>
-                    <input type="number" name="weight" class="form-control" id="m12"  style="width: 75%;float: right" placeholder="">
+                    <input type="number" name="Length" class="form-control" id="m12"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="m11"> Height</label>
-                    <input type="number" name="weight" class="form-control" id="m13"  style="width: 75%;float: right" placeholder="">
+                    <label for="m11">Height</label>
+                    <input type="number" name="Height" class="form-control" id="m13"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="m11">Width</label>
-                    <input type="number" name="weight" class="form-control" id="m14"  style="width: 75%;float: right" placeholder="">
+                    <input type="number" name="Width" class="form-control" id="m14"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="m11">Weight</label>
-                    <input type="number" name="weight" class="form-control" id="m15"  style="width: 75%;float: right" placeholder="">
+                    <input type="number" name="Weight" class="form-control" id="m15"  style="width: 75%;float: right" placeholder="">
                 </div>
                 {{ csrf_field() }}
                 <input type="hidden" id="hiddenId" name="hiddenElectronicsId">
