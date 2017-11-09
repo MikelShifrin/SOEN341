@@ -119,7 +119,7 @@
                 document.getElementById("m2").value = rowIdArray['Model Number'];
                 document.getElementById("m3").value = rowIdArray['Price'];
                 document.getElementById("m4").value = rowIdArray['Display Size'];
-                document.getElementById("m5").value = rowIdArray['Weight'];
+                document.getElementById("m5").value = rowIdArray['weight'];
                 document.getElementById("hiddenId").value = document.getElementById(id).value;
 
                 $("#myModal").modal()
