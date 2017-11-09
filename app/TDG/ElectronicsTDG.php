@@ -439,14 +439,14 @@ public function viewInventory($type) {
         
                 $db = pg_connect( "$host $port $dbname $credentials"  );
         
-                $sql1 = "UPDATE ELECTRONICS
+                $sql3 = "UPDATE ELECTRONICS
                 SET BRAND = '".$brand."',
                 MODEL_NUMBER = '".$modelNumber."',
                 PRICE = ".$price.",
                 WEIGHT = ".$weight."
                 WHERE ELECTRONICS_ID = ".$electronicsId;
         
-                $sql2 = "UPDATE TABLET
+                $sql4 = "UPDATE TABLET
                 SET LENGTH = ".$length.",
                 HEIGHT = ".$height.",
                 WIDTH = ".$width.",
@@ -460,8 +460,8 @@ public function viewInventory($type) {
                 CAMERA_INFO = ".$cameraInfo."
                 WHERE ELECTRONICS_ID = ".$electronicsId;
         
-                pg_query($db, $sql1);
-                pg_query($db, $sql2);
+                pg_query($db, $sql3);
+                pg_query($db, $sql4);
         
         
             }
