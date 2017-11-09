@@ -91,12 +91,12 @@
 
                 <div class="form-group">
                     <label for="m5">Ram Size</label>
-                    <input type="number" name="Ram Size" class="form-control" id="m5"  style="width: 75%;float: right" placeholder="">
+                    <input type="text" name="Ram Size" class="form-control" id="m5"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="m6">Cpu Cores</label>
-                     <input type="number" name="Cpu Cores" class="form-control" id="m6"  style="width: 75%;float: right" placeholder="">
+                     <input type="text" name="Cpu Cores" class="form-control" id="m6"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
@@ -106,7 +106,7 @@
 
                 <div class="form-group">
                     <label for="m8">Operating System </label>
-                <input type="number" class="form-control" name="Operating System" id="m8"  style="width: 75%;float: right" placeholder="">
+                <input type="text" class="form-control" name="Operating System" id="m8"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
