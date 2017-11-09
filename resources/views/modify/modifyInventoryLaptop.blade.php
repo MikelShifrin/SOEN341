@@ -80,7 +80,7 @@
 
                         <div class="form-group">
                             <label for="m4"> Processor Type: </label>
-                            <input type="number" name="processorType" class="form-control" id="m4"  style="width: 65%;float: right" placeholder="">
+                            <input type="text" name="processorType" class="form-control" id="m4"  style="width: 65%;float: right" placeholder="">
                         </div>
 
                         <div class="form-group">
@@ -95,12 +95,12 @@
 
                         <div class="form-group">
                             <label for="m7"> Hard Disk Size: </label>
-                            <input type="text" name="hardDiskSize" class="form-control" id="m7"  style="width: 65%;float: right" placeholder="">
+                            <input type="number" name="hardDiskSize" class="form-control" id="m7"  style="width: 65%;float: right" placeholder="">
                         </div>
 
                         <div class="form-group">
                             <label for="m8"> Operating System:  </label>
-                            <input type="number" class="form-control" name="operatingSystem" id="m8"  style="width: 65%;float: right" placeholder="">
+                            <input type="text" class="form-control" name="operatingSystem" id="m8"  style="width: 65%;float: right" placeholder="">
                         </div>
 
                         <div class="form-group">
