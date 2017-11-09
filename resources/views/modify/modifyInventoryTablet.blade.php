@@ -189,11 +189,11 @@
                 document.getElementById("m2").value = rowIdArray['Model Number'];
                 document.getElementById("m3").value = rowIdArray['Price'];
                 document.getElementById("m4").value = rowIdArray['Processor Type'];
-                document.getElementById("m5").value = rowIdArray['RAM Size'];
+                document.getElementById("m5").value = rowIdArray['Ram Size'];
                 document.getElementById("m6").value = rowIdArray['CPU Cores'];
                 document.getElementById("m7").value = rowIdArray['Hard Disk Size'];
                 document.getElementById("m8").value = rowIdArray['Operating System'];
-                document.getElementById("m9").value = rowIdArray['Display Sizes'];
+                document.getElementById("m9").value = rowIdArray['Display Size'];
                 document.getElementById("m10").value = rowIdArray['Battery Info'];
                 document.getElementById("m11").value = rowIdArray['Camera Info'];
                 document.getElementById("m12").value = rowIdArray['Length'];
