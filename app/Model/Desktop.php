@@ -1,8 +1,5 @@
 <?php
-
 namespace App\Model;
-
-
 class Desktop extends ElectronicSpecification
 {
     private $desktopId;
@@ -13,13 +10,12 @@ class Desktop extends ElectronicSpecification
     private $ramSize;
     private $numberOfCpuCores;
     private $hardDiskSize;
-
     public function __construct(int $desktopId = null, int $length = null,
-    int $height = null, int $width = null, String $processorType = null,
-    int $ramSize = null, int $numberOfCpuCores = null,
-    int $hardDiskSize = null, int $electronicsId = null,
-    String $brandName = null, String $modelNumber = null, int $price = null,
-    int $weight = null, $type = null)
+                                int $height = null, int $width = null, String $processorType = null,
+                                int $ramSize = null, int $numberOfCpuCores = null,
+                                int $hardDiskSize = null, int $electronicsId = null,
+                                String $brandName = null, String $modelNumber = null, int $price = null,
+                                int $weight = null, $type = null)
     {
         $this->$desktopId = $desktopId;
         $this->$length = $length;
@@ -28,21 +24,19 @@ class Desktop extends ElectronicSpecification
         $this->$processorType = $processorType;
         $this->$ramSize = $ramSize;
         $this->$numberOfCpuCores = $numberOfCpuCores;
-        $this->hardDiskSize = $hardDiskSize;
-
+        $this->$hardDiskSize = $hardDiskSize;
         parent::__construct($electronicsId, $brandName, $modelNumber, $price,
-        $weight, $type);
+            $weight, $type);
     }
-
     //mutators (setters)
     public function setDesktopId($desktopId)
     {
         $this->desktopId = $desktopId;
     }
-    public function setElectronicsId(int $electronicsId)
-    {
-        $this->electronicsId = $electronicsId;
-    }
+//    public function setElectronicsId(int $electronicsId)
+//    {
+//        $this->electronicsId = $electronicsId;
+//    }
     public function setLength($length)
     {
         $this->length = $length;
@@ -53,7 +47,7 @@ class Desktop extends ElectronicSpecification
     }
     public function setWidth($width)
     {
-       $this->width = $width;
+        $this->width = $width;
     }
     public function setProcessorType($processorType)
     {
@@ -71,16 +65,15 @@ class Desktop extends ElectronicSpecification
     {
         $this->hardDiskSize = $hardDiskSize;
     }
-
     //accessors (getters)
     public function getDesktopId()
     {
         return $this->desktopId;
     }
-    public function getElectronicsId()
-    {
-        return $this->electronicsId;
-    }
+//    public function getElectronicsId()
+//    {
+//        return $this->electronicsId;
+//    }
     public function getLength()
     {
         return $this->length;

@@ -21,6 +21,9 @@ class ElectronicCatalog
 {
 
     private $electronicsTDG;
+    private $desktopArray = [];
+    private $monitorArray =[];
+
     /**
      * @return mixed
      */
@@ -39,11 +42,124 @@ class ElectronicCatalog
 
     public function __construct() {
         $electronicsTDG = new ElectronicsTDG();
-
         $this->setElectronicsTDG($electronicsTDG);
     }
 
-    public function deleteitem($electronics_id) {
+    public function createDesktopArray($desktopArray) {
+
+        while($row = pg_fetch_assoc($desktopArray)){
+
+            $desktop = new Desktop($row['desktop_id'],$row['length'],$row['height'],$row['width'],$row['processor_type'],
+                $row['ram_size'],$row['number_of_cpu_cores'],$row['hard_disk_size'],$row['electronics_id'],$row['brand'],
+                $row['model_number'],$row['price'],$row['weight'],$row['type']);
+
+            $desktop->setDesktopId($row['desktop_id']);
+            $desktop->setLength($row['length']);
+            $desktop->setHeight($row['height']);
+            $desktop->setWidth($row['width']);
+            $desktop->setProcessorType($row['processor_type']);
+            $desktop->setRamSize($row['ram_size']);
+            $desktop->setNumberOfCpuCores($row['number_of_cpu_cores']);
+            $desktop->setHardDiskSize($row['hard_disk_size']);
+            $desktop->setElectronicsId($row['electronics_id']);
+            $desktop->setBrandName($row['brand']);
+            $desktop->setModelNumber($row['model_number']);
+            $desktop->setPrice($row['price']);
+            $desktop->setWeight($row['weight']);
+            $desktop->setType($row['type']);
+
+            $this->desktopArray[$row['electronics_id']] = $desktop;
+
+        }
+
+        return $this->desktopArray;
+    }
+
+    public function createMonitorArray($monitorArray) {
+
+        while($row = pg_fetch_assoc($monitorArray)){
+
+            $monitor = new Monitor();
+
+            $monitor->setMonitorId($row['display_id']);
+            $monitor->setBrandName($row['brand']);
+            $monitor->setModelNumber($row['model_number']);
+            $monitor->setPrice($row['price']);
+            $monitor->setSize($row['display_size']);
+            $monitor->setWeight($row['weight']);
+            $monitor->setElectronicsId($row['electronics_id']);
+
+
+            $this->monitorArray[$row['electronics_id']] = $monitor;
+
+        }
+
+        return $this->monitorArray;
+    }
+
+    public function createLaptopArray($laptopArray) {
+
+        while($row = pg_fetch_assoc($laptopArray)){
+
+            $laptop = new Laptop();
+
+            $laptop->setBrandName($row['brand']);
+            $laptop->setModelNumber($row['model_number']);
+            $laptop->setPrice($row['price']);
+            $laptop->setProcessorType($row['processor_type']);
+            $laptop->setRamSize($row['ram_size']);
+            $laptop->setNumberOfCpuCores($row['number_of_cpu_cores']);
+            $laptop->setHardDiskSize($row['hard_disk_size']);
+            $laptop->setOperatingSystem($row['operating_system']);
+            $laptop->setDisplaySize($row['display_size']);
+            $laptop->setBatteryInfo($row['battery_info']);
+            $laptop->setWeight($row['weight']);
+            $laptop->setElectronicsId($row['electronics_id']);
+            $laptop->setLaptopId($row['laptop_id']);
+
+
+            $this->laptopArray[$row['electronics_id']] = $laptop;
+
+        }
+
+        return $this->laptopArray;
+    }
+
+    public function createTabletArray($tabletArray) {
+
+        while($row = pg_fetch_assoc($tabletArray)){
+
+            $tablet = new Tablet();
+
+            $tablet->setBrandName($row['brand']);
+            $tablet->setModelNumber($row['model_number']);
+            $tablet->setPrice($row['price']);
+            $tablet->setProcessorType($row['processor_type']);
+            $tablet->setRamSize($row['ram_size']);
+            $tablet->setNumberOfCpuCores($row['number_of_cpu_cores']);
+            $tablet->setHardDiskSize($row['hard_disk_size']);
+            $tablet->setOperatingSystem($row['operating_system']);
+            $tablet->setDisplaySize($row['display_size']);
+            $tablet->setBatteryInfo($row['battery_info']);
+            $tablet->setCameraInfo($row['camera_info']);
+            $tablet->setLength($row['length']);
+            $tablet->setHeight($row['height']);
+            $tablet->setWidth($row['width']);
+            $tablet->setWeight($row['weight']);
+            $tablet->setElectronicsId($row['electronics_id']);
+            $tablet->setTabletId($row['tablet_id']);
+
+
+            $this->tabletArray[$row['electronics_id']] = $tablet;
+
+        }
+
+        return $this->tabletArray;
+    }
+
+
+
+        public function deleteitem($electronics_id) {
         $electronics_TDG = new ElectronicsTDG();
         $this->getElectronicsTDG()->deleterows($electronics_id);
         }

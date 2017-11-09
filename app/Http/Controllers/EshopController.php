@@ -126,22 +126,26 @@ class EshopController extends Controller
     {
         session_start();
         $this->mapper = new Mapper();
-        $ret = $this->mapper->getElectronicCatalog()->viewInventory($type);
+//        $ret = $this->mapper->getElectronicCatalog()->viewInventory($type);
         if($type=='1')
         {
-        return view( 'view.viewInventoryDesktop',['ret'=>$ret]);
+            $ret = $this->mapper->findAllDesktop();                             //Message to Mapper to get all desktops
+            return view( 'view.viewInventoryDesktop',['ret'=>$ret]);      //Return to view
         }
         elseif ($type=='2')
         {
-            return view( 'view.viewInventoryMonitor',['ret'=>$ret]);
+            $ret = $this->mapper->findAllMonitor();                             //Message to Mapper to get all monitors
+            return view( 'view.viewInventoryMonitor',['ret'=>$ret]);      //Return to view
         }
         elseif ($type=='3')
         {
-            return view( 'view.viewInventoryLaptop',['ret'=>$ret]);
+            $ret = $this->mapper->findAllLaptop();                             //Message to Mapper to get all laptops
+            return view( 'view.viewInventoryLaptop',['ret'=>$ret]);      //Return to view
         }
         elseif($type=='4')
         {
-            return view( 'view.viewInventoryTablet',['ret'=>$ret]);
+            $ret = $this->mapper->findAllTablet();                             //Message to Mapper to get all tablets
+            return view( 'view.viewInventoryTablet',['ret'=>$ret]);      //Return to view
         }
     }
 
@@ -201,7 +205,7 @@ class EshopController extends Controller
             $desktop = $this->mapper->getIdentityMap()->findDesktop($electronicsId);    //get the persistent object from idmap
             $this->mapper->getUnitOfWork()->registerDirty($desktop,$type);              //register dirty with uow
 //            $this->mapper->getElectronicsTDG()->modifyDesktop($request);
-            $this->mapper->getIdentityMap()->addDesktop($desktop);
+            $this->mapper->getIdentityMap()->addDesktop($desktop);                      //
             $return="Desktop Updated Successfully";
             return view( 'welcome',['return'=>$return]);
 

@@ -36,24 +36,24 @@ class IdentityMap
     {
         return $this->desktopArray[$tabletId];
     }
-    public function getAllDestop()
+    public function getAllDesktop()
     {
         return $this->desktopArray;
     }
 
     public function getAllLaptop()
     {
-
+        return $this->laptopArray;
     }
 
     public function getAllMonitor()
     {
-
+        return $this->monitorArray;
     }
 
     public function getAllTablet()
     {
-
+        return $this->tabletArray;
     }
 
     public function addDesktop(Desktop $desktop)
@@ -64,19 +64,19 @@ class IdentityMap
 
     public function addLaptop(Laptop $laptop)
     {
-        $this->laptopArray = array($laptop->getDesktopId()=>$laptop);
+        $this->laptopArray = array($laptop->getLaptopId()=>$laptop);
         //$session->put('laptopArray', array($laptop->getDesktopId()=>$laptop));
     }
 
     public function addMonitor(Monitor $monitor)
     {
-        $this->monitorArray = array($monitor->getDesktopId()=>$monitor);
+        $this->monitorArray = array($monitor->getMonitorId()=>$monitor);
         //$session->put('monitorArray', array($monitor->getDesktopId()=>$monitor));
     }
 
     public function addTablet(Tablet $tablet)
     {
-        $this->tabletArray = array($tablet->getDesktopId()=>$tablet);
+        $this->tabletArray = array($tablet->getTabletId()=>$tablet);
         //$session->put('tabletArray', array($tablet->getDesktopId()=>$tablet));
     }
 
