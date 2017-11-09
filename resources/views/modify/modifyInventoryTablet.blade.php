@@ -32,21 +32,21 @@
             value ='".$row['electronics_id']."' id='".$i."'
 //            data-toggle='modal' data-id='".$i."' data-target='#myModal'
             /></td>";
-            print "<td>".$row['brand']."'></td>";
-            echo "<td>".$row['model_number']."'></td>";
-            echo "<td>".$row['price']."'></td>";
-            echo "<td>".$row['processor_type']."'></td>";
-            echo "<td>".$row['ram_size']."'></td>";
-            echo "<td>".$row['number_of_cpu_cores']."'></td>";
-            echo "<td>".$row['hard_disk_size']."'></td>";
-            echo "<td>".$row['operating_system']."'></td>";
-            echo "<td>".$row['display_size']."'></td>";
-            echo "<td>".$row['battery_info']."'></td>";
-            echo "<td>".$row['camera_info']."'></td>";
-            echo "<td>".$row['length']."'></td>";
-            echo "<td>".$row['height']."'></td>";
-            echo "<td>".$row['width']."'></td>";
-            echo "<td>".$row['weight']."'></td>";
+            print "<td>".$row['brand']."</td>";
+            echo "<td>".$row['model_number']."</td>";
+            echo "<td>".$row['price']."</td>";
+            echo "<td>".$row['processor_type']."</td>";
+            echo "<td>".$row['ram_size']."</td>";
+            echo "<td>".$row['number_of_cpu_cores']."</td>";
+            echo "<td>".$row['hard_disk_size']."</td>";
+            echo "<td>".$row['operating_system']."</td>";
+            echo "<td>".$row['display_size']."</td>";
+            echo "<td>".$row['battery_info']."</td>";
+            echo "<td>".$row['camera_info']."</td>";
+            echo "<td>".$row['length']."</td>";
+            echo "<td>".$row['height']."</td>";
+            echo "<td>".$row['width']."</td>";
+            echo "<td>".$row['weight']."</td>";
             $i = $i + 1;
             echo "</tr>";
         }

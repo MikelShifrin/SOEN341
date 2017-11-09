@@ -5,6 +5,7 @@
         <thead>
         <tr>
             <th>#</th>
+            <th>Modify</th>
             <th>Brand</th>
             <th>Model Number</th>
             <th>Price</th>
@@ -21,11 +22,11 @@
             print "<td><input type ='radio' name ='radio' value ='".$row['electronics_id']."' id='".$i."'
 //            data-toggle='modal' data-id='".$i."' data-target='#myModal'
             /></td>";
-            print "<td>".$row['brand']."></td>";
-            echo "<td>".$row['model_number']."'></td>";
-            echo "<td>".$row['price']."'></td>";
-            echo "<td>".$row['display_size']."'></td>";
-            echo "<td>".$row['weight']."'></td>";
+            print "<td>".$row['brand']."</td>";
+            echo "<td>".$row['model_number']."</td>";
+            echo "<td>".$row['price']."</td>";
+            echo "<td>".$row['display_size']."</td>";
+            echo "<td>".$row['weight']."</td>";
             $i = $i + 1;
             echo "</tr>";
         }
