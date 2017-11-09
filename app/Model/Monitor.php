@@ -20,7 +20,7 @@ class Monitor extends ElectronicSpecification
    /**
      * @param mixed $monitor_id
      */
-    public function setMonitorId(int $monitorId)
+    public function setMonitorId($monitorId)
     {
         $this->monitorId = $monitorId;
     }

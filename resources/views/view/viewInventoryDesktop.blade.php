@@ -21,22 +21,28 @@
     <tbody>
     <?php
         $i =1;
-        while($row = pg_fetch_assoc($ret)){
+        foreach ($ret as $desktop) {
+
+//            print ($desktop->getDesktopId());
+
+
+//        while($row = pg_fetch_assoc($ret)){
             print "<tr>";
             print "<th scope='row'>$i</th>";
-            print "<td>".$row['brand']."</td>";
-            echo "<td>".$row['model_number']."</td>";
-            echo "<td>".$row['price']."</td>";
-            echo "<td>".$row['length']."</td>";
-            echo "<td>".$row['height']."</td>";
-            echo "<td>".$row['width']."</td>";
-            echo "<td>".$row['processor_type']."</td>";
-            echo "<td>".$row['ram_size']."</td>";
-            echo "<td>".$row['number_of_cpu_cores']."</td>";
-            echo "<td>".$row['hard_disk_size']."</td>";
-            echo "<td>".$row['weight']."</td>";
+            print "<td>".$desktop->getBrandName()."</td>";
+            echo "<td>".$desktop->getModelNumber()."</td>";
+            echo "<td>".$desktop->getPrice()."</td>";
+            echo "<td>".$desktop->getLength()."</td>";
+            echo "<td>".$desktop->getHeight()."</td>";
+            echo "<td>".$desktop->getWidth()."</td>";
+            echo "<td>".$desktop->getProcessorType()."</td>";
+            echo "<td>".$desktop->getRamSize()."</td>";
+            echo "<td>".$desktop->getNumberOfCpuCores()."</td>";
+            echo "<td>".$desktop->getHardDiskSize()."</td>";
+            echo "<td>".$desktop->getWeight()."</td>";
             $i = $i + 1;
             echo "</tr>";
+//        }
         }
         ?>
     </tbody>

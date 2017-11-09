@@ -15,14 +15,14 @@
         <tbody>
         <?php
         $i = 1;
-        while($row = pg_fetch_assoc($ret)){
+        foreach ($ret as $monitor) {
             print "<tr>";
             print "<th scope='row'>$i</th>";
-            print "<td>".$row['brand']."</td>";
-            echo "<td>".$row['model_number']."</td>";
-            echo "<td>".$row['price']."</td>";
-            echo "<td>".$row['display_size']."</td>";
-            echo "<td>".$row['weight']."</td>";
+            print "<td>".$monitor->getBrandName()."</td>";
+            echo "<td>".$monitor->getModelNumber()."</td>";
+            echo "<td>".$monitor->getPrice()."</td>";
+            echo "<td>".$monitor->getSize()."</td>";
+            echo "<td>".$monitor->getWeight()."</td>";
             $i = $i + 1;
             echo "</tr>";
         }
