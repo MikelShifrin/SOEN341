@@ -22,19 +22,38 @@ class IdentityMap
         return $desktop;
     }
 
-    public function findLaptop(int $laptopId)
+    public function getLaptop(int $laptopId)
     {
         return $this->laptopArray[$laptopId];
     }
 
-    public function findMonitor(int $monitorId)
+    public function getMonitor(int $monitorId)
     {
         return $this->monitorArray[$monitorId];
     }
 
-    public function findTablet(int $tabletId)
+    public function getTablet(int $tabletId)
     {
         return $this->desktopArray[$tabletId];
+    }
+    public function getAllDestop()
+    {
+        return $this->desktopArray;
+    }
+
+    public function getAllLaptop()
+    {
+
+    }
+
+    public function getAllMonitor()
+    {
+
+    }
+
+    public function getAllTablet()
+    {
+
     }
 
     public function addDesktop(Desktop $desktop)
