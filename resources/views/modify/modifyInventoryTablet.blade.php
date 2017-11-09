@@ -19,7 +19,7 @@
             <th>Length</th>
             <th>Height</th>
             <th>Width</th>
-            <th>weight</th>
+            <th>Weight</th>
         </tr>
         </thead>
         <tbody>
@@ -59,7 +59,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <form action="{{route('modifyTablet',['type'=>1])}}" method="post">
+            <form action="{{route('modifyTablet',['type'=>4])}}" method="post">
             <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title">Update Tablet</h4>
@@ -74,72 +74,72 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="m2"> Model Number: </label>
+                    <label for="m2"> Model Number</label>
                     <input type="text" name="modelNumber" class="form-control" id="m2"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="m3"> Price: </label>
+                    <label for="m3"> Price</label>
                     <input type="number" name="price" class="form-control" id="m3"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="m4"> Processor Type: </label>
+                    <label for="m4"> Processor Type</label>
                     <input type="number" name="length" class="form-control" id="m4"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="m5"> Ram Size: </label>
+                    <label for="m5"> Ram Size</label>
                     <input type="number" name="height" class="form-control" id="m5"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="m6"> Cpu Cores: </label>
+                    <label for="m6"> Cpu Cores</label>
                      <input type="number" name="width" class="form-control" id="m6"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="m7"> Hard Disk Size: </label>
+                    <label for="m7"> Hard Disk Size</label>
                     <input type="text" name="processorType" class="form-control" id="m7"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="m8"> Operating System: </label>
+                    <label for="m8"> Operating System </label>
                 <input type="number" class="form-control" name="ramSize" id="m8"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="m9"> Display Size:  </label>
+                    <label for="m9"> Display Size</label>
                     <input type="number" name="cpuCores" class="form-control" id="m9"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="m10"> Battery Info </label>
+                    <label for="m10"> Battery Info</label>
                     <input type="number" name="hardDiskSize" class="form-control" id="m10"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="m11"> Camer Info: </label>
+                    <label for="m11"> Camer Info</label>
                     <input type="number" name="weight" class="form-control" id="m11"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="m11"> Length: </label>
+                    <label for="m11"> Length</label>
                     <input type="number" name="weight" class="form-control" id="m12"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="m11"> Height: </label>
+                    <label for="m11"> Height</label>
                     <input type="number" name="weight" class="form-control" id="m13"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="m11"> Width: </label>
+                    <label for="m11"> Width</label>
                     <input type="number" name="weight" class="form-control" id="m14"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <label for="m11"> Weight: </label>
+                    <label for="m11"> Weight</label>
                     <input type="number" name="weight" class="form-control" id="m15"  style="width: 75%;float: right" placeholder="">
                 </div>
                 {{ csrf_field() }}
@@ -198,7 +198,7 @@
                 document.getElementById("m12").value = rowIdArray['Length'];
                 document.getElementById("m13").value = rowIdArray['Height'];
                 document.getElementById("m14").value = rowIdArray['Width'];
-                document.getElementById("m15").value = rowIdArray['weight'];
+                document.getElementById("m15").value = rowIdArray['Weight'];
                 document.getElementById("hiddenId").value = document.getElementById(id).value;
 
                 $("#myModal").modal()

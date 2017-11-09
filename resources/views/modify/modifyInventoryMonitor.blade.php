@@ -39,7 +39,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <form action="{{route('modifyMonitor',['type'=>1])}}" method="post">
+            <form action="{{route('modifyMonitor',['type'=>2])}}" method="post">
             <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title">Update Monitor</h4>
