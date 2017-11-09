@@ -465,4 +465,40 @@ public function viewInventory($type) {
         
         
             }
+
+            public function modifyMonitor($request) {
+                   
+                $brand          = $request -> input('brand');
+                $modelNumber    = $request -> input('modelNumber');
+                $price          = $request -> input('price');
+                $weight         = $request -> input('weight');
+                $displayId      = $request -> input('displayId');
+                $displaySize    = $request -> input('displaySize');
+                $electronicsId  = $request -> input('hiddenElectronicsId');
+        
+                $host        = "host = ec2-23-21-92-251.compute-1.amazonaws.com";
+                $port        = "port = 5432";
+                $dbname      = "dbname = deh4j5oag07pgv";
+                $credentials = "user = tynrrnfvnesgly password=2ceea303af5c85f704098528a6a4e5e6674ad3f481f41bda62512567522d2cbc";
+        
+        
+                $db = pg_connect( "$host $port $dbname $credentials"  );
+        
+                $sql3 = "UPDATE ELECTRONICS
+                SET BRAND = '".$brand."',
+                MODEL_NUMBER = '".$modelNumber."',
+                PRICE = ".$price.",
+                WEIGHT = ".$weight."
+                WHERE ELECTRONICS_ID = ".$electronicsId;
+        
+                $sql4 = "UPDATE TABLET
+                SET DISPLAY_ID = ".$displayId.",
+                DISPLAY_SIZE = ".$displaySize."
+                WHERE ELECTRONICS_ID = ".$electronicsId;
+        
+                pg_query($db, $sql3);
+                pg_query($db, $sql4);
+        
+        
+                    }
   }
