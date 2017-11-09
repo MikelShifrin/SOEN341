@@ -106,25 +106,28 @@ class Mapper
 
     public function findDesktop(int $desktopId)
     {
-        $identityMap = new IdentityMap();
 
-        $desktop = $identityMap->getDesktop($desktopId);
-        if($desktop == null)
-        {
-            $electronicsTDG = new ElectronicsTDG();
-            $ret = $electronicsTDG->retrieveDesktop();
-            $desktop = new Desktop($ret['desktop_id'],$ret['length'],$ret['height'],$ret['width'],$ret['processor_type'],$ret['ram_size'],$ret['number_of_cpu_cores'],$ret['hard_disk_size'],$ret['electronicsid'],$ret['brand'],$ret['model_number'],$ret['price'],$ret['weight'],$ret['type']);    
-        }
-        else
-        {
-            return $desktop;
-        }
+        $desktopArray = $this->identityMap->getAllDesktop();
+        print_r($desktopArray);
+        foreach($desktopArray as $d) {
+                print_r($d);
+      }
+//        if($desktop == null)
+//        {
+//            $electronicsTDG = new ElectronicsTDG();
+//            $ret = $electronicsTDG->retrieveDesktop();
+//            $desktop = new Desktop($ret['desktop_id'],$ret['length'],$ret['height'],$ret['width'],$ret['processor_type'],$ret['ram_size'],$ret['number_of_cpu_cores'],$ret['hard_disk_size'],$ret['electronicsid'],$ret['brand'],$ret['model_number'],$ret['price'],$ret['weight'],$ret['type']);
+//        }
+//        else
+//        {
+//            return $desktop;
+//        }
     }
     public function findLaptop(int $laptopId)
     {
-        $identityMap = new IdentityMap();
 
-        $laptop = $identityMap->getLaptop($LaptopId);
+
+        $laptop = $this->identityMap->getLaptop($LaptopId);
         if($laptop == null)
         {
 
@@ -146,9 +149,12 @@ class Mapper
         {
             $desktopArray = $this->electronicsTDG->viewInventory(1);                   //Fetch from DB
             $desktopArray = $this->electronicCatalog->createDesktopArray($desktopArray);    //create objects through catalog
-            foreach ($desktopArray as $key => $desktop) {
-                $this->getIdentityMap()->addDesktop($desktop);                              //Add object back to idmap
-            }
+
+//            foreach($desktopArray as $d) {
+//                print_r($d);
+//            }
+
+            $this->identityMap->setDesktopArray($desktopArray);                             //add array to idmap
 
         }
         return $desktopArray;

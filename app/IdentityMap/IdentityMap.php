@@ -14,12 +14,50 @@ class IdentityMap
     private $monitorArray = [];
     private $tabletArray = [];
 
+    /**
+     * @param array $desktopArray
+     */
+    public function setDesktopArray(array $desktopArray)
+    {
+
+        $this->desktopArray = $desktopArray;
+//        foreach($desktopArray as $d) {
+//                print_r($d);
+//      }
+    }
+
+    /**
+     * @param array $laptopArray
+     */
+    public function setLaptopArray(array $laptopArray)
+    {
+        $this->laptopArray = $laptopArray;
+    }
+
+    /**
+     * @param array $monitorArray
+     */
+    public function setMonitorArray(array $monitorArray)
+    {
+        $this->monitorArray = $monitorArray;
+    }
+
+    /**
+     * @param array $tabletArray
+     */
+    public function setTabletArray(array $tabletArray)
+    {
+        $this->tabletArray = $tabletArray;
+    }
+
 
 
     public function findDesktop(int $electronicsId)
     {
-        $desktop = $this->desktopArray[$electronicsId];
-        return $desktop;
+//        $desktop = $this->desktopArray[$electronicsId];
+        print_r($this->desktopArray);
+
+//        return $desktop;
     }
 
     public function getLaptop(int $laptopId)
@@ -58,7 +96,9 @@ class IdentityMap
 
     public function addDesktop(Desktop $desktop)
     {
-        $this->desktopArray = array($desktop->getDesktopId()=>$desktop);
+//        $this->desktopArray = array($desktop->getDesktopId()=>$desktop);
+        $electronicsId = $desktop->getElectronicsId();
+        $this->desktopArray[$electronicsId] = $desktop;
         //$session->put('desktopArray', array($desktop->getDesktopId()=>$desktop));
     }
 

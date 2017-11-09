@@ -184,9 +184,10 @@ class EshopController extends Controller
     public function modifyInventory($type) {
         session_start();
         $this->mapper = new Mapper();
-        $ret = $this->mapper->getElectronicCatalog()->deleteInventory($type);
+//        $ret = $this->mapper->getElectronicCatalog()->deleteInventory($type);
         if($type=='1'){
-        return view( 'modify.modifyInventoryDesktop',['ret'=>$ret]);
+            $ret = $this->mapper->findAllDesktop();                             //Message to Mapper to get all desktops
+            return view( 'modify.modifyInventoryDesktop',['ret'=>$ret]);      //Return to view
         } elseif ($type=='2') {
             return view( 'modify.modifyInventoryMonitor',['ret'=>$ret]);
         } elseif ($type=='3') {
@@ -202,10 +203,10 @@ class EshopController extends Controller
         if($type=='1'){
 
             $electronicsId = $request->input('hiddenElectronicsId');                //get electronics id
-            $desktop = $this->mapper->getIdentityMap()->findDesktop($electronicsId);    //get the persistent object from idmap
-            $this->mapper->getUnitOfWork()->registerDirty($desktop,$type);              //register dirty with uow
+            $desktop = $this->mapper->findDesktop($electronicsId);                       //get the persistent object from idmap
+//            $this->mapper->getUnitOfWork()->registerDirty($desktop,$type);              //register dirty with uow
 //            $this->mapper->getElectronicsTDG()->modifyDesktop($request);
-            $this->mapper->getIdentityMap()->addDesktop($desktop);                      //
+//            $this->mapper->getIdentityMap()->addDesktop($desktop);                      //
             $return="Desktop Updated Successfully";
             return view( 'welcome',['return'=>$return]);
 
