@@ -185,7 +185,7 @@
                 var rowIdArray = [];
                 rowIdArray = array[id-1];
 
-                document.getElementById("m1").value = rowIdArray['Brand'];
+                document.getElementById("m1").value = rowIdArray['Brd'];
                 document.getElementById("m2").value = rowIdArray['Model Number'];
                 document.getElementById("m3").value = rowIdArray['Price'];
                 document.getElementById("m4").value = rowIdArray['Processor Type'];
