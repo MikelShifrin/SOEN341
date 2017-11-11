@@ -2,6 +2,7 @@
 
 namespace App\UnitOfWork;
 
+use App\Model\Desktop;
 use App\Model\ElectronicSpecification;
 
 class UnitOfWork
@@ -54,11 +55,13 @@ class UnitOfWork
 
     }
 
-    public function registerDirty(ElectronicSpecification $item, $type) {
+    public function registerDirty($item, $type) {
         if($type==1) {
 
-            $id = $item.getElectronicsId();
-            $this->desktopModifiedArray[$id] = $item;
+            $desktop = new Desktop();
+            $desktop = $item;
+            $id = $desktop->getElectronicsId();
+            $this->desktopModifiedArray[$id] = $desktop;
 
         } elseif ($type==2) {
 

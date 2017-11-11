@@ -3,6 +3,7 @@
 namespace App\Mapper;
 
 use App\IdentityMap\IdentityMap;
+use App\Model\Monitor;
 use App\UnitOfWork\UnitOfWork;
 use App\Catalog\ClientLogCatalog;
 use App\Catalog\ElectronicCatalog;
@@ -21,11 +22,18 @@ class Mapper
     private $clientLogTDG;
     private $electronicsTDG;
     private $userTDG;
+    private static $inst = null;
 
-    public function __construct()
+    public static function Instance()
     {
-        $identityMap = new IdentityMap();
-        $this->setIdentityMap($identityMap);
+        if (Self::$inst === null) {
+            Self::$inst = new Mapper();
+        }
+        return Self::$inst;
+    }
+
+    private function __construct()
+    {
         $this->unitOfWork = new UnitOfWork();
         $this->clientCatalog = new ClientLogCatalog();
         $this->electronicCatalog = new ElectronicCatalog();
@@ -33,6 +41,20 @@ class Mapper
         $this->clientLogTDG = new ClientLogTDG();
         $this->electronicsTDG = new ElectronicsTDG();
         $this->userTDG = new UserTDG();
+    }
+
+    private function __clone()
+    {
+    }
+
+    /**
+     * Private unserialize method to prevent unserializing of the *Singleton*
+     * instance.
+     *
+     * @return void
+     */
+    private function __wakeup()
+    {
     }
 
     //all mutators (setters)
@@ -111,26 +133,25 @@ class Mapper
     public function findDesktop(int $electronicsId)
     {
 
-        $desktopArray = $this->getIdentityMap()->getAllDesktop();
-        if($this->getIdentityMap() == null) {
-            print "idmap null";
-        }
-        print_r($desktopArray);
+        $_SESSION['singletonMap']->getDesktopArray();
 
-        $desktop = $this->getIdentityMap()->getDesktop($electronicsId);
+        $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
+        $desktop = $desktopArray[$electronicsId];
+        print_r($desktop);
 
         if($desktop == null)
         {
             $electronicsTDG = new ElectronicsTDG();
             $ret = $electronicsTDG->retrieveDesktop();
-            $desktop = new Desktop($ret['desktop_id'],$ret['length'],$ret['height'],$ret['width'],$ret['processor_type'],$ret['ram_size'],$ret['number_of_cpu_cores'],$ret['hard_disk_size'],$ret['electronicsid'],$ret['brand'],$ret['model_number'],$ret['price'],$ret['weight'],$ret['type']);
+            $desktop = new Desktop($ret['desktop_id'],$ret['length'],$ret['height'],$ret['width'],$ret['processor_type'],
+                $ret['ram_size'],$ret['number_of_cpu_cores'],$ret['hard_disk_size'],$ret['electronics_id'],$ret['brand'],
+                $ret['model_number'],$ret['price'],$ret['weight'],$ret['type']);
             $this->identityMap->addDesktop($desktop);
         }
         else
         {
             return $desktop;
         }
-        return $desktop;
     }
 
     public function findLaptop(int $electronicsId){}
@@ -140,16 +161,22 @@ class Mapper
     public function findAllDesktop()
     {
         $desktopArray = array();
-        $desktopArray = $this->getIdentityMap()->getAllDesktop();                                 //Message to idmap to get all desktops
+        if(isset($_SESSION['singletonMap'])){
+            $desktopArray = $_SESSION['singletonMap']->getAllDesktop();
+
+
+        }
+        else {
+            $desktopArray = IdentityMap::Instance()->getAllDesktop();                                 //Message to idmap to get all desktops
+        }
 
         if($desktopArray == null)
         {
             $desktopArray = $this->electronicsTDG->viewInventory(1);                   //Fetch from DB
             $desktopArray = $this->electronicCatalog->createDesktopArray($desktopArray);    //create objects through catalog
 
-
-            $this->getIdentityMap()->setDesktopArray($desktopArray);                             //add array to idmap
-
+            IdentityMap::Instance()->setDesktopArray($desktopArray);                             //add array to idmap
+            $_SESSION['singletonMap'] = IdentityMap::Instance();
         }
         return $desktopArray;
     }
@@ -202,10 +229,27 @@ class Mapper
         return $tabletArray ;
     }
 
-    public function modifyDesktop(){}
+    public function modifyDesktop($desktop , $type, $request){
+
+        $desktop = $this->getElectronicCatalog()->modifyInventory($desktop, $type, $request);
+        return $desktop;
+
+    }
     public function modifyLaptop(){}
     public function modifyMonitor(){}
-    public function modifyTablet(){}            
+    public function modifyTablet(){}
+
+    public function addDesktop($desktop){
+
+        $electronicsId = $desktop->getElectronicsId();
+        $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
+        $desktopArray[$electronicsId] = $desktop;
+        $_SESSION['singletonMap']->setDesktopArray($desktopArray);
+
+    }
+
+
+
 
     public function deleteDesktop(){}
     public function deleteLaptop(){}

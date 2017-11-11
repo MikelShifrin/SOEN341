@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\IdentityMap\IdentityMap;
 use App\Mapper\Mapper;
 use App\Catalog\ClientLogCatalog;
 use App\Catalog\UserCatalog;
@@ -17,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 use Illuminate\Session;
 
+app()->singleton('IdentityMap'); // include the namespace
 
 class EshopController extends Controller
 {
@@ -28,8 +30,8 @@ class EshopController extends Controller
 
     public function __construct() {
 
-        $mapper = new Mapper();
-        $this->setMapper($mapper);
+//        $mapper = new Mapper();
+        $this->setMapper(Mapper::Instance());
         //$user_catalog = new UserCatalog();
         //$this->setUserCatalog($user_catalog);
 
@@ -60,6 +62,7 @@ class EshopController extends Controller
 
     public function login(Store $session, Request $request) {
 
+
         $username = $request->input('email');
         $password = $request->input('password');
         $user_type = $request->input('asAdmin');
@@ -81,17 +84,16 @@ class EshopController extends Controller
 
             if($user_type=="admin") {
                 $_SESSION['user_type'] = "admin";
-                return view( 'welcome');
+                return view( 'loginWelcome');
             } else {
                 $_SESSION['user_type'] = "user";
                 return view('welcomeUser');
             }
         }
-
     }
 
     public function registerUser(Store $session, Request $request) {
-        $this->mapper = new Mapper();
+
         $username       = $request->input('email');
         $password       = $request->input('password');
         $firstName      = $request->input('firstName');
@@ -100,7 +102,7 @@ class EshopController extends Controller
         $addressLineTwo = $request->input('addressLineTwo');
         $telephone      = $request->input('telephone');
 
-        $user = $this->mapper->getUserCatalog()->createNewUser($username,$password,$firstName,$lastName,$addressLineOne,$addressLineTwo,$telephone);
+        $user = $this->getMapper()->getUserCatalog()->createNewUser($username,$password,$firstName,$lastName,$addressLineOne,$addressLineTwo,$telephone);
         //print_r($user);
         $this->mapper->getUserTDG()->addNewUser($user);
 
@@ -119,7 +121,7 @@ class EshopController extends Controller
     public function addElectronicItem(Store $session, Request $request)
     {
         session_start();
-        $this->mapper = new Mapper();
+
         //$brandName   = $request->input('brandName');
         //$modelNumber = $request->input('modelNumber');
         //$price       = $request->input('price');
@@ -128,7 +130,7 @@ class EshopController extends Controller
         //$type        = $request->input('type');
 
         //$brandName=
-        $this->mapper->getElectronicCatalog()->additem($request);
+        $this->getMapper()->getElectronicCatalog()->additem($request);
         $return="Deatils added successfully";
         return view( 'welcome',['return'=>$return]);
     }
@@ -137,10 +139,20 @@ class EshopController extends Controller
     {
         session_start();
 
+        if(isset($_SESSION['singletonMap'])){
+            $singletonIdMap = $_SESSION['singletonMap'];
+            echo spl_object_hash ($singletonIdMap);
+
+        } else {
+            $singletonIdMap = IdentityMap::Instance();
+            $_SESSION['singletonMap'] = $singletonIdMap;
+        }
+
+
 //        $ret = $this->mapper->getElectronicCatalog()->viewInventory($type);
         if($type=='1')
         {
-            $ret = $this->getMapper()->findAllDesktop();                             //Message to Mapper to get all desktops
+            $ret = Mapper::Instance()->findAllDesktop();                             //Message to Mapper to get all desktops
             return view( 'view.viewInventoryDesktop',['ret'=>$ret]);      //Return to view
         }
         elseif ($type=='2')
@@ -163,7 +175,7 @@ class EshopController extends Controller
     public function deleteViewInventory($type) {
         session_start();
 
-        $ret = $this->mapper->getElectronicCatalog()->deleteInventory($type);
+        $ret = $this->getMapper()->getElectronicCatalog()->deleteInventory($type);
         if($type=='1'){
         return view( 'delete.deleteInventoryDesktop',['ret'=>$ret]);
         } elseif ($type=='2') {
@@ -197,7 +209,8 @@ class EshopController extends Controller
 
 //        $ret = $this->mapper->getElectronicCatalog()->deleteInventory($type);
         if($type=='1'){
-            $ret = $this->getMapper()->findAllDesktop();                             //Message to Mapper to get all desktops
+            echo spl_object_hash ( IdentityMap::Instance());
+            $ret = Mapper::Instance()->findAllDesktop();                             //Message to Mapper to get all desktops
             return view( 'modify.modifyInventoryDesktop',['ret'=>$ret]);      //Return to view
         } elseif ($type=='2') {
             return view( 'modify.modifyInventoryMonitor',['ret'=>$ret]);
@@ -209,17 +222,17 @@ class EshopController extends Controller
     }
 
     public function modifyElectronics(Request $request,$type) {
-//        session_start();
+        session_start();
         if($type=='1'){
-
+            echo spl_object_hash (IdentityMap::Instance());
             $electronicsId = $request->input('hiddenElectronicsId');                //get electronics id
-            $desktop = $this->getMapper()->findDesktop($electronicsId);                       //get the persistent object from idmap
-            $this->mapper->getUnitOfWork()->registerDirty($desktop,$type);              //register dirty with uow
-            $this->mapper->getElectronicsTDG()->modifyDesktop($request);
-            $this->mapper->getIdentityMap()->addDesktop($desktop);                      //add modified object back to idmap
+            $desktop = $this->mapper->findDesktop($electronicsId);
+            $desktop = $this->mapper->modifyDesktop($desktop, $type, $request);              //modify the object
+            $this->mapper->getUnitOfWork()->registerDirty($desktop,1);                       //register dirty with uow
+//            $this->mapper->getElectronicsTDG()->modifyDesktop($request);
+            $this->mapper->addDesktop($desktop);                                        //add modified object back to idmap
             $return="Desktop Updated Successfully";
             return view( 'welcome',['return'=>$return]);
-
         }
         if($type=='3'){
 

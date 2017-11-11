@@ -9,29 +9,39 @@ use App\Model\Tablet;
 
 class IdentityMap
 {
-    private $desktopArray = [];
+    private $desktopArray = array();
     private $laptopArray = [];
     private $monitorArray = [];
     private $tabletArray = [];
-    private static $identityMap;
+    private $testString;
+    private static $inst;
 
     /**
      * @return mixed
      */
-    public static function getIdentityMap()
+    public function getTestString()
     {
-        return self::$identityMap;
+        return $this->testString;
     }
 
     /**
-     * @param mixed $identityMap
+     * @param mixed $testString
      */
-    public static function setIdentityMap($identityMap)
+    public function setTestString($testString)
     {
-        self::$identityMap = $identityMap;
+        $this->testString = $testString;
     }
 
 
+
+    public static function Instance()
+    {
+        Self::$inst === null;
+        if (Self::$inst === null) {
+            Self::$inst = new IdentityMap();
+        }
+        return Self::$inst;
+    }
 
     /**
      * @param array $desktopArray
@@ -66,12 +76,46 @@ class IdentityMap
         $this->tabletArray = $tabletArray;
     }
 
+    /**
+     * @return array
+     */
+    public function getDesktopArray(): array
+    {
+        return $this->desktopArray;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLaptopArray(): array
+    {
+        return $this->laptopArray;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMonitorArray(): array
+    {
+        return $this->monitorArray;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTabletArray(): array
+    {
+        return $this->tabletArray;
+    }
+
 
     public function __construct()
     {
 
-        $this->identityMap = new IdentityMap();
+
     }
+
+
 
 
     public function getDesktop(int $electronicsId)
