@@ -36,7 +36,8 @@ class Mapper
     {
         $this->unitOfWork = new UnitOfWork();
         $this->clientCatalog = new ClientLogCatalog();
-        $this->electronicCatalog = new ElectronicCatalog();
+        $this->setElectronicCatalog(new ElectronicCatalog());
+        $this->setIdentityMap(IdentityMap::Instance());
         $this->userCatalog = new UserCatalog();
         $this->clientLogTDG = new ClientLogTDG();
         $this->electronicsTDG = new ElectronicsTDG();
@@ -125,10 +126,32 @@ class Mapper
         return $this->userTDG;
     }
 
-    public function createDesktop(){}
-    public function createLaptop(){}
-    public function createMonitor(){}
-    public function createTablet(){}
+    public function createElectronics($request){
+
+        $item=$this->getElectronicCatalog()->additem($request);
+        if ($request->input('type')=='d'){
+            if(isset($_SESSION['singletonMap'])){
+                $singletonIdMap = $_SESSION['singletonMap'];
+                echo spl_object_hash ($singletonIdMap);
+
+            } else {
+                $singletonIdMap = IdentityMap::Instance();
+                $_SESSION['singletonMap'] = $singletonIdMap;
+            }
+            $singletonIdMap->addDesktop($item);
+            $this->getUnitOfWork()->registerNew($item,1);
+
+        }
+        if ($request->input('type')=='t'){
+
+        }
+        if ($request->input('type')=='l'){
+
+        }
+        if ($request->input('type')=='m'){
+
+        }
+    }
 
     public function findDesktop(int $electronicsId)
     {
