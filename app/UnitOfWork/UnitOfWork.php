@@ -4,6 +4,7 @@ namespace App\UnitOfWork;
 
 use App\Model\Desktop;
 use App\Model\ElectronicSpecification;
+use App\Model\Monitor;
 
 class UnitOfWork
 {
@@ -65,6 +66,10 @@ class UnitOfWork
 
         } elseif ($type==2) {
 
+            $monitor = new Monitor();
+            $monitor= $item;
+            $id = $monitor->getElectronicsId();
+            $this->monitorModifiedArray[$id] = $monitor;
 
 
         } elseif ($type==3) {
