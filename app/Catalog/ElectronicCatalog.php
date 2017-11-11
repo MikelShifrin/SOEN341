@@ -250,10 +250,26 @@ class ElectronicCatalog
                 return $ret;
             }
 
-    public function modifyInventory($type) {
+    public function modifyInventory($item , $type, $request) {
 
-                $ret = $this->getElectronicsTDG()->deleteInventory($type);
+        if($type == 1) {
 
-                return $ret;
+
+            $item->setBrandName($request->input('brand'));
+            $item->setModelNumber($request->input('modelNumber'));
+            $item->setPrice($request->input('price'));
+            $item->setLength($request->input('length'));
+            $item->setHeight($request->input('height'));
+            $item->setWidth($request->input('width'));
+            $item->setProcessorType($request->input('processorType'));
+            $item->setRamSize($request->input('ramSize'));
+            $item->setNumberOfCpuCores($request->input('cpuCores'));
+            $item->setHardDiskSize($request->input('hardDiskSize'));
+            $item->setWeight($request->input('weight'));
+            $item->setElectronicsId($request->input('hiddenElectronicsId'));
+
+            return $item;
+        }
+
     }
 }
