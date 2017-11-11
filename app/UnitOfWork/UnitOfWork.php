@@ -27,7 +27,21 @@ class UnitOfWork
     private $tabletDeleteArray = [];
 
     private $array = array();
+    private static $inst;
+    private function __construct()
+    {
 
+
+    }
+
+    public static function Instance()
+    {
+        Self::$inst === null;
+        if (Self::$inst === null) {
+            Self::$inst = new UnitOfWork();
+        }
+        return Self::$inst;
+    }
 
     public function registerNew(ElectronicSpecification $item, $type) {
         if($type==1) {

@@ -34,10 +34,8 @@ class Mapper
 
     private function __construct()
     {
-        $this->unitOfWork = new UnitOfWork();
         $this->clientCatalog = new ClientLogCatalog();
         $this->setElectronicCatalog(new ElectronicCatalog());
-        $this->setIdentityMap(IdentityMap::Instance());
         $this->userCatalog = new UserCatalog();
         $this->clientLogTDG = new ClientLogTDG();
         $this->electronicsTDG = new ElectronicsTDG();
@@ -139,7 +137,15 @@ class Mapper
                 $_SESSION['singletonMap'] = $singletonIdMap;
             }
             $singletonIdMap->addDesktop($item);
-            $this->getUnitOfWork()->registerNew($item,1);
+            if(isset($_SESSION['singletonUOW'])){
+                $singletonUOW = $_SESSION['singletonUOW'];
+                echo spl_object_hash ($singletonUOW);
+
+            } else {
+                $singletonUOW = UnitOfWork::Instance();
+                $_SESSION['singletonUOW'] = $singletonUOW;
+            }
+            $singletonUOW->registerNew($item,1);
 
         }
         if ($request->input('type')=='t'){
@@ -160,7 +166,6 @@ class Mapper
 
             $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
             $desktop = $desktopArray[$electronicsId];
-            print_r($desktop);
 
             if($desktop == null)
             {
@@ -262,7 +267,15 @@ class Mapper
             $electronicsId = $request->input('hiddenElectronicsId');                                //get electronics id
             $desktop = $this->findElectronics($electronicsId, $type);                               //get existing desktop obj from idmap
             $desktop = $this->getElectronicCatalog()->modifyInventory($desktop, $type, $request);   //modify obj
-            $this->getUnitOfWork()->registerDirty($desktop,1);                              //register dirty with uow
+            if(isset($_SESSION['singletonUOW'])){
+                $singletonUOW = $_SESSION['singletonUOW'];
+                echo spl_object_hash ($singletonUOW);
+
+            } else {
+                $singletonUOW = UnitOfWork::Instance();
+                $_SESSION['singletonUOW'] = $singletonUOW;
+            }
+            $singletonUOW->registerDirty($desktop,1);                              //register dirty with uow
 //          $this->mapper->getElectronicsTDG()->modifyDesktop($request);
             $electronicsId = $desktop->getElectronicsId();
             $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
