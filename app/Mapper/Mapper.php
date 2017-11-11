@@ -130,29 +130,32 @@ class Mapper
     public function createMonitor(){}
     public function createTablet(){}
 
-    public function findDesktop(int $electronicsId)
-    {
+    public function findElectronics($electronicsId, $type) {
 
-        $_SESSION['singletonMap']->getDesktopArray();
+        if($type==1) {
+            $_SESSION['singletonMap']->getDesktopArray();
 
-        $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
-        $desktop = $desktopArray[$electronicsId];
-        print_r($desktop);
+            $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
+            $desktop = $desktopArray[$electronicsId];
+            print_r($desktop);
 
-        if($desktop == null)
-        {
-            $electronicsTDG = new ElectronicsTDG();
-            $ret = $electronicsTDG->retrieveDesktop();
-            $desktop = new Desktop($ret['desktop_id'],$ret['length'],$ret['height'],$ret['width'],$ret['processor_type'],
-                $ret['ram_size'],$ret['number_of_cpu_cores'],$ret['hard_disk_size'],$ret['electronics_id'],$ret['brand'],
-                $ret['model_number'],$ret['price'],$ret['weight'],$ret['type']);
-            $this->identityMap->addDesktop($desktop);
+            if($desktop == null)
+            {
+                $electronicsTDG = new ElectronicsTDG();
+                $ret = $electronicsTDG->retrieveDesktop();
+                $desktop = new Desktop($ret['desktop_id'],$ret['length'],$ret['height'],$ret['width'],$ret['processor_type'],
+                    $ret['ram_size'],$ret['number_of_cpu_cores'],$ret['hard_disk_size'],$ret['electronics_id'],$ret['brand'],
+                    $ret['model_number'],$ret['price'],$ret['weight'],$ret['type']);
+                $this->identityMap->addDesktop($desktop);
+            }
+            else
+            {
+                return $desktop;
+            }
         }
-        else
-        {
-            return $desktop;
-        }
+
     }
+
 
     public function findLaptop(int $electronicsId){}
     public function findMonitor(int $electronicsId){}
@@ -229,9 +232,27 @@ class Mapper
         return $tabletArray ;
     }
 
+    public function modifyElectronics($request,$type) {
+
+        if($type==1) {
+
+            $electronicsId = $request->input('hiddenElectronicsId');                                //get electronics id
+            $desktop = $this->findElectronics($electronicsId, $type);                               //get existing desktop obj from idmap
+            $desktop = $this->getElectronicCatalog()->modifyInventory($desktop, $type, $request);   //modify obj
+            $this->getUnitOfWork()->registerDirty($desktop,1);                              //register dirty with uow
+//          $this->mapper->getElectronicsTDG()->modifyDesktop($request);
+            $electronicsId = $desktop->getElectronicsId();
+            $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
+            $desktopArray[$electronicsId] = $desktop;
+            $_SESSION['singletonMap']->setDesktopArray($desktopArray);
+
+            return $desktop;
+
+        }
+    }
+
     public function modifyDesktop($desktop , $type, $request){
 
-        $desktop = $this->getElectronicCatalog()->modifyInventory($desktop, $type, $request);
         return $desktop;
 
     }
@@ -241,10 +262,7 @@ class Mapper
 
     public function addDesktop($desktop){
 
-        $electronicsId = $desktop->getElectronicsId();
-        $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
-        $desktopArray[$electronicsId] = $desktop;
-        $_SESSION['singletonMap']->setDesktopArray($desktopArray);
+
 
     }
 

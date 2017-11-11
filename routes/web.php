@@ -18,6 +18,12 @@ Route::get('/', function () {
 });
 
 
+Route::get('commit', [
+    'uses'  => 'EshopController@commit',
+    'as'    => 'commit'
+]);
+
+
 Route::post('/login', [
     'uses'  => 'EshopController@login',
     'as'    => 'login'
