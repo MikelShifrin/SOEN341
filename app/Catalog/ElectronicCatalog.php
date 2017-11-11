@@ -238,7 +238,7 @@ class ElectronicCatalog
             $e->setHardDiskSize($request->input('hard_disk_size'));
             //$this->getElectronicsTDG()->insertDesktopintoDB($e);
         }
-        return $e; // returning the elctronics object after initializing it
+        return $e; // returning the elctronics object after initializing
     }
 
     public function viewInventory($type) {
