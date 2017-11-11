@@ -225,12 +225,9 @@ class EshopController extends Controller
         session_start();
         if($type=='1'){
             echo spl_object_hash (IdentityMap::Instance());
-            $electronicsId = $request->input('hiddenElectronicsId');                //get electronics id
-            $desktop = $this->mapper->findDesktop($electronicsId);
-            $desktop = $this->mapper->modifyDesktop($desktop, $type, $request);              //modify the object
-            $this->mapper->getUnitOfWork()->registerDirty($desktop,1);                       //register dirty with uow
-//            $this->mapper->getElectronicsTDG()->modifyDesktop($request);
-            $this->mapper->addDesktop($desktop);                                        //add modified object back to idmap
+
+            $desktop = $this->mapper->modifyElectronics($request,$type);                      //
+
             $return="Desktop Updated Successfully";
             return view( 'welcome',['return'=>$return]);
         }
@@ -261,5 +258,14 @@ class EshopController extends Controller
         }
     }
 
+    public function commit() {
+
+
+
     }
+
+    }
+
+
+
 ?>

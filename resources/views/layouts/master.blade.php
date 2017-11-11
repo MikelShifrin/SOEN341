@@ -80,18 +80,34 @@
             @endif
     </ul>
 
-    <span class="navbar-text">
+    {{--<span class="navbar-text">--}}
+        {{--<ul class="navbar-nav mr-auto">--}}
+        {{--<li class="nav-item dropdown">--}}
+        {{--<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+          {{--{{$_SESSION['email']}}--}}
+        {{--</a>--}}
+        {{--<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">--}}
+          {{--<a class="dropdown-item" href="{{route('logOut')}}">Sign Out</a>--}}
+        {{--</div>--}}
+      {{--</li>--}}
+        {{--</ul>--}}
+  {{--</span>--}}
+
+
+      <span class="navbar-text">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{$_SESSION['email']}}
+          Commit
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="{{route('logOut')}}">Sign Out</a>
+          <a class="dropdown-item" href="{{route('commit')}}">Commit</a>
+            <a class="dropdown-item" href="#">Discard</a>
         </div>
       </li>
         </ul>
   </span>
+
   </div>
 </nav>
         @yield('content')
