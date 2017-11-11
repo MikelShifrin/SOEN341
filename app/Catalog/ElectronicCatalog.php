@@ -180,7 +180,7 @@ class ElectronicCatalog
 
             //DB::insert('insert into electronics (ELECTRONICS_ID , BRAND) values (?, ?)', [2, $brandName]);
 
-            $this->getElectronicsTDG()->insertMonitorintoDB($e);
+            //$this->getElectronicsTDG()->insertMonitorintoDB($e);
         }
 
         //if request is coming from laptop
@@ -198,7 +198,7 @@ class ElectronicCatalog
             $e->setOperatingSystem($request->input('operatingSystem'));
             $e->setDisplaySize($request->input('displaySize'));
             $e->setBatteryInfo($request->input('battery_info'));
-            $this->getElectronicsTDG()->insertLaptopintoDB($e);
+            //$this->getElectronicsTDG()->insertLaptopintoDB($e);
         }
         //if request is for tablet
         elseif($request->input('type')=='t') {
@@ -219,7 +219,7 @@ class ElectronicCatalog
             $e->setDisplaySize($request->input('displaySize'));
             $e->setBatteryInfo($request->input('battery_info'));
             $e->setCameraInfo($request->input('cameraInfo'));
-            $this->getElectronicsTDG()->insertTabletintoDB($e);
+            //$this->getElectronicsTDG()->insertTabletintoDB($e);
         }
         //if request is for desktop
         elseif($request->input('type')=='d') {
@@ -236,8 +236,9 @@ class ElectronicCatalog
             $e->setRamSize($request->input('ram_size'));
             $e->setNumberOfCpuCores($request->input('number_of_cpu_cores'));
             $e->setHardDiskSize($request->input('hard_disk_size'));
-            $this->getElectronicsTDG()->insertDesktopintoDB($e);
+            //$this->getElectronicsTDG()->insertDesktopintoDB($e);
         }
+        return $e; // returning the elctronics object after initializing it
     }
 
     public function viewInventory($type) {

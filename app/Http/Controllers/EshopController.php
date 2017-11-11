@@ -18,7 +18,6 @@ use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 use Illuminate\Session;
 
-app()->singleton('IdentityMap'); // include the namespace
 
 class EshopController extends Controller
 {
@@ -30,7 +29,7 @@ class EshopController extends Controller
 
     public function __construct() {
 
-//        $mapper = new Mapper();
+
         $this->setMapper(Mapper::Instance());
         //$user_catalog = new UserCatalog();
         //$this->setUserCatalog($user_catalog);
@@ -127,10 +126,11 @@ class EshopController extends Controller
         //$price       = $request->input('price');
         //$weight      = $request->input('weight');
         //$displaySize = $request->input('displaySize');
-        //$type        = $request->input('type');
+
 
         //$brandName=
-        $this->getMapper()->getElectronicCatalog()->additem($request);
+       // $ret = Mapper::Instance()->getElectronicCatalog()->additem($request);
+        $ret = Mapper::Instance()->createElectronics($request); // pass the request to mapper for adding electronics
         $return="Deatils added successfully";
         return view( 'welcome',['return'=>$return]);
     }
