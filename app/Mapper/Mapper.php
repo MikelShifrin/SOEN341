@@ -160,7 +160,6 @@ class Mapper
 
             $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
             $desktop = $desktopArray[$electronicsId];
-            print_r($desktop);
 
             if($desktop == null)
             {

@@ -28,7 +28,7 @@ class EshopController extends Controller
     private $mapper;
 
     public function __construct() {
-        
+
         $this->setMapper(Mapper::Instance());
         //$user_catalog = new UserCatalog();
         //$this->setUserCatalog($user_catalog);
@@ -214,8 +214,10 @@ class EshopController extends Controller
             $ret = Mapper::Instance()->findAllMonitor();
             return view( 'modify.modifyInventoryMonitor',['ret'=>$ret]);
         } elseif ($type=='3') {
+            $ret = Mapper::Instance()->findAllLaptop();
             return view( 'modify.modifyInventoryLaptop',['ret'=>$ret]);
         } elseif($type=='4') {
+            $ret = Mapper::Instance()->findAllTablet();
             return view( 'modify.modifyInventoryTablet',['ret'=>$ret]);
         }
     }
