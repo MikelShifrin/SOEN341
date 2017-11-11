@@ -33,7 +33,7 @@ class UnitOfWork
     public function registerNew(ElectronicSpecification $item, $type) {
         if($type==1) {
 
-            $id = $item.getElectronicsId();
+            $id = spl_object_hash ( $item);
             $this->desktopAddArray[$id] = $item;
 
         } elseif ($type==2) {
