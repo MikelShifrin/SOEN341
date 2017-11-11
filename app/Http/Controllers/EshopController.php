@@ -259,8 +259,8 @@ class EshopController extends Controller
     }
 
     public function commit() {
-
-
+        session_start();
+        return view( 'loginWelcome');
 
     }
 
