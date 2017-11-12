@@ -15,17 +15,17 @@
         </thead>
         <tbody>
         <?php
-        $i = 1;
-        while($row = pg_fetch_assoc($ret)){
+         $i =1;
+    foreach ($ret as $monitor){
             print "<tr>";
             print "<th scope='row'>$i</th>";
             print "<td><input type ='radio' name ='radio'
-            value ='". $row['electronics_id'] . "' /> </td>";
-            print "<td>".$row['brand']."</td>";
-            echo "<td>".$row['model_number']."</td>";
-            echo "<td>".$row['price']."</td>";
-            echo "<td>".$row['display_size']."</td>";
-            echo "<td>".$row['weight']."</td>";
+            value ='".$monitor->getElectronicsid(). "' /> </td>";
+            print "<td>".$monitor->getBrandName()."</td>";
+            echo "<td>".$monitor->getModelNumber()."</td>";
+            echo "<td>".$monitor->getPrice()."</td>";
+            echo "<td>".$monitor->getSize()."</td>";
+            echo "<td>".$monitor->getWeight()."</td>";
             $i = $i + 1;
             echo "</tr>";
         }
@@ -33,6 +33,7 @@
         </tbody>
 
     </table>
+    <input type = 'hidden' name = 'type' value = '2'>
    {{csrf_field()}}
   <br/>
   <button type="submit" class="btn btn-primary">Submit</button>

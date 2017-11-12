@@ -515,7 +515,7 @@ class Mapper
 
     public function deleteElectronicItem($request){
 
-        $electronics_id = $request -> input('radio');
+        $electronicsId = $request -> input('radio');
         $type= $request->input('type');
         if(isset($_SESSION['singletonMap'])){
             $singletonIdMap = $_SESSION['singletonMap'];
@@ -537,17 +537,55 @@ class Mapper
         if($type==1)
         {
             
-            $singletonIdMap->deleteDesktop($electronics_id);
+            $singletonIdMap->deleteDesktop($electronicsId);
             
-            
-            //$singletonUOW->registerNew($item,1);// regiter desktop new
-           
+            if($electronicsId>=$_SESSION['ElectronicsIdAddInternalCounterInitial']) {   
+            $singletonUOW->DeleteFromRegiterNew($electronicsId,$type);// Delete Desktop from register new desktop 
+            }
+            else
+            {
+                $singletonUOW->RegisterDeleted($electronicsId,$type); 
+            }
            // $this->deleteDesktop($electronics_id);
         }
-        $this->getElectronicCatalog()->deleteitem($electronics_id,$type);
-    }
+        elseif ($type==2) {
+            $singletonIdMap->deleteMonitor($electronicsId);
+           
+            if($electronicsId>=$_SESSION['ElectronicsIdAddInternalCounterInitial']) {   
+            $singletonUOW->DeleteFromRegiterNew($electronicsId,$type);// Delete Monitor from register new monitor 
+        }
+            else
+            {
+                $singletonUOW->RegisterDeleted($electronicsId,$type);   
+            }
+        }
 
-    public function deleteDesktop($electronics_id){
+        elseif ($type==3) {
+            $singletonIdMap->deleteLaptop($electronicsId);
+          
+            if($electronicsId>=$_SESSION['ElectronicsIdAddInternalCounterInitial']) {   
+            $singletonUOW->DeleteFromRegiterNew($electronicsId,$type);// Delete Laptop from register new laptop 
+        }
+            else
+                {
+                    $singletonUOW->RegisterDeleted($electronicsId,$type);   
+                }
+        }
+        
+        elseif ($type==4) {
+            $singletonIdMap->deleteTablet($electronicsId);
+          
+            if($electronicsId>=$_SESSION['ElectronicsIdAddInternalCounterInitial']) {   
+            $singletonUOW->DeleteFromRegiterNew($electronicsId,$type);// Delete Tablet from register new tablet 
+        }
+            else
+                {
+                    $singletonUOW->RegisterDeleted($electronicsId,$type);   
+                }
+        } 
+    }
+    
+    public function deleteDesktop($electronicsId){
         
 
 

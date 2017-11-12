@@ -180,10 +180,13 @@ class EshopController extends Controller
             $ret = Mapper::Instance()->findAllDesktop();  
         return view( 'delete.deleteInventoryDesktop',['ret'=>$ret]);
         } elseif ($type=='2') {
+            $ret = Mapper::Instance()->findAllMonitor();
             return view( 'delete.deleteInventoryMonitor',['ret'=>$ret]);
         } elseif ($type=='3') {
+            $ret = Mapper::Instance()->findAllLaptop();
             return view( 'delete.deleteInventoryLaptop',['ret'=>$ret]);
         } elseif($type=='4') {
+            $ret = Mapper::Instance()->findAllTablet();
             return view( 'delete.deleteInventoryTablet',['ret'=>$ret]);
         } 
 
