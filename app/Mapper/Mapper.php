@@ -150,13 +150,71 @@ class Mapper
             $_SESSION['singletonUOW'] = $singletonUOW;
         }
         if ($request->input('type')=='t'){
+            if(isset($_SESSION['singletonMap'])){
+                $singletonIdMap = $_SESSION['singletonMap'];
+
+
+            } else {
+                $singletonIdMap = IdentityMap::Instance();
+
+            }
+            $singletonIdMap->addTablet($item);
+            $_SESSION['singletonMap'] = $singletonIdMap;
+            if(isset($_SESSION['singletonUOW'])){
+                $singletonUOW = $_SESSION['singletonUOW'];
+                echo spl_object_hash ($singletonUOW);
+
+            } else {
+                $singletonUOW = UnitOfWork::Instance();
+
+            }
+            $singletonUOW->registerNew($item,4);// regiter desktop new
+            $_SESSION['singletonUOW'] = $singletonUOW;
 
         }
         if ($request->input('type')=='l'){
+            if(isset($_SESSION['singletonMap'])){
+                $singletonIdMap = $_SESSION['singletonMap'];
 
+
+            } else {
+                $singletonIdMap = IdentityMap::Instance();
+
+            }
+            $singletonIdMap->addLaptop($item);
+            $_SESSION['singletonMap'] = $singletonIdMap;
+            if(isset($_SESSION['singletonUOW'])){
+                $singletonUOW = $_SESSION['singletonUOW'];
+                echo spl_object_hash ($singletonUOW);
+
+            } else {
+                $singletonUOW = UnitOfWork::Instance();
+
+            }
+            $singletonUOW->registerNew($item,3);// regiter desktop new
+            $_SESSION['singletonUOW'] = $singletonUOW;
         }
         if ($request->input('type')=='m'){
+            if(isset($_SESSION['singletonMap'])){
+                $singletonIdMap = $_SESSION['singletonMap'];
 
+
+            } else {
+                $singletonIdMap = IdentityMap::Instance();
+
+            }
+            $singletonIdMap->addMonitor($item);
+            $_SESSION['singletonMap'] = $singletonIdMap;
+            if(isset($_SESSION['singletonUOW'])){
+                $singletonUOW = $_SESSION['singletonUOW'];
+                echo spl_object_hash ($singletonUOW);
+
+            } else {
+                $singletonUOW = UnitOfWork::Instance();
+
+            }
+            $singletonUOW->registerNew($item,2);// regiter desktop new
+            $_SESSION['singletonUOW'] = $singletonUOW;
         }
     }
 
@@ -165,7 +223,7 @@ class Mapper
         if($type==1) {
             $_SESSION['singletonMap']->getDesktopArray();
             $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
-           
+
             $desktop = $desktopArray[$electronicsId];
 
             if($desktop == null)
