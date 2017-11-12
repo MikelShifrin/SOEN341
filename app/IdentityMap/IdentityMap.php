@@ -169,9 +169,8 @@ class IdentityMap
 
 //        $this->desktopArray = array($desktop->getDesktopId()=>$desktop);
         $electronicsId = $desktop->getElectronicsId();
-        if ($electronicsId==null){
-            $electronicsId=spl_object_hash($desktop);
-        }
+
+
         $this->desktopArray[$electronicsId] = $desktop;
         //$session->put('desktopArray', array($desktop->getDesktopId()=>$desktop));
 

@@ -83,6 +83,8 @@ class EshopController extends Controller
 
             if($user_type=="admin") {
                 $_SESSION['user_type'] = "admin";
+                $_SESSION['ElectronicsIdAddInternalCounterInitial'] = 10000000;
+                $_SESSION['ElectronicsIdAddInternalCounter'] = 10000000;
                 return view( 'loginWelcome');
             } else {
                 $_SESSION['user_type'] = "user";
