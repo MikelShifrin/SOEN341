@@ -238,6 +238,8 @@ class ElectronicCatalog
             $e->setHardDiskSize($request->input('hard_disk_size'));
             //$this->getElectronicsTDG()->insertDesktopintoDB($e);
         }
+        $e->setElectronicsId($_SESSION['ElectronicsIdAddInternalCounter']);
+        $_SESSION['ElectronicsIdAddInternalCounter']=$_SESSION['ElectronicsIdAddInternalCounter']+1;
         return $e; // returning the elctronics object after initializing
     }
 

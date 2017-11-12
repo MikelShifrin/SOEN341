@@ -612,4 +612,5 @@ class ElectronicsTDG
             $ret = pg_query($db, $sql);
            return $ret;
     }
+
   }

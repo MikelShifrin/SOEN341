@@ -130,23 +130,24 @@ class Mapper
         if ($request->input('type')=='d'){
             if(isset($_SESSION['singletonMap'])){
                 $singletonIdMap = $_SESSION['singletonMap'];
-                echo spl_object_hash ($singletonIdMap);
+
 
             } else {
                 $singletonIdMap = IdentityMap::Instance();
-                $_SESSION['singletonMap'] = $singletonIdMap;
+
             }
             $singletonIdMap->addDesktop($item);
+            $_SESSION['singletonMap'] = $singletonIdMap;
             if(isset($_SESSION['singletonUOW'])){
                 $singletonUOW = $_SESSION['singletonUOW'];
                 echo spl_object_hash ($singletonUOW);
 
             } else {
                 $singletonUOW = UnitOfWork::Instance();
-                $_SESSION['singletonUOW'] = $singletonUOW;
-            }
-            $singletonUOW->registerNew($item,1);
 
+            }
+            $singletonUOW->registerNew($item,1);// regiter desktop new
+            $_SESSION['singletonUOW'] = $singletonUOW;
         }
         if ($request->input('type')=='t'){
 
@@ -164,11 +165,12 @@ class Mapper
         if($type==1) {
             $_SESSION['singletonMap']->getDesktopArray();
             $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
+           
             $desktop = $desktopArray[$electronicsId];
 
             if($desktop == null)
             {
-                $electronicsTDG = new ElectronicsTDG();
+               $electronicsTDG = new ElectronicsTDG();
                 $ret = $electronicsTDG->retrieveDesktop();
                 $desktop = new Desktop($ret['desktop_id'],$ret['length'],$ret['height'],$ret['width'],$ret['processor_type'],
                     $ret['ram_size'],$ret['number_of_cpu_cores'],$ret['hard_disk_size'],$ret['electronics_id'],$ret['brand'],
@@ -309,13 +311,14 @@ class Mapper
 
             } else {
                 $singletonUOW = UnitOfWork::Instance();
-                $_SESSION['singletonUOW'] = $singletonUOW;
+
             }
             if($desktop->getElectronicsId() < 100000){
                 $singletonUOW->registerDirty($desktop,1);                              //register dirty with uow
             }
             $_SESSION['singletonUOW'] = $singletonUOW;
 //          $this->mapper->getElectronicsTDG()->modifyDesktop($request);
+            $_SESSION['singletonUOW'] = $singletonUOW;
             $electronicsId = $desktop->getElectronicsId();
             $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
             $desktopArray[$electronicsId] = $desktop;
