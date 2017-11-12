@@ -406,20 +406,20 @@ class ElectronicsTDG
         return true;
     }
 
-    public function modifyDesktop($request) {
+    public function modifyDesktop($desktop) {
 
-        $brand          = $request -> input('brand');
-        $modelNumber    = $request -> input('modelNumber');
-        $price          = $request -> input('price');
-        $length         = $request -> input('length');
-        $height         = $request -> input('height');
-        $width          = $request -> input('width');
-        $processorType  = $request -> input('processorType');
-        $ramSize        = $request -> input('ramSize');
-        $cpuCores       = $request -> input('cpuCores');
-        $hardDiskSize   = $request -> input('hardDiskSize');
-        $weight         = $request -> input('weight');
-        $electronicsId  = $request -> input('hiddenElectronicsId');
+        $brand          = $desktop -> getBrandName();
+        $modelNumber    = $desktop -> getModelNumber();
+        $price          = $desktop -> getPrice();
+        $length         = $desktop -> getLength();
+        $height         = $desktop -> getHeight();
+        $width          = $desktop -> getWidth();
+        $processorType  = $desktop -> getProcessorType();
+        $ramSize        = $desktop -> getRamSize();
+        $cpuCores       = $desktop -> getNumberOfCpuCores();
+        $hardDiskSize   = $desktop -> getHardDiskSize();
+        $weight         = $desktop -> getWeight();
+        $electronicsId  = $desktop -> getElectronicsId();
 
         $host        = "host = ec2-23-21-92-251.compute-1.amazonaws.com";
         $port        = "port = 5432";
@@ -452,24 +452,24 @@ class ElectronicsTDG
 
     }
 
-    public function modifyTablet($request) {
-        
-                $brand          = $request -> input('brand');
-                $modelNumber    = $request -> input('modelNumber');
-                $price          = $request -> input('price');
-                $length         = $request -> input('length');
-                $height         = $request -> input('height');
-                $width          = $request -> input('width');
-                $processorType  = $request -> input('processorType');
-                $ramSize        = $request -> input('ramSize');
-                $cpuCores       = $request -> input('cpuCores');
-                $hardDiskSize   = $request -> input('hardDiskSize');
-                $weight         = $request -> input('weight');
-                $operatingSystem  = $request -> input('operatingSystem');
-                $displaySize    = $request -> input('displaySize');
-                $batteryInfo    = $request -> input('batteryInfo');
-                $cameraInfo     = $request -> input('weight');
-                $electronicsId  = $request -> input('hiddenElectronicsId');
+    public function modifyTablet($tablet) {
+
+                $brand          = $tablet ->getBrandName();
+                $modelNumber    = $tablet ->getModelNumber();
+                $price          = $tablet ->getPrice();
+                $length         = $tablet ->getLength();
+                $height         = $tablet ->getHeight();
+                $width          = $tablet ->getWidth();
+                $processorType  = $tablet ->getProcessorType();
+                $ramSize        = $tablet ->getRamSize();
+                $cpuCores       = $tablet ->getNumberOfCpuCores();
+                $hardDiskSize   = $tablet ->getHardDiskSize();
+                $weight         = $tablet ->getWeight();
+                $operatingSystem  = $tablet ->getOperatingSystem();
+                $displaySize    = $tablet ->getDisplaySize();
+                $batteryInfo    = $tablet ->getBatteryInfo();
+                $cameraInfo     = $tablet ->getCameraInfo();
+                $electronicsId  = $tablet ->getElectronicsId();
         
                 $host        = "host = ec2-23-21-92-251.compute-1.amazonaws.com";
                 $port        = "port = 5432";
@@ -506,15 +506,14 @@ class ElectronicsTDG
         
             }
 
-            public function modifyMonitor($request) {
+            public function modifyMonitor($monitor) {
                    
-                $brand          = $request -> input('brand');
-                $modelNumber    = $request -> input('modelNumber');
-                $price          = $request -> input('price');
-                $weight         = $request -> input('weight');
-                $displayId      = $request -> input('displayId');
-                $displaySize    = $request -> input('displaySize');
-                $electronicsId  = $request -> input('hiddenElectronicsId');
+                $brand          = $monitor ->getBrandName();
+                $modelNumber    = $monitor ->getModelNumber();
+                $price          = $monitor ->getPrice();
+                $weight         = $monitor ->getWeight();
+                $displaySize    = $monitor ->getSize();
+                $electronicsId  = $monitor ->getElectronicsId();
         
                 $host        = "host = ec2-23-21-92-251.compute-1.amazonaws.com";
                 $port        = "port = 5432";
@@ -531,9 +530,8 @@ class ElectronicsTDG
                 WEIGHT = ".$weight."
                 WHERE ELECTRONICS_ID = ".$electronicsId;
         
-                $sql2 = "UPDATE TABLET
-                SET DISPLAY_ID = ".$displayId.",
-                DISPLAY_SIZE = ".$displaySize."
+                $sql2 = "UPDATE monitor
+                SET DISPLAY_SIZE = ".$displaySize."
                 WHERE ELECTRONICS_ID = ".$electronicsId;
         
                 pg_query($db, $sql1);
@@ -543,20 +541,20 @@ class ElectronicsTDG
                     }
 
 
-    public function modifyLaptop($request) {
+    public function modifyLaptop($laptop) {
 
-        $brand          = $request -> input('brand');
-        $modelNumber    = $request -> input('modelNumber');
-        $price          = $request -> input('price');
-        $processorType  = $request -> input('processorType');
-        $ramSize        = $request -> input('ramSize');
-        $cpuCores       = $request -> input('cpuCores');
-        $hardDiskSize   = $request -> input('hardDiskSize');
-        $operatingSystem= $request -> input('operatingSystem');
-        $displaySize    = $request -> input('displaySize');
-        $batteryInfo    = $request -> input('batteryInfo');
-        $weight         = $request -> input('weight');
-        $electronicsId  = $request -> input('hiddenElectronicsId');
+        $brand          = $laptop->getBrandName();
+        $modelNumber    = $laptop->getModelNumber();
+        $price          = $laptop->getPrice();
+        $processorType  = $laptop->getProcessorType();
+        $ramSize        = $laptop->getRamSize();
+        $cpuCores       = $laptop->getNumberOfCpuCores();
+        $hardDiskSize   = $laptop->getHardDiskSize();
+        $operatingSystem= $laptop->getOperatingSystem();
+        $displaySize    = $laptop->getDisplaySize();
+        $batteryInfo    = $laptop->getBatteryInfo();
+        $weight         = $laptop->getWeight();
+        $electronicsId  = $laptop->getElectronicsId();
 
         $host        = "host = ec2-23-21-92-251.compute-1.amazonaws.com";
         $port        = "port = 5432";
