@@ -16,17 +16,17 @@
         <tbody>
         <?php
         $i = 1;
-        while($row = pg_fetch_assoc($ret)){
+        foreach ($ret as $monitor) {
             print "<tr>";
             print "<td scope='row'>$i</td>";
-            print "<td><input type ='radio' name ='radio' value ='".$row['electronics_id']."' id='".$i."'
+            print "<td><input type ='radio' name ='radio' value ='".$monitor->getElectronicsId()."' id='".$i."'
 //            data-toggle='modal' data-id='".$i."' data-target='#myModal'
             /></td>";
-            print "<td>".$row['brand']."</td>";
-            echo "<td>".$row['model_number']."</td>";
-            echo "<td>".$row['price']."</td>";
-            echo "<td>".$row['display_size']."</td>";
-            echo "<td>".$row['weight']."</td>";
+            print "<td>".$monitor->getBrandName()."</td>";
+            echo "<td>".$monitor->getModelNumber()."</td>";
+            echo "<td>".$monitor->getPrice()."</td>";
+            echo "<td>".$monitor->getSize()."</td>";
+            echo "<td>".$monitor->getWeight()."</td>";
             $i = $i + 1;
             echo "</tr>";
         }
@@ -65,12 +65,12 @@
 
                 <div class="form-group">
                     <label for="m4"> Display Size </label>
-                    <input type="number" name="length" class="form-control" id="m4"  style="width: 75%;float: right" placeholder="">
+                    <input type="number" name="displaySize" class="form-control" id="m4"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 <div class="form-group">
                     <label for="m5"> Weight </label>
-                    <input type="number" name="height" class="form-control" id="m5"  style="width: 75%;float: right" placeholder="">
+                    <input type="number" name="weight" class="form-control" id="m5"  style="width: 75%;float: right" placeholder="">
                 </div>
 
                 {{ csrf_field() }}

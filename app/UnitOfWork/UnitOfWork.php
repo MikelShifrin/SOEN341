@@ -86,6 +86,7 @@ class UnitOfWork
             $this->monitorModifiedArray[$id] = $monitor;
 
 
+
         } elseif ($type==3) {
 
             $id = $item.getElectronicsId();
@@ -98,10 +99,10 @@ class UnitOfWork
 
         }
 
-        $array['desktopModifiedArray'] = $this->desktopModifiedArray;
-        $array['monitorModifiedArray'] = $this->monitorModifiedArray;
-        $array['laptopModifiedArray'] = $this->laptopModifiedArray;
-        $array['tabletModifiedArray'] = $this->tabletModifiedArray;
+        $this->array['desktopModifiedArray'] = $this->desktopModifiedArray;
+        $this->array['monitorModifiedArray'] = $this->monitorModifiedArray;
+        $this->array['laptopModifiedArray'] = $this->laptopModifiedArray;
+        $this->array['tabletModifiedArray'] = $this->tabletModifiedArray;
     }
 
     public function registerDeleted(ElectronicSpecification $item, $type) {

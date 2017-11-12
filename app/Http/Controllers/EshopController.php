@@ -261,6 +261,7 @@ class EshopController extends Controller
     public function commit() {
         session_start();
 
+        $this->mapper->commit();
 
         return view('loginWelcome');
 

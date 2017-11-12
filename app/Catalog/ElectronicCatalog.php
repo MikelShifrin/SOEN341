@@ -277,8 +277,8 @@ class ElectronicCatalog
             $item->setBrandName($request->input('brand'));
             $item->setModelNumber($request->input('modelNumber'));
             $item->setPrice($request->input('price'));
-            $item->setLength($request->input('length'));
-            $item->setHeight($request->input('height'));
+            $item->setSize($request->input('displaySize'));
+            $item->setWeight($request->input('weight'));
             $item->setElectronicsId($request->input('hiddenElectronicsId'));
 
             return $item;

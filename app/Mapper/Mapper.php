@@ -163,7 +163,6 @@ class Mapper
 
         if($type==1) {
             $_SESSION['singletonMap']->getDesktopArray();
-
             $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
             $desktop = $desktopArray[$electronicsId];
 
@@ -180,6 +179,33 @@ class Mapper
             {
                 return $desktop;
             }
+        } elseif ($type==2) {
+
+            $_SESSION['singletonMap']->getMonitorArray();
+
+            $monitorArray = $_SESSION['singletonMap']->getMonitorArray();
+            $monitor = $monitorArray[$electronicsId];
+
+            if($monitor == null)
+            {
+                $electronicsTDG = new ElectronicsTDG();
+                $ret = $electronicsTDG->retrieveMonitor();
+                $monitor = new Monitor();
+                $monitor->setElectronicsId($ret['electronics_id']);
+                $monitor->setElectronicsId($ret['brand']);
+                $monitor->setElectronicsId($ret['model_number']);
+                $monitor->setElectronicsId($ret['price']);
+                $monitor->setElectronicsId($ret['display_size']);
+                $monitor->setElectronicsId($ret['weight']);
+                $monitor->setElectronicsId($ret['monitor_id']);
+
+                $this->identityMap->addMonitor($monitor);
+            }
+            else
+            {
+                return $monitor;
+            }
+
         }
 
     }
@@ -194,8 +220,6 @@ class Mapper
         $desktopArray = array();
         if(isset($_SESSION['singletonMap'])){
             $desktopArray = $_SESSION['singletonMap']->getAllDesktop();
-
-
         }
         else {
             $desktopArray = IdentityMap::Instance()->getAllDesktop();                                 //Message to idmap to get all desktops
@@ -287,7 +311,10 @@ class Mapper
                 $singletonUOW = UnitOfWork::Instance();
                 $_SESSION['singletonUOW'] = $singletonUOW;
             }
-            $singletonUOW->registerDirty($desktop,1);                              //register dirty with uow
+            if($desktop->getElectronicsId() < 100000){
+                $singletonUOW->registerDirty($desktop,1);                              //register dirty with uow
+            }
+            $_SESSION['singletonUOW'] = $singletonUOW;
 //          $this->mapper->getElectronicsTDG()->modifyDesktop($request);
             $electronicsId = $desktop->getElectronicsId();
             $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
@@ -302,7 +329,17 @@ class Mapper
             $electronicsId = $request->input('hiddenElectronicsId');                                //get electronics id
             $monitor = $this->findElectronics($electronicsId, $type);                               //get existing monitor obj from idmap
             $monitor = $this->getElectronicCatalog()->modifyInventory($monitor, $type, $request);   //modify obj
-            $this->getUnitOfWork()->registerDirty($monitor,2);                              //register dirty with uow
+            if(isset($_SESSION['singletonUOW'])){
+                $singletonUOW = $_SESSION['singletonUOW'];
+                echo spl_object_hash ($singletonUOW);
+
+            } else {
+                $singletonUOW = UnitOfWork::Instance();
+                $_SESSION['singletonUOW'] = $singletonUOW;
+            }
+
+            $singletonUOW->registerDirty($monitor,2);                              //register dirty with uow
+            $_SESSION['singletonUOW'] = $singletonUOW;
 //          $this->mapper->getElectronicsTDG()->modifyDesktop($request);
             $electronicsId = $monitor->getElectronicsId();
             $monitorArray = $_SESSION['singletonMap']->getMonitorArray();
@@ -338,4 +375,16 @@ class Mapper
     public function deleteLaptop(){}
     public function deleteMonitor(){}
     public function deleteTablet(){}
+
+
+
+    public function commit() {
+
+        $houseKeepingArray = $_SESSION['singletonUOW']->commit();
+
+
+
+
+    }
+
 }
