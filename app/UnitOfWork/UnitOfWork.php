@@ -4,6 +4,8 @@ namespace App\UnitOfWork;
 
 use App\Model\Desktop;
 use App\Model\ElectronicSpecification;
+use App\Model\Laptop;
+use App\Model\Monitor;
 
 class UnitOfWork
 {
@@ -46,7 +48,7 @@ class UnitOfWork
     public function registerNew(ElectronicSpecification $item, $type) {
         if($type==1) {
 
-            $id = spl_object_hash ( $item);
+            $id = spl_object_hash ($item);
             $this->desktopAddArray[$id] = $item;
 
         } elseif ($type==2) {
@@ -82,12 +84,19 @@ class UnitOfWork
 
         } elseif ($type==2) {
 
+            $monitor = new Monitor();
+            $monitor= $item;
+            $id = $monitor->getElectronicsId();
+            $this->monitorModifiedArray[$id] = $monitor;
+
 
 
         } elseif ($type==3) {
 
-            $id = $item.getElectronicsId();
-            $this->laptopModifiedArray[$id] = $item;
+            $laptop = new Laptop();
+            $laptop = $item;
+            $id = $laptop->getElectronicsId();
+            $this->laptopModifiedArray[$id] = $laptop   ;
 
 
         } else {
@@ -96,10 +105,10 @@ class UnitOfWork
 
         }
 
-        $array['desktopModifiedArray'] = $this->desktopModifiedArray;
-        $array['monitorModifiedArray'] = $this->monitorModifiedArray;
-        $array['laptopModifiedArray'] = $this->laptopModifiedArray;
-        $array['tabletModifiedArray'] = $this->tabletModifiedArray;
+        $this->array['desktopModifiedArray'] = $this->desktopModifiedArray;
+        $this->array['monitorModifiedArray'] = $this->monitorModifiedArray;
+        $this->array['laptopModifiedArray'] = $this->laptopModifiedArray;
+        $this->array['tabletModifiedArray'] = $this->tabletModifiedArray;
     }
 
     public function registerDeleted(ElectronicSpecification $item, $type) {

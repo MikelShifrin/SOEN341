@@ -29,7 +29,6 @@ class EshopController extends Controller
 
     public function __construct() {
 
-
         $this->setMapper(Mapper::Instance());
         //$user_catalog = new UserCatalog();
         //$this->setUserCatalog($user_catalog);
@@ -150,7 +149,6 @@ class EshopController extends Controller
             $_SESSION['singletonMap'] = $singletonIdMap;
         }
 
-
 //        $ret = $this->mapper->getElectronicCatalog()->viewInventory($type);
         if($type=='1')
         {
@@ -215,10 +213,13 @@ class EshopController extends Controller
             $ret = Mapper::Instance()->findAllDesktop();                             //Message to Mapper to get all desktops
             return view( 'modify.modifyInventoryDesktop',['ret'=>$ret]);      //Return to view
         } elseif ($type=='2') {
+            $ret = Mapper::Instance()->findAllMonitor();
             return view( 'modify.modifyInventoryMonitor',['ret'=>$ret]);
         } elseif ($type=='3') {
+            $ret = Mapper::Instance()->findAllLaptop();
             return view( 'modify.modifyInventoryLaptop',['ret'=>$ret]);
         } elseif($type=='4') {
+            $ret = Mapper::Instance()->findAllTablet();
             return view( 'modify.modifyInventoryTablet',['ret'=>$ret]);
         }
     }
@@ -227,34 +228,23 @@ class EshopController extends Controller
         session_start();
         if($type=='1'){
             echo spl_object_hash (IdentityMap::Instance());
-
             $desktop = $this->mapper->modifyElectronics($request,$type);                      //
-
             $return="Desktop Updated Successfully";
             return view( 'welcome',['return'=>$return]);
         }
-        if($type=='3'){
-
-            $electronicsId = $request->input('hiddenElectronicsId');                //get electronics id
-            $laptop = $this->mapper->getIdentityMap()->findLaptop($electronicsId);      //get the persistent object from idmap
-            $this->mapper->getUnitOfWork()->registerDirty($laptop,$type);              //register dirty with uow
-//            $this->mapper->getElectronicsTDG()->modifyDesktop($request);
-            $this->mapper->getIdentityMap()->addLaptop($laptop);
-            $return="Laptop Updated Successfully";
-            return view( 'welcome',['return'=>$return]);
-        }
          elseif($type=='2'){
-            $this->mapper->getElectronicsTDG()->modifyMonitor($request);
-            $return="Monitor Updated Successfully";
-            return view( 'welcome',['return'=>$return]);
+
+             $monitor = $this->mapper->modifyElectronics($request,$type);                      //
+             $return="Monitor Updated Successfully";
+             return view( 'welcome',['return'=>$return]);
         }
         elseif($type=='3'){
-            $this->mapper->getElectronicsTDG()->modifyLaptop($request);
+            $laptop = $this->mapper->modifyElectronics($request,$type);                      //
             $return="Laptop Updated Successfully";
             return view( 'welcome',['return'=>$return]);
         }
         elseif($type=='4'){
-            $this->mapper->getElectronicsTDG()->modifyTablet($request);
+            $tablet = $this->mapper->modifyElectronics($request,$type);                      //
             $return="Tablet Updated Successfully";
             return view( 'welcome',['return'=>$return]);
         }
@@ -262,7 +252,12 @@ class EshopController extends Controller
 
     public function commit() {
         session_start();
-        return view( 'loginWelcome');
+
+        $this->mapper->commit();
+
+        return view('loginWelcome');
+
+
 
     }
 

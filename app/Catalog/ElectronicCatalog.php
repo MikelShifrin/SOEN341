@@ -274,5 +274,58 @@ class ElectronicCatalog
             return $item;
         }
 
+        if($type == 2) {
+
+            $item->setBrandName($request->input('brand'));
+            $item->setModelNumber($request->input('modelNumber'));
+            $item->setPrice($request->input('price'));
+            $item->setSize($request->input('displaySize'));
+            $item->setWeight($request->input('weight'));
+            $item->setElectronicsId($request->input('hiddenElectronicsId'));
+
+            return $item;
+        }
+
+        if($type == 3) {
+
+            $item->setBrandName($request->input('brand'));
+            $item->setModelNumber($request->input('modelNumber'));
+            $item->setPrice($request->input('price'));
+            $item->setProcessorType($request->input('processorType'));
+            $item->setRamSize($request->input('ramSize'));
+            $item->setNumberOfCpuCores($request->input('cpuCores'));
+            $item->setHardDiskSize($request->input('hardDiskSize'));
+            $item->setOperatingSystem($request->input('operatingSystem'));
+            $item->setDisplaySize($request->input('displaySize'));
+            $item->setBatteryInfo($request->input('batteryInfo'));
+            $item->setWeight($request->input('weight'));
+            $item->setElectronicsId($request->input('hiddenElectronicsId'));
+
+            return $item;
+        }
+
+        if($type == 4) {
+
+            $item->setBrandName($request->input('brand'));
+            $item->setModelNumber($request->input('modelNumber'));
+            $item->setPrice($request->input('price'));
+            $item->setProcessorType($request->input('processorType'));
+            $item->setRamSize($request->input('ramSize'));
+            $item->setNumberOfCpuCores($request->input('cpuCores'));
+            $item->setHardDiskSize($request->input('hardDiskSize'));
+            $item->setOperatingSystem($request->input('operatingSystem'));
+            $item->setDisplaySize($request->input('displaySize'));
+            $item->setBatteryInfo($request->input('batteryInfo'));
+            $item->setCameraInfo($request->input('cameraInfo'));
+            $item->setLength($request->input('length'));
+            $item->setHeight($request->input('height'));
+            $item->setWidth($request->input('width'));
+            $item->setWeight($request->input('weight'));
+            $item->setElectronicsId($request->input('hiddenElectronicsId'));
+
+            return $item;
+        }
+
+
     }
 }
