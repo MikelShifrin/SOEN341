@@ -153,7 +153,12 @@ class EshopController extends Controller
         if($type=='1')
         {
             $ret = Mapper::Instance()->findAllDesktop();                             //Message to Mapper to get all desktops
-            return view( 'view.viewInventoryDesktop',['ret'=>$ret]);      //Return to view
+            if($_SESSION['user_type']=="admin") {
+                return view( 'view.viewInventoryDesktop',['ret'=>$ret]);      //Return to view
+            } else {
+                return view('userViews.viewDesktop',['ret'=>$ret]);
+            }
+
         }
         elseif ($type=='2')
         {
@@ -261,6 +266,12 @@ class EshopController extends Controller
 
 
 
+    }
+
+    public function userShopDetail($type, $id) {
+
+        session_start();
+        return view('userViews.viewShopDetail');
     }
 
     }

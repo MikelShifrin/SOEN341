@@ -490,7 +490,7 @@ class Mapper
             $tabletArray = $_SESSION['singletonMap']->getTabletArray();
             $tabletArray[$electronicsId] = $tablet;
             $_SESSION['singletonMap']->setTabletArray($tabletArray);
-
+        
             return $tablet;
         }
 

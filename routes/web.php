@@ -24,6 +24,8 @@ Route::get('commit', [
 ]);
 
 
+
+
 Route::post('/login', [
     'uses'  => 'EshopController@login',
     'as'    => 'login'
@@ -166,6 +168,12 @@ Route::post('modifyTablet/{type}', [
 Route::get('logOut',[
     'uses'  => 'EshopController@logout',
     'as'    => 'logOut'
+]);
+
+
+Route::get('shopDetail/{type}/{id}', [
+    'uses'  => 'EshopController@userShopDetail',
+    'as'    => 'shopDetail'
 ]);
 
 ?>

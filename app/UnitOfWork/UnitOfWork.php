@@ -131,10 +131,10 @@ class UnitOfWork
 
         }
 
-        $array['desktopDeleteArray'] = $this->desktopDeleteArray;
-        $array['monitorDeleteArray'] = $this->monitorDeleteArray;
-        $array['laptopDeleteArray'] = $this->laptopDeleteArray;
-        $array['tabletDeleteArray'] = $this->tabletDeleteArray;
+        $this->array['desktopDeleteArray'] = $this->desktopDeleteArray;
+        $this->array['monitorDeleteArray'] = $this->monitorDeleteArray;
+        $this->array['laptopDeleteArray'] = $this->laptopDeleteArray;
+        $this->array['tabletDeleteArray'] = $this->tabletDeleteArray;
 
     }
 
