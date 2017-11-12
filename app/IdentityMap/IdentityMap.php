@@ -132,7 +132,7 @@ class IdentityMap
 
     public function getLaptop(int $electronicsId)
     {
-        return $this->laptopArray[$$electronicsId];
+        return $this->laptopArray[$electronicsId];
     }
 
     public function getMonitor(int $electronicsId)
