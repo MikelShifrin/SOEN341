@@ -155,22 +155,22 @@ class UnitOfWork
     public function DeleteFromRegiterNew($electronicsId, $type) {
         if($type==1) {
 
-            $id = $item.getElectronicsId();
+            $id = $electronicsId;
             unset($this->desktopAddArray[$id]);
             
         } elseif ($type==2) {
 
-            $id = $item.getElectronicsId();
+            $id = $electronicsId;
             unset($this->monitorAddArray[$id]);
 
         } elseif ($type==3) {
 
-            $id = $item.getElectronicsId();
+            $id = $electronicsId;
             unset($this->laptopAddArray[$id]);
 
         } else {
 
-            $id = $item.getElectronicsId();
+            $id = $electronicsId;
             unset($this->tabletAddArray[$id]);
 
         }
