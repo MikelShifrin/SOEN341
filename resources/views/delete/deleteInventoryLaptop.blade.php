@@ -21,29 +21,30 @@
         </thead>
         <tbody>
         <?php
-        $i = 1;
-        while($row = pg_fetch_assoc($ret)){
+        $i =1;
+    foreach ($ret as $laptop){
             print "<tr>";
             print "<th scope='row'>$i</th>";
             print "<td><input type ='radio' name ='radio'
-            value ='". $row['electronics_id'] . "' /> </td>";
-            print "<td>".$row['brand']."</td>";
-            echo "<td>".$row['model_number']."</td>";
-            echo "<td>".$row['price']."</td>";
-            echo "<td>".$row['processor_type']."</td>";
-            echo "<td>".$row['ram_size']."</td>";
-            echo "<td>".$row['number_of_cpu_cores']."</td>";
-            echo "<td>".$row['hard_disk_size']."</td>";
-            echo "<td>".$row['operating_system']."</td>";
-            echo "<td>".$row['display_size']."</td>";
-            echo "<td>".$row['battery_info']."</td>";
-            echo "<td>".$row['weight']."</td>";
+            value ='".$laptop->getElectronicsid(). "' /> </td>";
+            print "<td>".$laptop->getBrandName()."</td>";
+            echo "<td>".$laptop->getModelNumber()."</td>";
+            echo "<td>".$laptop->getPrice()."</td>";
+            echo "<td>".$laptop->getProcessorType()."</td>";
+            echo "<td>".$laptop->getRamSize()."</td>";
+            echo "<td>".$laptop->getNumberOfCpuCores()."</td>";
+            echo "<td>".$laptop->getHardDiskSize()."</td>";
+            echo "<td>".$laptop->getOperatingSystem()."</td>";
+            echo "<td>".$laptop->getDisplaySize()."</td>";
+            echo "<td>".$laptop->getBatteryInfo()."</td>";
+            echo "<td>".$laptop->getWeight()."</td>";
             $i = $i + 1;
             echo "</tr>";
         }
         ?>
         </tbody>
     </table>
+    <input type = 'hidden' name = 'type' value = '3'>
    {{csrf_field()}}
   <br/>
   <button type="submit" class="btn btn-primary">Submit</button>

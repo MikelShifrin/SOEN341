@@ -123,23 +123,26 @@ class UnitOfWork
         $this->array['tabletModifiedArray'] = $this->tabletModifiedArray;
     }
 
-    public function registerDeleted(ElectronicSpecification $item, $type) {
+    public function registerDeleted($electronicsId, $type) {
         if($type==1) {
 
-            $id = $item.getElectronicsId();
-            $this->desktopDeleteArrayArray[$id] = $item;
+            $id = $electronicsId;
+            $this->desktopDeleteArray[$id] = $electronicsId;
 
         } elseif ($type==2) {
 
-
+            $id = $electronicsId;
+            $this->monitorDeleteArray[$id] = $electronicsId;
 
         } elseif ($type==3) {
 
-
+            $id = $electronicsId;
+            $this->laptopDeleteArray[$id] = $electronicsId;
 
         } else {
 
-
+            $id = $electronicsId;
+            $this->tabletDeleteArray[$id] = $electronicsId;
 
         }
 
@@ -149,49 +152,40 @@ class UnitOfWork
         $this->array['tabletDeleteArray'] = $this->tabletDeleteArray;
 
     }
+    public function DeleteFromRegiterNew($electronicsId, $type) {
+        if($type==1) {
 
+            $id = $item.getElectronicsId();
+            unset($this->desktopAddArray[$id]);
+            
+        } elseif ($type==2) {
+
+            $id = $item.getElectronicsId();
+            unset($this->monitorAddArray[$id]);
+
+        } elseif ($type==3) {
+
+            $id = $item.getElectronicsId();
+            unset($this->laptopAddArray[$id]);
+
+        } else {
+
+            $id = $item.getElectronicsId();
+            unset($this->tabletAddArray[$id]);
+
+        }
+
+        $this->array['desktopAddArray'] = $this->desktopAddArray;
+        $this->array['monitorAddArray'] = $this->monitorAddArray;
+        $this->array['laptopAddArray'] = $this->laptopAddArray;
+        $this->array['tabletAddArray'] = $this->tabletAddArray;
+
+    }
 
     public function commit() {
 
         return $this->array;
 
     }
-//    public function updateregisterNew($item, $type)
-//    {
-//        $this->tabletArray[$electronicsId]
-//          if($type==1) {
-//
-//              $desktop = new Desktop();
-//              $desktop = $item;
-//              $id = $desktop->getElectronicsId();
-//              $this->desktopAddArray[$id] = $item;
-//
-//          } elseif ($type==2) {
-//
-//              $monitor = new Monitor();
-//              $monitor= $item;
-//              $id = $monitor->getElectronicsId();
-//              $this->monitorAddArray[$id] = $item;
-//
-//          } elseif ($type==3) {
-//
-//              $laptop = new Laptop();
-//              $laptop = $item;
-//              $id = $laptop->getElectronicsId();
-//              $this->laptopAddArray[$id] = $item;
-//
-//          } else {
-//
-//
-//              $tablet = new Tablet();
-//              $tablet = $item;
-//              $id = $tablet->getElectronicsId();
-//              $this->tabletAddArray[$id] = $item;
-//          }
-//        $this->array['desktopAddArray'] = $this->desktopAddArray;
-//        $this->array['monitorAddArray'] = $this->monitorAddArray;
-//        $this->array['laptopAddArray'] = $this->laptopAddArray;
-//        $this->array['tabletAddArray'] = $this->tabletAddArray;
-//
-//    }
+
 }
