@@ -51,21 +51,24 @@ class UnitOfWork
 
         } elseif ($type==2) {
 
-
+            $id = spl_object_hash ( $item);
+            $this->monitorAddArray[$id] = $item;
 
         } elseif ($type==3) {
 
-
+            $id = spl_object_hash ( $item);
+            $this->laptopAddArray[$id] = $item;
 
         } else {
 
 
-
+            $id = spl_object_hash ( $item);
+            $this->tabletAddArray[$id] = $item;
         }
-        $array['desktopAddArray'] = $this->desktopAddArray;
-        $array['monitorAddArray'] = $this->monitorAddArray;
-        $array['laptopAddArray'] = $this->laptopAddArray;
-        $array['tabletAddArray'] = $this->tabletAddArray;
+        $this->array['desktopAddArray'] = $this->desktopAddArray;
+        $this->array['monitorAddArray'] = $this->monitorAddArray;
+        $this->array['laptopAddArray'] = $this->laptopAddArray;
+        $this->array['tabletAddArray'] = $this->tabletAddArray;
 
     }
 
