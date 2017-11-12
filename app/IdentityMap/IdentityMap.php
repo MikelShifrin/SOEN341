@@ -181,30 +181,41 @@ class IdentityMap
     public function addLaptop(Laptop $laptop)
     {
 
-        $this->laptopArray = array($laptop->getLaptopId()=>$laptop);
+        $electronicsId = $laptop->getElectronicsId();
+
+
+        $this->laptopArray[$electronicsId] = $laptop;
+
+        //$this->laptopArray = array($laptop->getLaptopId()=>$laptop);
         //$session->put('laptopArray', array($laptop->getDesktopId()=>$laptop));
 
-        $this->laptopArray = array($laptop->getElectronicsId()=>$laptop);
+        //$this->laptopArray = array($laptop->getElectronicsId()=>$laptop);
 
     }
 
     public function addMonitor(Monitor $monitor)
     {
+        $electronicsId = $monitor->getElectronicsId();
 
-        $this->monitorArray = array($monitor->getMonitorId()=>$monitor);
+
+        $this->monitorArray[$electronicsId] = $monitor;
+        //$this->monitorArray = array($monitor->getMonitorId()=>$monitor);
         //$session->put('monitorArray', array($monitor->getDesktopId()=>$monitor));
 
-        $this->monitorArray = array($monitor->getElectronicsId()=>$monitor);
+        //$this->monitorArray = array($monitor->getElectronicsId()=>$monitor);
 
     }
 
     public function addTablet(Tablet $tablet)
     {
+        $electronicsId = $tablet->getElectronicsId();
 
-        $this->tabletArray = array($tablet->getTabletId()=>$tablet);
+
+        $this->tabletArray[$electronicsId] = $tablet;
+        //$this->tabletArray = array($tablet->getTabletId()=>$tablet);
         //$session->put('tabletArray', array($tablet->getDesktopId()=>$tablet));
 
-        $this->tabletArray = array($tablet->getElectronicsId()=>$tablet);
+        //$this->tabletArray = array($tablet->getElectronicsId()=>$tablet);
 
     }
 
