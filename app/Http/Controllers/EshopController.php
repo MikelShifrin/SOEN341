@@ -174,11 +174,12 @@ class EshopController extends Controller
         }
     }
 
-    public function deleteViewInventory($type) {
+    public function deleteViewInventory($type) {       
         session_start();
 
         $ret = $this->getMapper()->getElectronicCatalog()->deleteInventory($type);
         if($type=='1'){
+            $ret = Mapper::Instance()->findAllDesktop();  
         return view( 'delete.deleteInventoryDesktop',['ret'=>$ret]);
         } elseif ($type=='2') {
             return view( 'delete.deleteInventoryMonitor',['ret'=>$ret]);
@@ -186,9 +187,10 @@ class EshopController extends Controller
             return view( 'delete.deleteInventoryLaptop',['ret'=>$ret]);
         } elseif($type=='4') {
             return view( 'delete.deleteInventoryTablet',['ret'=>$ret]);
-        }
-    }
+        } 
 
+    }
+    
     /*
     delete function gets it's parameters from deleteInventoryDesktop.blade.php view
     it is redirected here through a post request in web.php
@@ -197,11 +199,11 @@ class EshopController extends Controller
     {
         session_start();
 
-
-        $electronics_id = $request -> input('radio');
+        $ret = Mapper::Instance()->deleteElectronicItem($request);
+       // $electronics_id = $request -> input('radio');
         // $type = $request -> input('type');
 
-        $electronics_id = $this->mapper->getElectronicCatalog()->deleteitem($electronics_id);
+        //$electronics_id = $this->mapper->getElectronicCatalog()->deleteitem($electronics_id);
         return view( 'welcome');
     }
 

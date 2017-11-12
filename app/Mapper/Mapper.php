@@ -306,9 +306,45 @@ class Mapper
     }
 
 
+    public function deleteElectronicItem($request){
+
+        $electronics_id = $request -> input('radio');
+        $type= $request->input('type');
+        if(isset($_SESSION['singletonMap'])){
+            $singletonIdMap = $_SESSION['singletonMap'];
 
 
-    public function deleteDesktop(){}
+        } else {
+            $singletonIdMap = IdentityMap::Instance();
+            $_SESSION['singletonMap'] = $singletonIdMap;
+        }
+
+        if(isset($_SESSION['singletonUOW'])){
+            $singletonUOW = $_SESSION['singletonUOW'];
+            echo spl_object_hash ($singletonUOW);
+
+        } else {
+            $singletonUOW = UnitOfWork::Instance();
+            $_SESSION['singletonUOW'] = $singletonUOW;
+        }
+        if($type==1)
+        {
+            
+            $singletonIdMap->deleteDesktop($electronics_id);
+            
+            
+            //$singletonUOW->registerNew($item,1);// regiter desktop new
+           
+           // $this->deleteDesktop($electronics_id);
+        }
+        $this->getElectronicCatalog()->deleteitem($electronics_id,$type);
+    }
+
+    public function deleteDesktop($electronics_id){
+        
+
+
+    }
     public function deleteLaptop(){}
     public function deleteMonitor(){}
     public function deleteTablet(){}
