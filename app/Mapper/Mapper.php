@@ -584,15 +584,7 @@ class Mapper
                 }
         } 
     }
-    
-    public function deleteDesktop($electronicsId){
-        
 
-
-    }
-    public function deleteLaptop(){}
-    public function deleteMonitor(){}
-    public function deleteTablet(){}
 
 
 
@@ -650,8 +642,33 @@ class Mapper
 
                 }
             }
+            if (isset($houseKeepingArray['desktopDeleteArray'])){
+                foreach ($houseKeepingArray['desktopDeleteArray'] as $electronicsID){
+
+                    $this->getElectronicsTDG()->deleteDesktop($electronicsID);
+                }
+            }
+            if (isset($houseKeepingArray['monitorDeleteArray'])){
+                foreach ($houseKeepingArray['monitorDeleteArray'] as $electronicsID){
+
+                    $this->getElectronicsTDG()->deleteMonitor($electronicsID);
+                }
+            }
+            if (isset($houseKeepingArray['laptopDeleteArray'])){
+                foreach ($houseKeepingArray['laptopDeleteArray'] as $electronicsID){
+
+                    $this->getElectronicsTDG()->deleteLaptop($electronicsID);
+                }
+            }
+            if (isset($houseKeepingArray['tabletDeleteArray'])){
+                foreach ($houseKeepingArray['tabletDeleteArray'] as $electronicsID){
+
+                    $this->getElectronicsTDG()->deleteTablet($electronicsID);
+                }
+            }
 
             unset($_SESSION['singletonUOW']);
+            unset($_SESSION['singletonMap']);
 
 
 //        print_r($houseKeepingArray['desktopAddArray']);
