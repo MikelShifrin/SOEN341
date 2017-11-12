@@ -4,6 +4,7 @@ namespace App\UnitOfWork;
 
 use App\Model\Desktop;
 use App\Model\ElectronicSpecification;
+use App\Model\Laptop;
 use App\Model\Monitor;
 
 class UnitOfWork
@@ -47,7 +48,7 @@ class UnitOfWork
     public function registerNew(ElectronicSpecification $item, $type) {
         if($type==1) {
 
-            $id = spl_object_hash ( $item);
+            $id = spl_object_hash ($item);
             $this->desktopAddArray[$id] = $item;
 
         } elseif ($type==2) {
@@ -63,10 +64,10 @@ class UnitOfWork
 
 
         }
-        $array['desktopAddArray'] = $this->desktopAddArray;
-        $array['monitorAddArray'] = $this->monitorAddArray;
-        $array['laptopAddArray'] = $this->laptopAddArray;
-        $array['tabletAddArray'] = $this->tabletAddArray;
+        $this->array['desktopAddArray'] = $this->desktopAddArray;
+        $this->array['monitorAddArray'] = $this->monitorAddArray;
+        $this->array['laptopAddArray'] = $this->laptopAddArray;
+        $this->array['tabletAddArray'] = $this->tabletAddArray;
 
     }
 
@@ -89,8 +90,10 @@ class UnitOfWork
 
         } elseif ($type==3) {
 
-            $id = $item.getElectronicsId();
-            $this->laptopModifiedArray[$id] = $item;
+            $laptop = new Laptop();
+            $laptop = $item;
+            $id = $laptop->getElectronicsId();
+            $this->laptopModifiedArray[$id] = $laptop   ;
 
 
         } else {

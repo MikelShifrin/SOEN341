@@ -232,16 +232,6 @@ class EshopController extends Controller
             $return="Desktop Updated Successfully";
             return view( 'welcome',['return'=>$return]);
         }
-        if($type=='3'){
-
-            $electronicsId = $request->input('hiddenElectronicsId');                //get electronics id
-            $laptop = $this->mapper->getIdentityMap()->findLaptop($electronicsId);      //get the persistent object from idmap
-            $this->mapper->getUnitOfWork()->registerDirty($laptop,$type);              //register dirty with uow
-//            $this->mapper->getElectronicsTDG()->modifyDesktop($request);
-            $this->mapper->getIdentityMap()->addLaptop($laptop);
-            $return="Laptop Updated Successfully";
-            return view( 'welcome',['return'=>$return]);
-        }
          elseif($type=='2'){
 
              $monitor = $this->mapper->modifyElectronics($request,$type);                      //
@@ -249,12 +239,12 @@ class EshopController extends Controller
              return view( 'welcome',['return'=>$return]);
         }
         elseif($type=='3'){
-            $this->mapper->getElectronicsTDG()->modifyLaptop($request);
+            $laptop = $this->mapper->modifyElectronics($request,$type);                      //
             $return="Laptop Updated Successfully";
             return view( 'welcome',['return'=>$return]);
         }
         elseif($type=='4'){
-            $this->mapper->getElectronicsTDG()->modifyTablet($request);
+            $tablet = $this->mapper->modifyElectronics($request,$type);                      //
             $return="Tablet Updated Successfully";
             return view( 'welcome',['return'=>$return]);
         }
