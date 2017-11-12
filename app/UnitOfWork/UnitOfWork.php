@@ -6,6 +6,7 @@ use App\Model\Desktop;
 use App\Model\ElectronicSpecification;
 use App\Model\Laptop;
 use App\Model\Monitor;
+use App\Model\Tablet;
 
 class UnitOfWork
 {
@@ -45,26 +46,34 @@ class UnitOfWork
         return Self::$inst;
     }
 
-    public function registerNew(ElectronicSpecification $item, $type) {
+    public function registerNew($item, $type) {
         if($type==1) {
 
-            $id = spl_object_hash ($item);
+            $desktop = new Desktop();
+            $desktop = $item;
+            $id = $desktop->getElectronicsId();
             $this->desktopAddArray[$id] = $item;
 
         } elseif ($type==2) {
 
-            $id = spl_object_hash ( $item);
+            $monitor = new Monitor();
+            $monitor= $item;
+            $id = $monitor->getElectronicsId();
             $this->monitorAddArray[$id] = $item;
 
         } elseif ($type==3) {
 
-            $id = spl_object_hash ( $item);
+            $laptop = new Laptop();
+            $laptop = $item;
+            $id = $laptop->getElectronicsId();
             $this->laptopAddArray[$id] = $item;
 
         } else {
 
 
-            $id = spl_object_hash ( $item);
+            $tablet = new Tablet();
+            $tablet = $item;
+            $id = $tablet->getElectronicsId();
             $this->tabletAddArray[$id] = $item;
         }
         $this->array['desktopAddArray'] = $this->desktopAddArray;
@@ -101,7 +110,10 @@ class UnitOfWork
 
         } else {
 
-
+            $tablet = new Tablet();
+            $tablet = $item;
+            $id = $tablet->getElectronicsId();
+            $this->tabletModifiedArray[$id] = $tablet ;
 
         }
 
@@ -111,23 +123,26 @@ class UnitOfWork
         $this->array['tabletModifiedArray'] = $this->tabletModifiedArray;
     }
 
-    public function registerDeleted(ElectronicSpecification $item, $type) {
+    public function registerDeleted($electronicsId, $type) {
         if($type==1) {
 
-            $id = $item.getElectronicsId();
-            $this->desktopDeleteArrayArray[$id] = $item;
+            $id = $electronicsId;
+            $this->desktopDeleteArray[$id] = $electronicsId;
 
         } elseif ($type==2) {
 
-
+            $id = $electronicsId;
+            $this->monitorDeleteArray[$id] = $electronicsId;
 
         } elseif ($type==3) {
 
-
+            $id = $electronicsId;
+            $this->laptopDeleteArray[$id] = $electronicsId;
 
         } else {
 
-
+            $id = $electronicsId;
+            $this->tabletDeleteArray[$id] = $electronicsId;
 
         }
 
@@ -135,6 +150,42 @@ class UnitOfWork
         $this->array['monitorDeleteArray'] = $this->monitorDeleteArray;
         $this->array['laptopDeleteArray'] = $this->laptopDeleteArray;
         $this->array['tabletDeleteArray'] = $this->tabletDeleteArray;
+
+    }
+    public function DeleteFromRegiterNew($electronicsId, $type) {
+        if($type==1) {
+
+            $id = $item.getElectronicsId();
+            unset($this->desktopAddArray[$id]);
+            
+        } elseif ($type==2) {
+
+            $id = $item.getElectronicsId();
+            unset($this->monitorAddArray[$id]);
+
+        } elseif ($type==3) {
+
+            $id = $item.getElectronicsId();
+            unset($this->laptopAddArray[$id]);
+
+        } else {
+
+            $id = $item.getElectronicsId();
+            unset($this->tabletAddArray[$id]);
+
+        }
+
+<<<<<<< HEAD
+        $this->array['desktopDeleteArray'] = $this->desktopDeleteArray;
+        $this->array['monitorDeleteArray'] = $this->monitorDeleteArray;
+        $this->array['laptopDeleteArray'] = $this->laptopDeleteArray;
+        $this->array['tabletDeleteArray'] = $this->tabletDeleteArray;
+=======
+        $this->array['desktopAddArray'] = $this->desktopAddArray;
+        $this->array['monitorAddArray'] = $this->monitorAddArray;
+        $this->array['laptopAddArray'] = $this->laptopAddArray;
+        $this->array['tabletAddArray'] = $this->tabletAddArray;
+>>>>>>> refs/remotes/origin/master
 
     }
 

@@ -185,10 +185,13 @@ class EshopController extends Controller
             $ret = Mapper::Instance()->findAllDesktop();  
         return view( 'delete.deleteInventoryDesktop',['ret'=>$ret]);
         } elseif ($type=='2') {
+            $ret = Mapper::Instance()->findAllMonitor();
             return view( 'delete.deleteInventoryMonitor',['ret'=>$ret]);
         } elseif ($type=='3') {
+            $ret = Mapper::Instance()->findAllLaptop();
             return view( 'delete.deleteInventoryLaptop',['ret'=>$ret]);
         } elseif($type=='4') {
+            $ret = Mapper::Instance()->findAllTablet();
             return view( 'delete.deleteInventoryTablet',['ret'=>$ret]);
         } 
 
@@ -203,11 +206,8 @@ class EshopController extends Controller
         session_start();
 
         $ret = Mapper::Instance()->deleteElectronicItem($request);
-       // $electronics_id = $request -> input('radio');
-        // $type = $request -> input('type');
-
-        //$electronics_id = $this->mapper->getElectronicCatalog()->deleteitem($electronics_id);
-        return view( 'welcome');
+        $return="Item Deleted Successfully";
+        return view( 'welcome',['return'=>$return]);
     }
 
 
