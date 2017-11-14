@@ -70,22 +70,22 @@ Route::get('addinventoryDesktop', function () {
     return view('add.addinventoryDesktop');
 })->name('addinventoryDesktop');
 
-Route::get('viewInventoryDesktop/{type}', [
+Route::get('viewInventoryDesktop/{type}/{st}', [
     'uses'  => 'EshopController@viewInventory',
     'as'    => 'viewInventoryDesktop'
 ]);
 
-Route::get('viewInventoryMonitor/{type}',[
+Route::get('viewInventoryMonitor/{type}/{st}',[
     'uses'  => 'EshopController@viewInventory',
     'as'    => 'viewInventoryMonitor'
 ]);
 
-Route::get('viewInventoryLaptop/{type}', [
+Route::get('viewInventoryLaptop/{type}/{st}', [
     'uses'  => 'EshopController@viewInventory',
     'as'    => 'viewInventoryLaptop'
 ]);
 
-Route::get('viewInventoryTablet/{type}',[
+Route::get('viewInventoryTablet/{type}/{st}',[
     'uses'  => 'EshopController@viewInventory',
     'as'    => 'viewInventoryTablet'
 ]);
@@ -176,4 +176,8 @@ Route::get('shopDetail/{type}/{id}', [
     'as'    => 'shopDetail'
 ]);
 
+
+
 ?>
+
+

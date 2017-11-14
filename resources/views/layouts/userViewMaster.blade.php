@@ -61,7 +61,7 @@ _________________________________________________________ -->
                 <div class="container">
                     <div class="navbar-header">
 
-                        <a class="navbar-brand home" href="index.html">
+                        <a class="navbar-brand home" href="#">
                             {{--<img src="img/logo.png" alt="Universal logo" class="hidden-xs hidden-sm">--}}
                             <img src="img/logo-small.png" alt="Universal logo" class="visible-xs visible-sm"><span class="sr-only">Universal - go to homepage</span>
                         </a>
@@ -141,7 +141,7 @@ _________________________________________________________ -->
                 </div>
                 <div class="col-md-5">
                     <ul class="breadcrumb">
-                        <li><a href="index.html">Home</a>
+                        <li><a href="#">Home</a>
                         </li>
                         <li>View Inventory</li>
                     </ul>
@@ -173,15 +173,15 @@ _________________________________________________________ -->
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked category-menu">
                                 <li>
-                                    <a href="shop-category.html">Electronics <span class="badge pull-right">...</span></a>
+                                    <a href="{{route('welcomeUser')}}">Electronics <span class="badge pull-right">...</span></a>
                                     <ul>
-                                        <li><a href="{{route('viewInventoryDesktop',['type'=>1])}}">Desktops</a>
+                                        <li><a href="{{route('viewInventoryDesktop',['type'=>1,'st'=>'default'])}}">Desktops</a>
                                         </li>
-                                        <li><a href="{{route('viewInventoryMonitor',['type'=>2])}}">Displays</a>
+                                        <li><a href="{{route('viewInventoryMonitor',['type'=>2,'st'=>'default'])}}">Displays</a>
                                         </li>
-                                        <li><a href="{{route('viewInventoryLaptop',['type'=>3])}}">Laptop</a>
+                                        <li><a href="{{route('viewInventoryLaptop',['type'=>3,'st'=>'default'])}}">Laptop</a>
                                         </li>
-                                        <li><a href="{{route('viewInventoryTablet',['type'=>4])}}">Tablet</a>
+                                        <li><a href="{{route('viewInventoryTablet',['type'=>4,'st'=>'default'])}}">Tablet</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -235,7 +235,7 @@ _________________________________________________________ -->
                     <div class="panel panel-default sidebar-menu">
 
                         <div class="panel-heading">
-                            <h3 class="panel-title clearfix">Colours</h3>
+                            <h3 class="panel-title clearfix">Price</h3>
                             <a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> <span class="hidden-sm">Clear</span></a>
                         </div>
 
@@ -291,9 +291,11 @@ _________________________________________________________ -->
 
                 <div class="col-sm-9">
 
-                    <p class="text-muted lead">Lorem ipsum dolor sit amet, regione fastidii disputando ius te.
-                        Nominavi maluisset reprehendunt eos in, eos velit percipit no. Id sed zril saperet mediocrem,
-                        per ne wisi oratio putant. </p>
+                    <p class="text-muted lead">
+
+                        @yield('sort')
+
+                    </p>
 
                     <div class="row products">
 

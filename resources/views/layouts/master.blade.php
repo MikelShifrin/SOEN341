@@ -36,10 +36,10 @@
                 View Inventory
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{{route('viewInventoryDesktop',['type'=>1])}}">View Desktop</a>
-                <a class="dropdown-item" href="{{route('viewInventoryMonitor',['type'=>2])}}">View monitor</a>
-                <a class="dropdown-item" href="{{route('viewInventoryLaptop',['type'=>3])}}">View Laptop</a>
-                <a class="dropdown-item" href="{{route('viewInventoryTablet',['type'=>4])}}">View Tablet</a>
+                <a class="dropdown-item" href="{{route('viewInventoryDesktop',['type'=>1,'st'=>'default'])}}">View Desktop</a>
+                <a class="dropdown-item" href="{{route('viewInventoryMonitor',['type'=>2,'st'=>'default'])}}">View monitor</a>
+                <a class="dropdown-item" href="{{route('viewInventoryLaptop',['type'=>3,'st'=>'default'])}}">View Laptop</a>
+                <a class="dropdown-item" href="{{route('viewInventoryTablet',['type'=>4,'st'=>'default'])}}">View Tablet</a>
             </div>
         </li>
         @if($_SESSION['user_type'] == 'admin')
