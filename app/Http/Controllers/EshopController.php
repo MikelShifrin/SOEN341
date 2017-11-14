@@ -136,7 +136,7 @@ class EshopController extends Controller
         return view( 'welcome',['return'=>$return]);
     }
 
-    public function viewInventory($type)
+    public function viewInventory($type,$st)
     {
         session_start();
 
@@ -156,24 +156,39 @@ class EshopController extends Controller
             if($_SESSION['user_type']=="admin") {
                 return view( 'view.viewInventoryDesktop',['ret'=>$ret]);      //Return to view
             } else {
-                return view('userViews.viewDesktop',['ret'=>$ret]);
+
+                return view('userViews.viewDesktop',['ret'=>$ret,'st'=>$st]);
             }
 
         }
         elseif ($type=='2')
         {
             $ret = $this->mapper->findAllMonitor();                             //Message to Mapper to get all monitors
-            return view( 'view.viewInventoryMonitor',['ret'=>$ret]);      //Return to view
+            if($_SESSION['user_type']=="admin") {
+                return view( 'view.viewInventoryMonitor',['ret'=>$ret]);      //Return to view
+            } else {
+                return view( 'userViews.viewMonitor',['ret'=>$ret,'st'=>$st]);      //Return to view
+            }
         }
         elseif ($type=='3')
         {
+
             $ret = $this->mapper->findAllLaptop();                             //Message to Mapper to get all laptops
-            return view( 'view.viewInventoryLaptop',['ret'=>$ret]);      //Return to view
+            if($_SESSION['user_type']=="admin") {
+                return view('view.viewInventoryLaptop', ['ret' => $ret]);      //Return to view
+            } else {
+                return view( 'userViews.viewLaptop',['ret'=>$ret,'st'=>$st]);      //Return to view
+            }
         }
         elseif($type=='4')
         {
             $ret = $this->mapper->findAllTablet();                             //Message to Mapper to get all tablets
-            return view( 'view.viewInventoryTablet',['ret'=>$ret]);      //Return to view
+
+            if($_SESSION['user_type']=="admin") {
+                return view('view.viewInventoryTablet', ['ret' => $ret]);      //Return to view
+            } else {
+                return view( 'userViews.viewTablet',['ret'=>$ret,'st'=>$st]);      //Return to view
+            }
         }
     }
 
@@ -271,8 +286,35 @@ class EshopController extends Controller
     public function userShopDetail($type, $id) {
 
         session_start();
-        return view('userViews.viewShopDetail');
+        if($type==1) {
+
+            $itemArray = $_SESSION['singletonMap']->getDesktopArray();
+            $item = $itemArray[$id];
+            return view('userViews.viewDesktopShopDetail',['item'=>$item]);
+
+        } elseif ($type==2) {
+
+            $itemArray = $_SESSION['singletonMap']->getMonitorArray();
+            $item = $itemArray[$id];
+            return view('userViews.viewMonitorShopDetail',['item'=>$item]);
+
+        } elseif ($type==3) {
+
+            $itemArray = $_SESSION['singletonMap']->getLaptopArray();
+            $item = $itemArray[$id];
+            return view('userViews.viewLaptopShopDetail',['item'=>$item]);
+
+        } else {
+
+            $itemArray = $_SESSION['singletonMap']->getTabletArray();
+            $item = $itemArray[$id];
+            return view('userViews.viewTabletShopDetail',['item'=>$item]);
+
+        }
     }
+
+
+
 
     }
 

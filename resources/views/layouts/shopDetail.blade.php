@@ -136,17 +136,17 @@ _________________________________________________________ -->
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <h1>Desktop Brand Name</h1>
+                    <h1>@yield('brandName')</h1>
                 </div>
                 <div class="col-md-5">
                     <ul class="breadcrumb">
-                        <li><a href="index.html">Home</a>
+                        <li><a href="#">Home</a>
                         </li>
                         <li><a href="#">View</a>
                         </li>
-                        <li><a href="#">Desktop</a>
+                        <li><a href="#">@yield('electronictype')</a>
                         </li>
-                        <li>Which Desktop?</li>
+                        <li>@yield('brandName')</li>
                     </ul>
 
                 </div>
@@ -164,8 +164,7 @@ _________________________________________________________ -->
 
                 <div class="col-md-9">
 
-                    <p class="lead">Built purse maids cease her ham new seven among and. Pulled coming wooded tended it answer remain me be. So landlord by we unlocked sensible it. Fat cannot use denied excuse son law. Wisdom happen suffer common the appear ham beauty
-                        her had. Or belonging zealously existence as by resources.
+                    <p class="lead">Check out this awesome electronic!
                     </p>
                     <p class="goToDescription"><a href="#details" class="scroll-to text-uppercase">Scroll to product details, material & care and sizing</a>
                     </p>
@@ -173,7 +172,8 @@ _________________________________________________________ -->
                     <div class="row" id="productMain">
                         <div class="col-sm-6">
                             <div id="mainImage">
-                                <img src="img/detailbig1.jpg" alt="" class="img-responsive">
+                                @yield('mainimage')
+
                             </div>
 
                             <div class="ribbon sale">
@@ -195,7 +195,7 @@ _________________________________________________________ -->
                                 <form>
                                     <div class="sizes">
 
-                                        <h3>Available RAM Sizes</h3>
+                                        <h3>In Stock!</h3>
 
                                         {{--<label for="size_s">--}}
                                             {{--<a href="#">4</a>--}}
@@ -212,10 +212,10 @@ _________________________________________________________ -->
 
                                     </div>
 
-                                    <p class="price">$124.00</p>
+                                    <p class="price">$@yield('price') </p>
 
                                     <p class="text-center">
-                                        <button type="submit" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                                        <button type="submit" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> Add to Wishlist</button>
                                         <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Add to wishlist"><i class="fa fa-heart-o"></i>
                                         </button>
                                     </p>
@@ -225,9 +225,8 @@ _________________________________________________________ -->
 
                             <div class="row" id="thumbs">
                                 <div class="col-xs-4">
-                                    <a href="{{URL::to('img/desktop.png')}}" class="thumb">
-                                        <img src="{{URL::to('img/desktop.png')}}" alt="" class="img-responsive image1">
-                                    </a>
+                                    @yield('thumbimage')
+
                                 </div>
 
                             </div>
@@ -239,22 +238,17 @@ _________________________________________________________ -->
                     <div class="box" id="details">
                         <p>
                         <h4>Product details</h4>
-                        <p>White lace top, woven, has a round neck, short sleeves, has knitted lining attached</p>
-                        <h4>Material & care</h4>
-                        <ul>
-                            <li>Polyester</li>
-                            <li>Machine wash</li>
-                        </ul>
-                        <h4>Size & Fit</h4>
-                        <ul>
-                            <li>Regular fit</li>
-                            <li>The model (height 5'8" and chest 33") is wearing a size S</li>
-                        </ul>
 
-                        <blockquote>
-                            <p><em>Define style this season with Armani's new range of trendy tops, crafted with intricate details. Create a chic statement look by teaming this lace number with skinny jeans and pumps.</em>
-                            </p>
-                        </blockquote>
+                        @yield('basicdetail')
+
+                        <h4>Product Specification</h4>
+
+                        @yield('specification')
+
+                        <h4>Size & Fit</h4>
+
+                        @yield('size')
+
                     </div>
 
                     <div class="box social" id="product-social">
@@ -293,15 +287,15 @@ _________________________________________________________ -->
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked category-menu">
                                 <li>
-                                    <a href="shop-category.html">Electronics <span class="badge pull-right">...</span></a>
+                                    <a href="{{route('welcomeUser')}}">Electronics <span class="badge pull-right">...</span></a>
                                     <ul>
-                                        <li><a href="{{route('viewInventoryDesktop',['type'=>1])}}">Desktops</a>
+                                        <li><a href="{{route('viewInventoryDesktop',['type'=>1,'st'=>'default'])}}">Desktops</a>
                                         </li>
-                                        <li><a href="{{route('viewInventoryMonitor',['type'=>2])}}">Displays</a>
+                                        <li><a href="{{route('viewInventoryMonitor',['type'=>2,'st'=>'default'])}}">Displays</a>
                                         </li>
-                                        <li><a href="{{route('viewInventoryLaptop',['type'=>3])}}">Laptop</a>
+                                        <li><a href="{{route('viewInventoryLaptop',['type'=>3,'st'=>'default'])}}">Laptop</a>
                                         </li>
-                                        <li><a href="{{route('viewInventoryTablet',['type'=>4])}}">Tablet</a>
+                                        <li><a href="{{route('viewInventoryTablet',['type'=>4,'st'=>'default'])}}">Tablet</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -355,7 +349,7 @@ _________________________________________________________ -->
                     <div class="panel panel-default sidebar-menu">
 
                         <div class="panel-heading">
-                            <h3 class="panel-title clearfix">Colours</h3>
+                            <h3 class="panel-title clearfix">Price</h3>
                             <a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> <span class="hidden-sm">Clear</span></a>
                         </div>
 
