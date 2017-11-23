@@ -72,6 +72,9 @@ class EshopController extends Controller
         session_start();
         if((isset($_SESSION['user'])))
         {
+            if(trim($_SESSION['email']) == trim($username)) {
+                return view( 'loginWelcome');
+            }
             $return = "Another Admin logged in!";
             return view('login', ['return'=>$return]);
         }
@@ -88,7 +91,6 @@ class EshopController extends Controller
 
             $_SESSION['user'] = $login;
             $_SESSION['email'] = $login['email_id'];
-
             if($user_type=="admin") {
                 $_SESSION['user_type'] = "admin";
                 $_SESSION['loggedin'] = true;
