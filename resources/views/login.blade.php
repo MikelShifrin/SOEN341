@@ -52,6 +52,10 @@
             <div class="alert alert-danger" role="alert">
                 <strong>Oh snap!</strong> {{$return}}
             </div>
+                @elseif ($return=="Another Admin logged in!")
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Oh snap!</strong> {{$return}}
+                    </div>
                 @else
                 <div class="alert alert-success" role="alert">
                     <strong>Registered!</strong> {{$return}}

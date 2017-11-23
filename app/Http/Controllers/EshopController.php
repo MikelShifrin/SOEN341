@@ -69,6 +69,13 @@ class EshopController extends Controller
         } else {
             $user_type = "user";
         }
+        session_start();
+        if((isset($_SESSION['user'])))
+        {
+            $return = "Another Admin logged in!";
+            return view('login', ['return'=>$return]);
+        }
+
 
        $login = $this->getMapper()->getUserCatalog()->authenticate($username,$password,$user_type);
         if($login==false){
@@ -76,12 +83,15 @@ class EshopController extends Controller
             return view('login', ['return'=>$return]);
         } else {
             $user_id = $login['user_id'];
-            session_start();
+//            session_start();
+
+
             $_SESSION['user'] = $login;
             $_SESSION['email'] = $login['email_id'];
 
             if($user_type=="admin") {
                 $_SESSION['user_type'] = "admin";
+                $_SESSION['loggedin'] = true;
                 $_SESSION['ElectronicsIdAddInternalCounterInitial'] = 10000000;
                 $_SESSION['ElectronicsIdAddInternalCounter'] = 10000000;
                 return view( 'loginWelcome');
@@ -142,7 +152,7 @@ class EshopController extends Controller
 
         if(isset($_SESSION['singletonMap'])){
             $singletonIdMap = $_SESSION['singletonMap'];
-            echo spl_object_hash ($singletonIdMap);
+//            echo spl_object_hash ($singletonIdMap);
 
         } else {
             $singletonIdMap = IdentityMap::Instance();
@@ -231,7 +241,7 @@ class EshopController extends Controller
 
 //        $ret = $this->mapper->getElectronicCatalog()->deleteInventory($type);
         if($type=='1'){
-            echo spl_object_hash ( IdentityMap::Instance());
+//            echo spl_object_hash ( IdentityMap::Instance());
             $ret = Mapper::Instance()->findAllDesktop();                             //Message to Mapper to get all desktops
             return view( 'modify.modifyInventoryDesktop',['ret'=>$ret]);      //Return to view
         } elseif ($type=='2') {
@@ -249,7 +259,7 @@ class EshopController extends Controller
     public function modifyElectronics(Request $request,$type) {
         session_start();
         if($type=='1'){
-            echo spl_object_hash (IdentityMap::Instance());
+//            echo spl_object_hash (IdentityMap::Instance());
             $desktop = $this->mapper->modifyElectronics($request,$type);                      //
             $return="Desktop Updated Successfully";
             return view( 'welcome',['return'=>$return]);
@@ -313,7 +323,271 @@ class EshopController extends Controller
         }
     }
 
+    public function filterDesktop(Request $request)
+    {
 
+        session_start();
+        $itemArray = $_SESSION['singletonMap']->getDesktopArray();
+        $filteredItems = [];
+
+        foreach ($itemArray as $item) {
+            $filterFlag = Array();
+
+            $filterFlag['price'] = true;
+            $filterFlag['ram'] = true;
+
+            if (!is_null($request->input('brand'))) {
+                $filterFlag['brand'] = false;
+                foreach ($request->input('brand') as $value) {
+                    if($item->getBrandName() == $value) {
+                        $filterFlag['brand'] = true;
+                    } else {
+                        $filterFlag['brand'] = false;
+                    }
+
+                }
+            }
+
+            if (!is_null($request->input('price'))) {
+              $range = explode("-", $request->input('price'));
+                if(trim($item->getPrice())>=trim($range[0])&&trim($item->getPrice())<=trim($range[1])) {
+                    $filterFlag['price'] = true;
+                } else {
+                    $filterFlag['price'] = false;
+                }
+
+            }
+
+            if (!is_null($request->input('processor'))) {
+                $filterFlag['processor'] = false;
+                foreach ($request->input('processor') as $value) {
+                    if(trim($item->getProcessorType()) == trim($value)) {
+                        $filterFlag['processor'] = true;
+                    } else $filterFlag['processor'] = false;
+                }
+            }
+
+            if (!is_null($request->input('ram'))) {
+                $range = explode("-", $request->input('ram'));
+                if(trim($item->getRamSize())>=trim($range[0])&&trim($item->getRamSize())<=trim($range[1])) {
+                    $filterFlag['ram'] = true;
+                } else {
+                    $filterFlag['ram'] = false;
+                }
+            }
+
+            if (!is_null($request->input('hds'))) {
+                $filterFlag['hds'] = false;
+                foreach ($request->input('hds') as $value) {
+                    if($item->getHardDiskSize() == $value) {
+                        $filterFlag['hds'] = true;
+                    } else {
+                        $filterFlag['hds'] = false;
+                    }
+
+                }
+            }
+
+            $falseCnt = 0;
+
+            foreach($filterFlag as $value) {
+                if($value==false) {
+                    $falseCnt++;
+                }
+            }
+            if($falseCnt==0) {
+                $filteredItems[$item->getElectronicsId()] = $item;
+            }
+
+        }
+
+//        $filteredItems = array_values(array_unique($filteredItems));
+        return view('userViews.viewDesktop',['ret'=>$filteredItems,'st'=>'default']);
+//
+//        return view('welcomeUser');
+
+    }
+
+
+    public function filterMonitor(Request $request)
+    {
+
+        session_start();
+        $itemArray = $_SESSION['singletonMap']->getMonitorArray();
+        $filteredItems = [];
+
+        foreach ($itemArray as $item) {
+            $filterFlag = Array();
+
+            $filterFlag['price'] = true;
+            $filterFlag['display'] = true;
+            $filterFlag['weight'] = true;
+
+            if (!is_null($request->input('brand'))) {
+                $filterFlag['brand'] = false;
+                foreach ($request->input('brand') as $value) {
+                    if($item->getBrandName() == $value) {
+                        $filterFlag['brand'] = true;
+                    } else {
+                        $filterFlag['brand'] = false;
+                    }
+
+                }
+            }
+
+            if (!is_null($request->input('price'))) {
+                $range = explode("-", $request->input('price'));
+                if(trim($item->getPrice())>=trim($range[0])&&trim($item->getPrice())<=trim($range[1])) {
+                    $filterFlag['price'] = true;
+                } else {
+                    $filterFlag['price'] = false;
+                }
+            }
+
+            if (!is_null($request->input('display'))) {
+                $range = explode("-", $request->input('display'));
+                if(trim($item->getSize())>=trim($range[0])&&trim($item->getSize())<=trim($range[1])) {
+                    $filterFlag['display'] = true;
+                } else {
+                    $filterFlag['display'] = false;
+                }
+            }
+
+            if (!is_null($request->input('weight'))) {
+                $range = explode("-", $request->input('weight'));
+                if(trim($item->getWeight())>=trim($range[0])&&trim($item->getWeight())<=trim($range[1])) {
+                    $filterFlag['weight'] = true;
+                } else {
+                    $filterFlag['weight'] = false;
+                }
+            }
+
+            $falseCnt = 0;
+
+            foreach($filterFlag as $value) {
+                if($value==false) {
+                    $falseCnt++;
+                }
+            }
+            if($falseCnt==0) {
+                $filteredItems[$item->getElectronicsId()] = $item;
+            }
+
+        }
+      return view('userViews.viewMonitor',['ret'=>$filteredItems,'st'=>'default']);
+    }
+
+    public function filterLaptop(Request $request)
+    {
+
+        session_start();
+        $itemArray = $_SESSION['singletonMap']->getLaptopArray();
+        $filteredItems = [];
+//
+        foreach ($itemArray as $item) {
+            $filterFlag = Array();
+            $filterFlag['price'] = true;
+            $filterFlag['display'] = true;
+            $filterFlag['weight'] = true;
+            $filterFlag['battery'] = true;
+//
+            if (!is_null($request->input('brand'))) {
+                $filterFlag['brand'] = false;
+                foreach ($request->input('brand') as $value) {
+                    if($item->getBrandName() == $value) {
+                        $filterFlag['brand'] = true;
+                    } else {
+                        $filterFlag['brand'] = false;
+                    }
+
+                }
+            }
+
+            if (!is_null($request->input('processor'))) {
+                $filterFlag['processor'] = false;
+                foreach ($request->input('processor') as $value) {
+                    if($item->getProcessorType() == $value) {
+                        $filterFlag['processor'] = true;
+                    } else {
+                        $filterFlag['processor'] = false;
+                    }
+
+                }
+            }
+
+            if (!is_null($request->input('hds'))) {
+                $filterFlag['hds'] = false;
+                foreach ($request->input('hds') as $value) {
+                    if($item->getHardDiskSize() == $value) {
+                        $filterFlag['hds'] = true;
+                    } else {
+                        $filterFlag['hds'] = false;
+                    }
+
+                }
+            }
+
+            if (!is_null($request->input('os'))) {
+                $filterFlag['os'] = false;
+                foreach ($request->input('os') as $value) {
+                    if($item->getOperatingSystem() == $value) {
+                        $filterFlag['os'] = true;
+                    } else {
+                        $filterFlag['os'] = false;
+                    }
+
+                }
+            }
+//
+            if (!is_null($request->input('price'))) {
+                $range = explode("-", $request->input('price'));
+                if(trim($item->getPrice())>=trim($range[0])&&trim($item->getPrice())<=trim($range[1])) {
+                    $filterFlag['price'] = true;
+                } else {
+                    $filterFlag['price'] = false;
+                }
+            }
+
+            if (!is_null($request->input('battery'))) {
+                $range = explode("-", $request->input('battery'));
+                if(trim($item->getBatteryInfo())>=trim($range[0])&&trim($item->getBatteryInfo())<=trim($range[1])) {
+                    $filterFlag['battery'] = true;
+                } else {
+                    $filterFlag['battery'] = false;
+                }
+            }
+//
+            if (!is_null($request->input('display'))) {
+                $range = explode("-", $request->input('display'));
+                if(trim($item->getDisplaySize())>=trim($range[0])&&trim($item->getDisplaySize())<=trim($range[1])) {
+                    $filterFlag['display'] = true;
+                } else {
+                    $filterFlag['display'] = false;
+                }
+            }
+//
+            if (!is_null($request->input('weight'))) {
+                $range = explode("-", $request->input('weight'));
+                if(trim($item->getWeight())>=trim($range[0])&&trim($item->getWeight())<=trim($range[1])) {
+                    $filterFlag['weight'] = true;
+                } else {
+                    $filterFlag['weight'] = false;
+                }
+            }
+
+            $falseCnt = 0;
+            foreach($filterFlag as $value) {
+                if($value==false) {
+                    $falseCnt++;
+                }
+            }
+            if($falseCnt==0) {
+                $filteredItems[$item->getElectronicsId()] = $item;
+            }
+//
+        }
+        return view('userViews.viewLaptop',['ret'=>$filteredItems,'st'=>'default']);
+    }
 
 
     }

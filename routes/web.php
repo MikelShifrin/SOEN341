@@ -176,6 +176,21 @@ Route::get('shopDetail/{type}/{id}', [
     'as'    => 'shopDetail'
 ]);
 
+Route::get('filterDesktop', [
+    'uses'  => 'EshopController@filterDesktop',
+    'as'    => 'filterDesktop'
+]);
+
+Route::get('filterMonitor', [
+    'uses'  => 'EshopController@filterMonitor',
+    'as'    => 'filterMonitor'
+]);
+
+Route::get('filterLaptop', [
+    'uses'  => 'EshopController@filterLaptop',
+    'as'    => 'filterLaptop'
+]);
+
 
 
 ?>
