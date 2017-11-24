@@ -191,6 +191,11 @@ Route::get('filterLaptop', [
     'as'    => 'filterLaptop'
 ]);
 
+Route::get('filterTablet', [
+    'uses'  => 'EshopController@filterTablet',
+    'as'    => 'filterTablet'
+]);
+
 
 
 ?>
