@@ -97,3 +97,13 @@
         <img src="{{URL::to('img/desktop.png')}}" alt="" class="img-responsive image1">
     </a>
 @endsection
+
+@section('addtowishlist')
+
+    <i class="fa fa-shopping-cart"></i><a href="{{route('AddtoWishList',['type'=>1,'electronicsId'=>$item->getElectronicsId()])}}" class=""> Add to Wishlist</a>
+    @if(isset($Success))
+        <i class="fa fa-shopping-cart"></i> Add to Wishlist
+    @endif
+    {{--<button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Add to wishlist"><i class="fa fa-heart-o"></i>--}}
+    {{--</button>--}}
+@endsection

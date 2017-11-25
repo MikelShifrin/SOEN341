@@ -177,6 +177,10 @@ Route::get('shopDetail/{type}/{id}', [
 ]);
 
 
+Route::get('AddtoWishList/{type}/{electronicsId}', [
+    'uses'  => 'EshopController@addtoWishList',
+    'as'    => 'AddtoWishList'
+]);
 
 ?>
 

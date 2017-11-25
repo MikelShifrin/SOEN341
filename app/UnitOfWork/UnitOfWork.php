@@ -175,17 +175,12 @@ class UnitOfWork
 
         }
 
-<<<<<<< HEAD
+
         $this->array['desktopDeleteArray'] = $this->desktopDeleteArray;
         $this->array['monitorDeleteArray'] = $this->monitorDeleteArray;
         $this->array['laptopDeleteArray'] = $this->laptopDeleteArray;
         $this->array['tabletDeleteArray'] = $this->tabletDeleteArray;
-=======
-        $this->array['desktopAddArray'] = $this->desktopAddArray;
-        $this->array['monitorAddArray'] = $this->monitorAddArray;
-        $this->array['laptopAddArray'] = $this->laptopAddArray;
-        $this->array['tabletAddArray'] = $this->tabletAddArray;
->>>>>>> refs/remotes/origin/master
+
 
     }
 

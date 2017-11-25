@@ -311,9 +311,17 @@ class EshopController extends Controller
             return view('userViews.viewTabletShopDetail',['item'=>$item]);
 
         }
+
+
     }
 
-
+    public function addtoWishList($type,$electronicsId)
+    {
+        session_start();
+        $Success="Added succesfully to wishlist";
+//        return view('welcomeUser');
+        return view('userViews.viewDesktopShopDetail',['item'=>$_SESSION['singletonMap']->getDesktop($electronicsId),'Success'=>$Success]);
+    }
 
 
     }

@@ -215,9 +215,9 @@ _________________________________________________________ -->
                                     <p class="price">$@yield('price') </p>
 
                                     <p class="text-center">
-                                        <button type="submit" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> Add to Wishlist</button>
-                                        <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Add to wishlist"><i class="fa fa-heart-o"></i>
-                                        </button>
+
+                                        @yield('addtowishlist')
+                                        
                                     </p>
                                     {{csrf_field()}}
                                 </form>
