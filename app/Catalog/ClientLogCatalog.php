@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vivek
- * Date: 14-10-2017
- * Time: 05:08
- */
 
 namespace App\Catalog;
-
 
 use App\Model\ClientLog;
 use App\TDG\ClientLogTDG;
