@@ -197,6 +197,10 @@ Route::get('filterTablet', [
 ]);
 
 
+Route::get('AddtoWishList/{type}/{electronicsId}', [
+    'uses'  => 'EshopController@addtoWishList',
+    'as'    => 'AddtoWishList'
+]);
 
 ?>
 

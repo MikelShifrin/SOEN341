@@ -295,32 +295,33 @@ class EshopController extends Controller
 
     }
 
-    public function userShopDetail($type, $id) {
+    public function userShopDetail($type, $id)
+    {
 
         session_start();
-        if($type==1) {
+        if ($type == 1) {
 
             $itemArray = $_SESSION['singletonMap']->getDesktopArray();
             $item = $itemArray[$id];
-            return view('userViews.viewDesktopShopDetail',['item'=>$item]);
+            return view('userViews.viewDesktopShopDetail', ['item' => $item]);
 
-        } elseif ($type==2) {
+        } elseif ($type == 2) {
 
             $itemArray = $_SESSION['singletonMap']->getMonitorArray();
             $item = $itemArray[$id];
-            return view('userViews.viewMonitorShopDetail',['item'=>$item]);
+            return view('userViews.viewMonitorShopDetail', ['item' => $item]);
 
-        } elseif ($type==3) {
+        } elseif ($type == 3) {
 
             $itemArray = $_SESSION['singletonMap']->getLaptopArray();
             $item = $itemArray[$id];
-            return view('userViews.viewLaptopShopDetail',['item'=>$item]);
+            return view('userViews.viewLaptopShopDetail', ['item' => $item]);
 
         } else {
 
             $itemArray = $_SESSION['singletonMap']->getTabletArray();
             $item = $itemArray[$id];
-            return view('userViews.viewTabletShopDetail',['item'=>$item]);
+            return view('userViews.viewTabletShopDetail', ['item' => $item]);
 
         }
     }
@@ -591,6 +592,7 @@ class EshopController extends Controller
     }
 
 
+
     public function filterTablet(Request $request)
     {
 
@@ -713,6 +715,16 @@ class EshopController extends Controller
 //
         }
         return view('userViews.viewTablet',['ret'=>$filteredItems,'st'=>'default']);
+
+    }
+
+    public function addtoWishList($type,$electronicsId)
+    {
+        session_start();
+        $Success="Added succesfully to wishlist";
+//        return view('welcomeUser');
+        return view('userViews.viewDesktopShopDetail',['item'=>$_SESSION['singletonMap']->getDesktop($electronicsId),'Success'=>$Success]);
+
     }
 
 
