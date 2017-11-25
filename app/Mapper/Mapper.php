@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Mapper;
 
 use App\IdentityMap\IdentityMap;
@@ -38,7 +37,7 @@ class Mapper
         $this->setElectronicCatalog(new ElectronicCatalog());
         $this->userCatalog = new UserCatalog();
         $this->clientLogTDG = new ClientLogTDG();
-        $this->setElectronicsTDG( new ElectronicsTDG());
+        $this->setElectronicsTDG(new ElectronicsTDG());
         $this->userTDG = new UserTDG();
     }
 
@@ -124,130 +123,104 @@ class Mapper
         return $this->userTDG;
     }
 
-    public function createElectronics($request){
-
+    public function createElectronics($request)
+    {
         $item=$this->getElectronicCatalog()->additem($request);
-        if ($request->input('type')=='d'){
-            if(isset($_SESSION['singletonMap'])){
+        if ($request->input('type')=='d') {
+            if (isset($_SESSION['singletonMap'])) {
                 $singletonIdMap = $_SESSION['singletonMap'];
-
-
             } else {
                 $singletonIdMap = IdentityMap::Instance();
-
             }
             $singletonIdMap->addDesktop($item);
             $_SESSION['singletonMap'] = $singletonIdMap;
-            if(isset($_SESSION['singletonUOW'])){
+            if (isset($_SESSION['singletonUOW'])) {
                 $singletonUOW = $_SESSION['singletonUOW'];
-//                echo spl_object_hash ($singletonUOW);
-
+                //                echo spl_object_hash ($singletonUOW);
             } else {
                 $singletonUOW = UnitOfWork::Instance();
-
             }
-            $singletonUOW->registerNew($item,1);// regiter desktop new
+            $singletonUOW->registerNew($item, 1);// regiter desktop new
             $_SESSION['singletonUOW'] = $singletonUOW;
         }
-        if ($request->input('type')=='t'){
-            if(isset($_SESSION['singletonMap'])){
+        if ($request->input('type')=='t') {
+            if (isset($_SESSION['singletonMap'])) {
                 $singletonIdMap = $_SESSION['singletonMap'];
-
-
             } else {
                 $singletonIdMap = IdentityMap::Instance();
-
             }
             $singletonIdMap->addTablet($item);
             $_SESSION['singletonMap'] = $singletonIdMap;
-            if(isset($_SESSION['singletonUOW'])){
+            if (isset($_SESSION['singletonUOW'])) {
                 $singletonUOW = $_SESSION['singletonUOW'];
-//                echo spl_object_hash ($singletonUOW);
-
+                //                echo spl_object_hash ($singletonUOW);
             } else {
                 $singletonUOW = UnitOfWork::Instance();
-
             }
-            $singletonUOW->registerNew($item,4);// regiter desktop new
+            $singletonUOW->registerNew($item, 4);// regiter desktop new
             $_SESSION['singletonUOW'] = $singletonUOW;
-
         }
-        if ($request->input('type')=='l'){
-            if(isset($_SESSION['singletonMap'])){
+        if ($request->input('type')=='l') {
+            if (isset($_SESSION['singletonMap'])) {
                 $singletonIdMap = $_SESSION['singletonMap'];
-
-
             } else {
                 $singletonIdMap = IdentityMap::Instance();
-
             }
             $singletonIdMap->addLaptop($item);
             $_SESSION['singletonMap'] = $singletonIdMap;
-            if(isset($_SESSION['singletonUOW'])){
+            if (isset($_SESSION['singletonUOW'])) {
                 $singletonUOW = $_SESSION['singletonUOW'];
-//                echo spl_object_hash ($singletonUOW);
-
+                //                echo spl_object_hash ($singletonUOW);
             } else {
                 $singletonUOW = UnitOfWork::Instance();
-
             }
-            $singletonUOW->registerNew($item,3);// regiter desktop new
+            $singletonUOW->registerNew($item, 3);// regiter desktop new
             $_SESSION['singletonUOW'] = $singletonUOW;
         }
-        if ($request->input('type')=='m'){
-            if(isset($_SESSION['singletonMap'])){
+        if ($request->input('type')=='m') {
+            if (isset($_SESSION['singletonMap'])) {
                 $singletonIdMap = $_SESSION['singletonMap'];
-
-
             } else {
                 $singletonIdMap = IdentityMap::Instance();
-
             }
             $singletonIdMap->addMonitor($item);
             $_SESSION['singletonMap'] = $singletonIdMap;
-            if(isset($_SESSION['singletonUOW'])){
+            if (isset($_SESSION['singletonUOW'])) {
                 $singletonUOW = $_SESSION['singletonUOW'];
-//                echo spl_object_hash ($singletonUOW);
-
+                //                echo spl_object_hash ($singletonUOW);
             } else {
                 $singletonUOW = UnitOfWork::Instance();
-
             }
-            $singletonUOW->registerNew($item,2);// regiter desktop new
+            $singletonUOW->registerNew($item, 2);// regiter desktop new
             $_SESSION['singletonUOW'] = $singletonUOW;
         }
     }
 
-    public function findElectronics($electronicsId, $type) {
-
-        if($type==1) {
+    public function findElectronics($electronicsId, $type)
+    {
+        if ($type==1) {
             $_SESSION['singletonMap']->getDesktopArray();
             $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
 
             $desktop = $desktopArray[$electronicsId];
 
-            if($desktop == null)
-            {
-               $electronicsTDG = new ElectronicsTDG();
+            if ($desktop == null) {
+                $electronicsTDG = new ElectronicsTDG();
                 $ret = $electronicsTDG->retrieveDesktop();
-                $desktop = new Desktop($ret['desktop_id'],$ret['length'],$ret['height'],$ret['width'],$ret['processor_type'],
-                    $ret['ram_size'],$ret['number_of_cpu_cores'],$ret['hard_disk_size'],$ret['electronics_id'],$ret['brand'],
-                    $ret['model_number'],$ret['price'],$ret['weight'],$ret['type']);
+                $desktop = new Desktop($ret['desktop_id'], $ret['length'], $ret['height'], $ret['width'], $ret['processor_type'],
+                                       $ret['ram_size'], $ret['number_of_cpu_cores'], $ret['hard_disk_size'], $ret['electronics_id'], $ret['brand'],
+                                       $ret['model_number'], $ret['price'], $ret['weight'], $ret['type']);
                 $this->identityMap->addDesktop($desktop);
-            }
-            else
-            {
+            } else {
                 return $desktop;
             }
         } elseif ($type==2) {
-
             $_SESSION['singletonMap']->getMonitorArray();
 
             $monitorArray = $_SESSION['singletonMap']->getMonitorArray();
             $monitor = $monitorArray[$electronicsId];
 
-            if($monitor == null)
-            {
+            if ($monitor == null) {
                 $electronicsTDG = new ElectronicsTDG();
                 $ret = $electronicsTDG->retrieveMonitor();
                 $monitor = new Monitor();
@@ -260,21 +233,16 @@ class Mapper
                 $monitor->setElectronicsId($ret['monitor_id']);
 
                 $this->identityMap->addMonitor($monitor);
-            }
-            else
-            {
+            } else {
                 return $monitor;
             }
-
         } elseif ($type==3) {
-
             $_SESSION['singletonMap']->getLaptopArray();
 
             $laptopArray = $_SESSION['singletonMap']->getLaptopArray();
             $laptop = $laptopArray[$electronicsId];
 
             return $laptop;
-
         } else {
             $_SESSION['singletonMap']->getTabletArray();
 
@@ -283,26 +251,29 @@ class Mapper
 
             return $tablet;
         }
-
     }
 
 
-    public function findLaptop(int $electronicsId){}
-    public function findMonitor(int $electronicsId){}
-    public function findTablet(int $electronicsId){}
+    public function findLaptop(int $electronicsId)
+    {
+    }
+    public function findMonitor(int $electronicsId)
+    {
+    }
+    public function findTablet(int $electronicsId)
+    {
+    }
 
     public function findAllDesktop()
     {
         $desktopArray = array();
-        if(isset($_SESSION['singletonMap'])){
+        if (isset($_SESSION['singletonMap'])) {
             $desktopArray = $_SESSION['singletonMap']->getAllDesktop();
-        }
-        else {
+        } else {
             $desktopArray = IdentityMap::Instance()->getAllDesktop();                                 //Message to idmap to get all desktops
         }
 
-        if($desktopArray == null)
-        {
+        if ($desktopArray == null) {
             $desktopArray = $this->electronicsTDG->viewInventory(1);                   //Fetch from DB
             $desktopArray = $this->electronicCatalog->createDesktopArray($desktopArray);    //create objects through catalog
 
@@ -314,15 +285,13 @@ class Mapper
     public function findAllLaptop()
     {
         $laptopArray = array();
-        if(isset($_SESSION['singletonMap'])){
+        if (isset($_SESSION['singletonMap'])) {
             $laptopArray = $_SESSION['singletonMap']->getAllLaptop();
-        }
-        else {
+        } else {
             $laptopArray = IdentityMap::Instance()->getAllLaptop();                                 //Message to idmap to get all desktops
         }
 
-        if($laptopArray == null)
-        {
+        if ($laptopArray == null) {
             $laptopArray = $this->electronicsTDG->viewInventory(3);                   //Fetch from DB
             $laptopArray = $this->electronicCatalog->createLaptopArray($laptopArray);    //create objects through catalog
 
@@ -334,15 +303,13 @@ class Mapper
     public function findAllMonitor()
     {
         $monitorArray = array();
-        if(isset($_SESSION['singletonMap'])){
+        if (isset($_SESSION['singletonMap'])) {
             $monitorArray = $_SESSION['singletonMap']->getAllMonitor();
-        }
-        else {
+        } else {
             $monitorArray = IdentityMap::Instance()->getAllMonitor();                                 //Message to idmap to get all desktops
         }
 
-        if($monitorArray == null)
-        {
+        if ($monitorArray == null) {
             $monitorArray = $this->electronicsTDG->viewInventory(2);                   //Fetch from DB
             $monitorArray = $this->electronicCatalog->createMonitorArray($monitorArray);    //create objects through catalog
 
@@ -354,15 +321,13 @@ class Mapper
     public function findAllTablet()
     {
         $tabletArray = array();
-        if(isset($_SESSION['singletonMap'])){
+        if (isset($_SESSION['singletonMap'])) {
             $tabletArray = $_SESSION['singletonMap']->getAllTablet();
-        }
-        else {
+        } else {
             $tabletArray = IdentityMap::Instance()->getAllTablet();                                 //Message to idmap to get all desktops
         }
 
-        if($tabletArray == null)
-        {
+        if ($tabletArray == null) {
             $tabletArray = $this->electronicsTDG->viewInventory(4);                   //Fetch from DB
             $tabletArray = $this->electronicCatalog->createTabletArray($tabletArray);    //create objects through catalog
 
@@ -372,29 +337,25 @@ class Mapper
         return $tabletArray;
     }
 
-    public function modifyElectronics($request,$type) {
-
-        if($type==1) {
-
+    public function modifyElectronics($request, $type)
+    {
+        if ($type==1) {
             $electronicsId = $request->input('hiddenElectronicsId');                                //get electronics id
             $desktop = $this->findElectronics($electronicsId, $type);                               //get existing desktop obj from idmap
             $desktop = $this->getElectronicCatalog()->modifyInventory($desktop, $type, $request);   //modify obj
-            if(isset($_SESSION['singletonUOW'])){
+            if (isset($_SESSION['singletonUOW'])) {
                 $singletonUOW = $_SESSION['singletonUOW'];
-//                echo spl_object_hash ($singletonUOW);
-
+                //                echo spl_object_hash ($singletonUOW);
             } else {
                 $singletonUOW = UnitOfWork::Instance();
-
             }
-            if($desktop->getElectronicsId() < $_SESSION['ElectronicsIdAddInternalCounterInitial']){
-                $singletonUOW->registerDirty($desktop,1);                              //register dirty with uow
-            }
-            else {
-                $singletonUOW->registerNew($desktop,1);
+            if ($desktop->getElectronicsId() < $_SESSION['ElectronicsIdAddInternalCounterInitial']) {
+                $singletonUOW->registerDirty($desktop, 1);                              //register dirty with uow
+            } else {
+                $singletonUOW->registerNew($desktop, 1);
             }
             $_SESSION['singletonUOW'] = $singletonUOW;
-//          $this->mapper->getElectronicsTDG()->modifyDesktop($request);
+            //          $this->mapper->getElectronicsTDG()->modifyDesktop($request);
             $_SESSION['singletonUOW'] = $singletonUOW;
             $electronicsId = $desktop->getElectronicsId();
             $desktopArray = $_SESSION['singletonMap']->getDesktopArray();
@@ -404,28 +365,25 @@ class Mapper
             return $desktop;
         }
 
-        if($type==2) {
-
+        if ($type==2) {
             $electronicsId = $request->input('hiddenElectronicsId');                                //get electronics id
             $monitor = $this->findElectronics($electronicsId, $type);                               //get existing monitor obj from idmap
             $monitor = $this->getElectronicCatalog()->modifyInventory($monitor, $type, $request);   //modify obj
-            if(isset($_SESSION['singletonUOW'])){
+            if (isset($_SESSION['singletonUOW'])) {
                 $singletonUOW = $_SESSION['singletonUOW'];
-//                echo spl_object_hash ($singletonUOW);
-
+                //                echo spl_object_hash ($singletonUOW);
             } else {
                 $singletonUOW = UnitOfWork::Instance();
                 $_SESSION['singletonUOW'] = $singletonUOW;
             }
 
-            if($monitor->getElectronicsId() < $_SESSION['ElectronicsIdAddInternalCounterInitial']){
-                $singletonUOW->registerDirty($monitor,2);                              //register dirty with uow
-            }
-            else {
-                $singletonUOW->registerNew($monitor,2);
+            if ($monitor->getElectronicsId() < $_SESSION['ElectronicsIdAddInternalCounterInitial']) {
+                $singletonUOW->registerDirty($monitor, 2);                              //register dirty with uow
+            } else {
+                $singletonUOW->registerNew($monitor, 2);
             }
             $_SESSION['singletonUOW'] = $singletonUOW;
-//          $this->mapper->getElectronicsTDG()->modifyDesktop($request);
+            //          $this->mapper->getElectronicsTDG()->modifyDesktop($request);
             $electronicsId = $monitor->getElectronicsId();
             $monitorArray = $_SESSION['singletonMap']->getMonitorArray();
             $monitorArray[$electronicsId] = $monitor;
@@ -434,28 +392,25 @@ class Mapper
             return $monitor;
         }
 
-        if($type==3) {
-
+        if ($type==3) {
             $electronicsId = $request->input('hiddenElectronicsId');                                //get electronics id
             $laptop = $this->findElectronics($electronicsId, $type);                               //get existing monitor obj from idmap
             $laptop = $this->getElectronicCatalog()->modifyInventory($laptop, $type, $request);   //modify obj
-            if(isset($_SESSION['singletonUOW'])){
+            if (isset($_SESSION['singletonUOW'])) {
                 $singletonUOW = $_SESSION['singletonUOW'];
-//                echo spl_object_hash ($singletonUOW);
-
+                //                echo spl_object_hash ($singletonUOW);
             } else {
                 $singletonUOW = UnitOfWork::Instance();
                 $_SESSION['singletonUOW'] = $singletonUOW;
             }
 
-            if($laptop->getElectronicsId() < $_SESSION['ElectronicsIdAddInternalCounterInitial']){
-                $singletonUOW->registerDirty($laptop,3);                              //register dirty with uow
-            }
-            else {
-                $singletonUOW->registerNew($laptop,3);
+            if ($laptop->getElectronicsId() < $_SESSION['ElectronicsIdAddInternalCounterInitial']) {
+                $singletonUOW->registerDirty($laptop, 3);                              //register dirty with uow
+            } else {
+                $singletonUOW->registerNew($laptop, 3);
             }
             $_SESSION['singletonUOW'] = $singletonUOW;
-//          $this->mapper->getElectronicsTDG()->modifyDesktop($request);
+            //          $this->mapper->getElectronicsTDG()->modifyDesktop($request);
             $electronicsId = $laptop->getElectronicsId();
             $laptopArray = $_SESSION['singletonMap']->getLaptopArray();
             $laptopArray[$electronicsId] = $laptop;
@@ -464,125 +419,105 @@ class Mapper
             return $laptop;
         }
 
-        if($type==4) {
-
+        if ($type==4) {
             $electronicsId = $request->input('hiddenElectronicsId');                                //get electronics id
             $tablet = $this->findElectronics($electronicsId, $type);                               //get existing monitor obj from idmap
             $tablet = $this->getElectronicCatalog()->modifyInventory($tablet, $type, $request);   //modify obj
-            if(isset($_SESSION['singletonUOW'])){
+            if (isset($_SESSION['singletonUOW'])) {
                 $singletonUOW = $_SESSION['singletonUOW'];
-//                echo spl_object_hash ($singletonUOW);
-
+                //                echo spl_object_hash ($singletonUOW);
             } else {
                 $singletonUOW = UnitOfWork::Instance();
                 $_SESSION['singletonUOW'] = $singletonUOW;
             }
 
-            if($tablet->getElectronicsId() < $_SESSION['ElectronicsIdAddInternalCounterInitial']){
-                $singletonUOW->registerDirty($tablet,4);                              //register dirty with uow
-            }
-            else {
-                $singletonUOW->registerNew($tablet,4);
+            if ($tablet->getElectronicsId() < $_SESSION['ElectronicsIdAddInternalCounterInitial']) {
+                $singletonUOW->registerDirty($tablet, 4);                              //register dirty with uow
+            } else {
+                $singletonUOW->registerNew($tablet, 4);
             }
             $_SESSION['singletonUOW'] = $singletonUOW;
-//          $this->mapper->getElectronicsTDG()->modifyDesktop($request);
+            //          $this->mapper->getElectronicsTDG()->modifyDesktop($request);
             $electronicsId = $tablet->getElectronicsId();
             $tabletArray = $_SESSION['singletonMap']->getTabletArray();
             $tabletArray[$electronicsId] = $tablet;
             $_SESSION['singletonMap']->setTabletArray($tabletArray);
-        
+
             return $tablet;
         }
-
-
     }
 
-    public function modifyDesktop($desktop , $type, $request){
-
+    public function modifyDesktop($desktop, $type, $request)
+    {
         return $desktop;
-
     }
-    public function modifyLaptop(){}
-    public function modifyMonitor(){}
-    public function modifyTablet(){}
+    public function modifyLaptop()
+    {
+    }
+    public function modifyMonitor()
+    {
+    }
+    public function modifyTablet()
+    {
+    }
 
-    public function addDesktop($desktop){
-
-
-
+    public function addDesktop($desktop)
+    {
     }
 
 
-    public function deleteElectronicItem($request){
-
+    public function deleteElectronicItem($request)
+    {
         $electronicsId = $request -> input('radio');
         $type= $request->input('type');
-        if(isset($_SESSION['singletonMap'])){
+        if (isset($_SESSION['singletonMap'])) {
             $singletonIdMap = $_SESSION['singletonMap'];
-
-
         } else {
             $singletonIdMap = IdentityMap::Instance();
             $_SESSION['singletonMap'] = $singletonIdMap;
         }
 
-        if(isset($_SESSION['singletonUOW'])){
+        if (isset($_SESSION['singletonUOW'])) {
             $singletonUOW = $_SESSION['singletonUOW'];
-//            echo spl_object_hash ($singletonUOW);
-
+            //            echo spl_object_hash ($singletonUOW);
         } else {
             $singletonUOW = UnitOfWork::Instance();
             $_SESSION['singletonUOW'] = $singletonUOW;
         }
-        if($type==1)
-        {
-            
+        if ($type==1) {
             $singletonIdMap->deleteDesktop($electronicsId);
-            
-            if($electronicsId>=$_SESSION['ElectronicsIdAddInternalCounterInitial']) {   
-            $singletonUOW->DeleteFromRegiterNew($electronicsId,$type);// Delete Desktop from register new desktop 
-            }
-            else
-            {
-                $singletonUOW->RegisterDeleted($electronicsId,$type); 
-            }
-           // $this->deleteDesktop($electronics_id);
-        }
-        elseif ($type==2) {
-            $singletonIdMap->deleteMonitor($electronicsId);
-           
-            if($electronicsId>=$_SESSION['ElectronicsIdAddInternalCounterInitial']) {   
-            $singletonUOW->DeleteFromRegiterNew($electronicsId,$type);// Delete Monitor from register new monitor 
-        }
-            else
-            {
-                $singletonUOW->RegisterDeleted($electronicsId,$type);   
-            }
-        }
 
-        elseif ($type==3) {
+            if ($electronicsId>=$_SESSION['ElectronicsIdAddInternalCounterInitial']) {
+                $singletonUOW->DeleteFromRegiterNew($electronicsId, $type);// Delete Desktop from register new desktop
+            } else {
+                $singletonUOW->RegisterDeleted($electronicsId, $type);
+            }
+            // $this->deleteDesktop($electronics_id);
+        } elseif ($type==2) {
+            $singletonIdMap->deleteMonitor($electronicsId);
+
+            if ($electronicsId>=$_SESSION['ElectronicsIdAddInternalCounterInitial']) {
+                $singletonUOW->DeleteFromRegiterNew($electronicsId, $type);// Delete Monitor from register new monitor
+            } else {
+                $singletonUOW->RegisterDeleted($electronicsId, $type);
+            }
+        } elseif ($type==3) {
             $singletonIdMap->deleteLaptop($electronicsId);
-          
-            if($electronicsId>=$_SESSION['ElectronicsIdAddInternalCounterInitial']) {   
-            $singletonUOW->DeleteFromRegiterNew($electronicsId,$type);// Delete Laptop from register new laptop 
-        }
-            else
-                {
-                    $singletonUOW->RegisterDeleted($electronicsId,$type);   
-                }
-        }
-        
-        elseif ($type==4) {
+
+            if ($electronicsId>=$_SESSION['ElectronicsIdAddInternalCounterInitial']) {
+                $singletonUOW->DeleteFromRegiterNew($electronicsId, $type);// Delete Laptop from register new laptop
+            } else {
+                $singletonUOW->RegisterDeleted($electronicsId, $type);
+            }
+        } elseif ($type==4) {
             $singletonIdMap->deleteTablet($electronicsId);
-          
-            if($electronicsId>=$_SESSION['ElectronicsIdAddInternalCounterInitial']) {   
-            $singletonUOW->DeleteFromRegiterNew($electronicsId,$type);// Delete Tablet from register new tablet 
+
+            if ($electronicsId>=$_SESSION['ElectronicsIdAddInternalCounterInitial']) {
+                $singletonUOW->DeleteFromRegiterNew($electronicsId, $type);// Delete Tablet from register new tablet
+            } else {
+                $singletonUOW->RegisterDeleted($electronicsId, $type);
+            }
         }
-            else
-                {
-                    $singletonUOW->RegisterDeleted($electronicsId,$type);   
-                }
-        } 
     }
 
 
@@ -591,7 +526,6 @@ class Mapper
     public function commit()
     {
         if (isset($_SESSION['singletonUOW'])) {
-
             $houseKeepingArray = $_SESSION['singletonUOW']->commit();
 
             if (isset($houseKeepingArray['desktopAddArray'])) {
@@ -616,53 +550,41 @@ class Mapper
             }
             if (isset($houseKeepingArray['desktopModifiedArray'])) {
                 foreach ($houseKeepingArray['desktopModifiedArray'] as $desktop) {
-
                     $this->getElectronicsTDG()->modifyDesktop($desktop);
-
                 }
             }
             if (isset($houseKeepingArray['monitorModifiedArray'])) {
                 foreach ($houseKeepingArray['monitorModifiedArray'] as $monitor) {
-
                     $this->getElectronicsTDG()->modifyMonitor($monitor);
-
                 }
             }
             if (isset($houseKeepingArray['laptopModifiedArray'])) {
                 foreach ($houseKeepingArray['laptopModifiedArray'] as $laptop) {
-
                     $this->getElectronicsTDG()->modifyLaptop($laptop);
-
                 }
             }
             if (isset($houseKeepingArray['tabletModifiedArray'])) {
                 foreach ($houseKeepingArray['tabletModifiedArray'] as $tablet) {
-
                     $this->getElectronicsTDG()->modifyTablet($tablet);
-
                 }
             }
-            if (isset($houseKeepingArray['desktopDeleteArray'])){
-                foreach ($houseKeepingArray['desktopDeleteArray'] as $electronicsID){
-
+            if (isset($houseKeepingArray['desktopDeleteArray'])) {
+                foreach ($houseKeepingArray['desktopDeleteArray'] as $electronicsID) {
                     $this->getElectronicsTDG()->deleteDesktop($electronicsID);
                 }
             }
-            if (isset($houseKeepingArray['monitorDeleteArray'])){
-                foreach ($houseKeepingArray['monitorDeleteArray'] as $electronicsID){
-
+            if (isset($houseKeepingArray['monitorDeleteArray'])) {
+                foreach ($houseKeepingArray['monitorDeleteArray'] as $electronicsID) {
                     $this->getElectronicsTDG()->deleteMonitor($electronicsID);
                 }
             }
-            if (isset($houseKeepingArray['laptopDeleteArray'])){
-                foreach ($houseKeepingArray['laptopDeleteArray'] as $electronicsID){
-
+            if (isset($houseKeepingArray['laptopDeleteArray'])) {
+                foreach ($houseKeepingArray['laptopDeleteArray'] as $electronicsID) {
                     $this->getElectronicsTDG()->deleteLaptop($electronicsID);
                 }
             }
-            if (isset($houseKeepingArray['tabletDeleteArray'])){
-                foreach ($houseKeepingArray['tabletDeleteArray'] as $electronicsID){
-
+            if (isset($houseKeepingArray['tabletDeleteArray'])) {
+                foreach ($houseKeepingArray['tabletDeleteArray'] as $electronicsID) {
                     $this->getElectronicsTDG()->deleteTablet($electronicsID);
                 }
             }
@@ -671,37 +593,29 @@ class Mapper
             unset($_SESSION['singletonMap']);
 
 
-//        print_r($houseKeepingArray['desktopAddArray']);
-
-
+            //        print_r($houseKeepingArray['desktopAddArray']);
         }
     }
 
     public function AddtoWishList($electronicsId)
     {
         $item=$this->getWishTDG()->additem($electronicsId);
-        if ($request->input('type')=='d'){
-            if(isset($_SESSION['singletonMap'])){
+        if ($request->input('type')=='d') {
+            if (isset($_SESSION['singletonMap'])) {
                 $singletonIdMap = $_SESSION['singletonMap'];
-
-
             } else {
                 $singletonIdMap = IdentityMap::Instance();
-
             }
             $singletonIdMap->addDesktop($item);
             $_SESSION['singletonMap'] = $singletonIdMap;
-            if(isset($_SESSION['singletonUOW'])){
+            if (isset($_SESSION['singletonUOW'])) {
                 $singletonUOW = $_SESSION['singletonUOW'];
-                echo spl_object_hash ($singletonUOW);
-
+                echo spl_object_hash($singletonUOW);
             } else {
                 $singletonUOW = UnitOfWork::Instance();
-
             }
-            $singletonUOW->registerNew($item,1);// regiter desktop new
+            $singletonUOW->registerNew($item, 1);// regiter desktop new
             $_SESSION['singletonUOW'] = $singletonUOW;
         }
-
     }
 }

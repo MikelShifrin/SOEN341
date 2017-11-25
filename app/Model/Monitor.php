@@ -1,15 +1,13 @@
 <?php
-
 namespace App\Model;
-
 
 class Monitor extends ElectronicSpecification
 {
-   private $Size;
-   private $monitorId;
-   private $electronicsId;
+    private $Size;
+    private $monitorId;
+    private $electronicsId;
 
-   /**
+    /**
      * @return mixed
      */
     public function getMonitorId()
@@ -17,7 +15,7 @@ class Monitor extends ElectronicSpecification
         return $this->monitorId;
     }
 
-   /**
+    /**
      * @param mixed $monitor_id
      */
     public function setMonitorId($monitorId)
@@ -26,12 +24,14 @@ class Monitor extends ElectronicSpecification
     }
 
 
-    public function getSize(){
+    public function getSize()
+    {
         return $this->Size;
     }
 
 
-    public function setSize($Size){
+    public function setSize($Size)
+    {
         $this->Size = $Size;
     }
 
@@ -43,14 +43,11 @@ class Monitor extends ElectronicSpecification
         return $this->electronicsId;
     }
 
-   /**
+    /**
      * @param mixed $electronics_id
      */
     public function setElectronicsId(int $electronicsId)
     {
         $this->electronicsId = $electronicsId;
     }
-
-
-
 }

@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Hp
- * Date: 11/16/2017
- * Time: 8:04 PM
- */
-
 namespace App\Model;
-
 
 class WishList
 {
@@ -60,6 +52,4 @@ class WishList
     {
         $this->ElectronicsID = $ElectronicsID;
     }
-
-
 }

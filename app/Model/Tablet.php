@@ -1,25 +1,23 @@
 <?php
-
 namespace App\Model;
-
 
 class Tablet extends ElectronicSpecification
 {
-	private $tabletId;
-	private $electronicsId;
-	private $processorType;
-	private $ramSize;
-	private $numberOfCpuCores;
-	private $hardDiskSize;
-	private $operatingSystem;
-	private $displaySize;
-	private $batteryInfo;
-	private $cameraInfo;
-	private $length;
-	private $height;
-	private $width;
+    private $tabletId;
+    private $electronicsId;
+    private $processorType;
+    private $ramSize;
+    private $numberOfCpuCores;
+    private $hardDiskSize;
+    private $operatingSystem;
+    private $displaySize;
+    private $batteryInfo;
+    private $cameraInfo;
+    private $length;
+    private $height;
+    private $width;
 
-	/**
+    /**
      * @return mixed
      */
     public function getTabletId()
@@ -27,7 +25,7 @@ class Tablet extends ElectronicSpecification
         return $this->tabletId;
     }
 
-   /**
+    /**
      * @param mixed $tablet_id
      */
     public function setTabletId(int $tabletId)
@@ -35,7 +33,7 @@ class Tablet extends ElectronicSpecification
         $this->tablet_id = $tabletId;
     }
 
-   /**
+    /**
      * @return mixed
      */
     public function getElectronicsId()
@@ -43,7 +41,7 @@ class Tablet extends ElectronicSpecification
         return $this->electronicsId;
     }
 
-   /**
+    /**
      * @param mixed $electronics_id
      */
     public function setElectronicsId(int $electronicsId)
@@ -51,7 +49,7 @@ class Tablet extends ElectronicSpecification
         $this->electronicsId = $electronicsId;
     }
 
-   /**
+    /**
      * @return mixed
      */
     public function getProcessorType()
@@ -59,7 +57,7 @@ class Tablet extends ElectronicSpecification
         return $this->processorType;
     }
 
-   /**
+    /**
      * @param mixed $processor_type
      */
     public function setProcessorType(String $processorType)
@@ -67,7 +65,7 @@ class Tablet extends ElectronicSpecification
         $this->processorType = $processorType;
     }
 
-   /**
+    /**
      * @return mixed
      */
     public function getRamSize()
@@ -75,7 +73,7 @@ class Tablet extends ElectronicSpecification
         return $this->ramSize;
     }
 
-   /**
+    /**
      * @param mixed $ram_size
      */
     public function setRamSize(int $ramSize)
@@ -83,7 +81,7 @@ class Tablet extends ElectronicSpecification
         $this->ramSize = $ramSize;
     }
 
-   /**
+    /**
      * @return mixed
      */
     public function getNumberOfCpuCores()
@@ -91,7 +89,7 @@ class Tablet extends ElectronicSpecification
         return $this->numberOfCpuCores;
     }
 
-   /**
+    /**
      * @param mixed $number_of_cpu_cores
      */
     public function setNumberOfCpuCores(int $numberOfCpuCores)
@@ -99,7 +97,7 @@ class Tablet extends ElectronicSpecification
         $this->numberOfCpuCores = $numberOfCpuCores;
     }
 
-   /**
+    /**
      * @return mixed
      */
     public function getHardDiskSize()
@@ -107,7 +105,7 @@ class Tablet extends ElectronicSpecification
         return $this->hardDiskSize;
     }
 
-   /**
+    /**
      * @param mixed $hard_disk_size
      */
     public function setHardDiskSize(int $hardDiskSize)
@@ -115,7 +113,7 @@ class Tablet extends ElectronicSpecification
         $this->hardDiskSize = $hardDiskSize;
     }
 
-   /**
+    /**
      * @return mixed
      */
     public function getOperatingSystem()
@@ -123,7 +121,7 @@ class Tablet extends ElectronicSpecification
         return $this->operatingSystem;
     }
 
-   /**
+    /**
      * @param mixed $operating_System
      */
     public function setOperatingSystem(String $operatingSystem)
@@ -131,7 +129,7 @@ class Tablet extends ElectronicSpecification
         $this->operatingSystem = $operatingSystem;
     }
 
-   /**
+    /**
      * @return mixed
      */
     public function getDisplaySize()
@@ -139,7 +137,7 @@ class Tablet extends ElectronicSpecification
         return $this->displaySize;
     }
 
-   /**
+    /**
      * @param mixed $display_size
      */
     public function setDisplaySize(int $displaySize)
@@ -147,7 +145,7 @@ class Tablet extends ElectronicSpecification
         $this->displaySize = $displaySize;
     }
 
-   /**
+    /**
      * @return mixed
      */
     public function getBatteryInfo()
@@ -155,7 +153,7 @@ class Tablet extends ElectronicSpecification
         return $this->batteryInfo;
     }
 
-   /**
+    /**
      * @param mixed $battery_info
      */
     public function setBatteryInfo(int $batteryInfo)
@@ -163,7 +161,7 @@ class Tablet extends ElectronicSpecification
         $this->batteryInfo = $batteryInfo;
     }
 
-   /**
+    /**
      * @return mixed
      */
     public function getCameraInfo()
@@ -171,7 +169,7 @@ class Tablet extends ElectronicSpecification
         return $this->cameraInfo;
     }
 
-   /**
+    /**
      * @param mixed $camera_info
      */
     public function setCameraInfo(int $cameraInfo)
@@ -179,7 +177,7 @@ class Tablet extends ElectronicSpecification
         $this->cameraInfo = $cameraInfo;
     }
 
-   /**
+    /**
      * @return mixed
      */
     public function getLength()
@@ -187,7 +185,7 @@ class Tablet extends ElectronicSpecification
         return $this->length;
     }
 
-   /**
+    /**
      * @param mixed $length
      */
     public function setLength(int $length)
@@ -195,7 +193,7 @@ class Tablet extends ElectronicSpecification
         $this->length = $length;
     }
 
-   /**
+    /**
      * @return mixed
      */
     public function getHeight()
@@ -203,7 +201,7 @@ class Tablet extends ElectronicSpecification
         return $this->height;
     }
 
-   /**
+    /**
      * @param mixed $height
      */
     public function setHeight(int $height)
@@ -211,7 +209,7 @@ class Tablet extends ElectronicSpecification
         $this->height = $height;
     }
 
-   /**
+    /**
      * @return mixed
      */
     public function getWidth()
@@ -219,7 +217,7 @@ class Tablet extends ElectronicSpecification
         return $this->width;
     }
 
-   /**
+    /**
      * @param mixed $width
      */
     public function setWidth(int $width)
