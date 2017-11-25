@@ -182,6 +182,13 @@ class UnitOfWork
         $this->array['tabletDeleteArray'] = $this->tabletDeleteArray;
 
 
+        $this->array['desktopAddArray'] = $this->desktopAddArray;
+        $this->array['monitorAddArray'] = $this->monitorAddArray;
+        $this->array['laptopAddArray'] = $this->laptopAddArray;
+        $this->array['tabletAddArray'] = $this->tabletAddArray;
+        
+
+
     }
 
     public function commit() {

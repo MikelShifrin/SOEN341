@@ -140,7 +140,7 @@ class Mapper
             $_SESSION['singletonMap'] = $singletonIdMap;
             if(isset($_SESSION['singletonUOW'])){
                 $singletonUOW = $_SESSION['singletonUOW'];
-                echo spl_object_hash ($singletonUOW);
+//                echo spl_object_hash ($singletonUOW);
 
             } else {
                 $singletonUOW = UnitOfWork::Instance();
@@ -162,7 +162,7 @@ class Mapper
             $_SESSION['singletonMap'] = $singletonIdMap;
             if(isset($_SESSION['singletonUOW'])){
                 $singletonUOW = $_SESSION['singletonUOW'];
-                echo spl_object_hash ($singletonUOW);
+//                echo spl_object_hash ($singletonUOW);
 
             } else {
                 $singletonUOW = UnitOfWork::Instance();
@@ -185,7 +185,7 @@ class Mapper
             $_SESSION['singletonMap'] = $singletonIdMap;
             if(isset($_SESSION['singletonUOW'])){
                 $singletonUOW = $_SESSION['singletonUOW'];
-                echo spl_object_hash ($singletonUOW);
+//                echo spl_object_hash ($singletonUOW);
 
             } else {
                 $singletonUOW = UnitOfWork::Instance();
@@ -207,7 +207,7 @@ class Mapper
             $_SESSION['singletonMap'] = $singletonIdMap;
             if(isset($_SESSION['singletonUOW'])){
                 $singletonUOW = $_SESSION['singletonUOW'];
-                echo spl_object_hash ($singletonUOW);
+//                echo spl_object_hash ($singletonUOW);
 
             } else {
                 $singletonUOW = UnitOfWork::Instance();
@@ -381,7 +381,7 @@ class Mapper
             $desktop = $this->getElectronicCatalog()->modifyInventory($desktop, $type, $request);   //modify obj
             if(isset($_SESSION['singletonUOW'])){
                 $singletonUOW = $_SESSION['singletonUOW'];
-                echo spl_object_hash ($singletonUOW);
+//                echo spl_object_hash ($singletonUOW);
 
             } else {
                 $singletonUOW = UnitOfWork::Instance();
@@ -411,7 +411,7 @@ class Mapper
             $monitor = $this->getElectronicCatalog()->modifyInventory($monitor, $type, $request);   //modify obj
             if(isset($_SESSION['singletonUOW'])){
                 $singletonUOW = $_SESSION['singletonUOW'];
-                echo spl_object_hash ($singletonUOW);
+//                echo spl_object_hash ($singletonUOW);
 
             } else {
                 $singletonUOW = UnitOfWork::Instance();
@@ -441,7 +441,7 @@ class Mapper
             $laptop = $this->getElectronicCatalog()->modifyInventory($laptop, $type, $request);   //modify obj
             if(isset($_SESSION['singletonUOW'])){
                 $singletonUOW = $_SESSION['singletonUOW'];
-                echo spl_object_hash ($singletonUOW);
+//                echo spl_object_hash ($singletonUOW);
 
             } else {
                 $singletonUOW = UnitOfWork::Instance();
@@ -471,7 +471,7 @@ class Mapper
             $tablet = $this->getElectronicCatalog()->modifyInventory($tablet, $type, $request);   //modify obj
             if(isset($_SESSION['singletonUOW'])){
                 $singletonUOW = $_SESSION['singletonUOW'];
-                echo spl_object_hash ($singletonUOW);
+//                echo spl_object_hash ($singletonUOW);
 
             } else {
                 $singletonUOW = UnitOfWork::Instance();
@@ -528,7 +528,7 @@ class Mapper
 
         if(isset($_SESSION['singletonUOW'])){
             $singletonUOW = $_SESSION['singletonUOW'];
-            echo spl_object_hash ($singletonUOW);
+//            echo spl_object_hash ($singletonUOW);
 
         } else {
             $singletonUOW = UnitOfWork::Instance();

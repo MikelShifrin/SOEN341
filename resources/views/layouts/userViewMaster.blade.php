@@ -16,6 +16,7 @@
     <!-- Bootstrap and Font Awesome css -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
     <!-- Css animations  -->
     <link href="{{URL::to('css/animate.css')}}" rel="stylesheet">
@@ -192,93 +193,11 @@ _________________________________________________________ -->
                         </div>
                     </div>
 
-                    <div class="panel panel-default sidebar-menu">
 
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Brands</h3>
-                            <a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> <span class="hidden-sm">Clear</span></a>
-                        </div>
-
-                        <div class="panel-body">
-
-                            <form>
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">Dell
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">Samsung
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">Lenovo
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">HP
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <button class="btn btn-default btn-sm btn-template-main"><i class="fa fa-pencil"></i> Apply</button>
-
-                            </form>
-
-                        </div>
-                    </div>
-
-                    <div class="panel panel-default sidebar-menu">
-
-                        <div class="panel-heading">
-                            <h3 class="panel-title clearfix">Price</h3>
-                            <a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> <span class="hidden-sm">Clear</span></a>
-                        </div>
-
-                        <div class="panel-body">
-
-                            <form>
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> $250-$500
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> $500-$750
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> $1000-$2000
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> $2000+
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <button class="btn btn-default btn-sm btn-template-main"><i class="fa fa-pencil"></i> Apply</button>
-
-                            </form>
-
-                        </div>
-                    </div>
-
+                @yield('filter')
                     <!-- *** MENUS AND FILTERS END *** -->
 
-                    <div class="banner">
-                        <a href="shop-category.html">
-                            apply more filters here
-                        </a>
-                    </div>
+
                     <!-- /.banner -->
 
                 </div>
@@ -300,29 +219,29 @@ _________________________________________________________ -->
                     <div class="row products">
 
                         @yield('productcontents')
-                        <div class="col-md-4 col-sm-6">
+                        {{--<div class="col-md-4 col-sm-6">--}}
 
-                        </div>
+                        {{--</div>--}}
 
-                        <div class="col-md-4 col-sm-6">
+                        {{--<div class="col-md-4 col-sm-6">--}}
 
-                        </div>
+                        {{--</div>--}}
 
-                        <div class="col-md-4 col-sm-6">
+                        {{--<div class="col-md-4 col-sm-6">--}}
 
-                        </div>
+                        {{--</div>--}}
 
-                        <div class="col-md-4 col-sm-6">
+                        {{--<div class="col-md-4 col-sm-6">--}}
 
-                        </div>
+                        {{--</div>--}}
 
-                        <div class="col-md-4 col-sm-6">
+                        {{--<div class="col-md-4 col-sm-6">--}}
 
-                        </div>
+                        {{--</div>--}}
 
-                        <div class="col-md-4 col-sm-6">
+                        {{--<div class="col-md-4 col-sm-6">--}}
 
-                        </div>
+                        {{--</div>--}}
                         <!-- /.col-md-4 -->
                     </div>
                     <!-- /.products -->
@@ -419,6 +338,85 @@ _________________________________________________________ -->
 <script src="{{URL::to('js/jquery.parallax-1.1.3.js')}}"></script>
 <script src="{{URL::to('js/front.js')}}"></script>
 
+<script
+        src="https://code.jquery.com/ui/1.11.0/jquery-ui.min.js"
+        integrity="sha256-lCF+55kMUF+3fO/3BiXui4eiUKcQmtr7ecKSeLVDxIQ="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
+
+<script>
+    $( function() {
+        $( "#ram-slider-range" ).slider({
+            range: true,
+            min: 1,
+            max: 128,
+            values: [ 1, 128 ],
+            slide: function( event, ui ) {
+                $( "#ram" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+            }
+        });
+        $( "#ram" ).val( $( "#ram-slider-range" ).slider( "values", 0 ) +
+            " - " + $( "#ram-slider-range" ).slider( "values", 1 ) );
+    } );
+
+    $( function() {
+        $( "#price-slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 10000,
+            values: [ 0, 10000 ],
+            slide: function( event, ui ) {
+                $( "#price" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+            }
+        });
+        $( "#price" ).val( $( "#price-slider-range" ).slider( "values", 0 ) +
+            " - " + $( "#price-slider-range" ).slider( "values", 1 ) );
+    } );
+
+    $( function() {
+        $( "#display-slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 60000,
+            values: [ 0, 60000 ],
+            slide: function( event, ui ) {
+                $( "#display" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+            }
+        });
+        $( "#display" ).val( $( "#display-slider-range" ).slider( "values", 0 ) +
+            " - " + $( "#display-slider-range" ).slider( "values", 1 ) );
+    } );
+
+    $( function() {
+        $( "#weight-slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 600000,
+            values: [ 0, 600000 ],
+            slide: function( event, ui ) {
+                $( "#weight" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+            }
+        });
+        $( "#weight" ).val( $( "#weight-slider-range" ).slider( "values", 0 ) +
+            " - " + $( "#weight-slider-range" ).slider( "values", 1 ) );
+    } );
+
+    $( function() {
+        $( "#battery-slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 600000,
+            values: [ 0, 600000 ],
+            slide: function( event, ui ) {
+                $( "#battery" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+            }
+        });
+        $( "#battery" ).val( $( "#battery-slider-range" ).slider( "values", 0 ) +
+            " - " + $( "#battery-slider-range" ).slider( "values", 1 ) );
+    } );
+
+
+</script>
 
 </body>
 
