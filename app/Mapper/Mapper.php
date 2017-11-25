@@ -676,4 +676,32 @@ class Mapper
 
         }
     }
+
+    public function AddtoWishList($electronicsId)
+    {
+        $item=$this->getWishTDG()->additem($electronicsId);
+        if ($request->input('type')=='d'){
+            if(isset($_SESSION['singletonMap'])){
+                $singletonIdMap = $_SESSION['singletonMap'];
+
+
+            } else {
+                $singletonIdMap = IdentityMap::Instance();
+
+            }
+            $singletonIdMap->addDesktop($item);
+            $_SESSION['singletonMap'] = $singletonIdMap;
+            if(isset($_SESSION['singletonUOW'])){
+                $singletonUOW = $_SESSION['singletonUOW'];
+                echo spl_object_hash ($singletonUOW);
+
+            } else {
+                $singletonUOW = UnitOfWork::Instance();
+
+            }
+            $singletonUOW->registerNew($item,1);// regiter desktop new
+            $_SESSION['singletonUOW'] = $singletonUOW;
+        }
+
+    }
 }
