@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vivek
- * Date: 13-10-2017
- * Time: 22:07
- */
-
 namespace App\Catalog;
-
 
 use App\Model\ElectronicSpecification;
 use App\Model\Monitor;
@@ -19,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 
 class ElectronicCatalog
 {
-
     private $electronicsTDG;
     private $desktopArray = [];
     private $monitorArray =[];
@@ -40,18 +31,18 @@ class ElectronicCatalog
         $this->electronicsTDG = $electronicsTDG;
     }
 
-    public function __construct() {
+    public function __construct()
+    {
         $electronicsTDG = new ElectronicsTDG();
         $this->setElectronicsTDG($electronicsTDG);
     }
 
-    public function createDesktopArray($desktopArray) {
-
-        while($row = pg_fetch_assoc($desktopArray)){
-
-            $desktop = new Desktop($row['desktop_id'],$row['length'],$row['height'],$row['width'],$row['processor_type'],
-                $row['ram_size'],$row['number_of_cpu_cores'],$row['hard_disk_size'],$row['electronics_id'],$row['brand'],
-                $row['model_number'],$row['price'],$row['weight'],$row['type']);
+    public function createDesktopArray($desktopArray)
+    {
+        while ($row = pg_fetch_assoc($desktopArray)) {
+            $desktop = new Desktop($row['desktop_id'], $row['length'], $row['height'], $row['width'], $row['processor_type'],
+                                   $row['ram_size'], $row['number_of_cpu_cores'], $row['hard_disk_size'], $row['electronics_id'], $row['brand'],
+                                   $row['model_number'], $row['price'], $row['weight'], $row['type']);
 
             $desktop->setDesktopId($row['desktop_id']);
             $desktop->setLength($row['length']);
@@ -69,16 +60,14 @@ class ElectronicCatalog
             $desktop->setType($row['type']);
 
             $this->desktopArray[$desktop->getElectronicsId()] = $desktop;
-
         }
 
         return $this->desktopArray;
     }
 
-    public function createMonitorArray($monitorArray) {
-
-        while($row = pg_fetch_assoc($monitorArray)){
-
+    public function createMonitorArray($monitorArray)
+    {
+        while ($row = pg_fetch_assoc($monitorArray)) {
             $monitor = new Monitor();
 
             $monitor->setMonitorId($row['display_id']);
@@ -91,16 +80,14 @@ class ElectronicCatalog
 
 
             $this->monitorArray[$row['electronics_id']] = $monitor;
-
         }
 
         return $this->monitorArray;
     }
 
-    public function createLaptopArray($laptopArray) {
-
-        while($row = pg_fetch_assoc($laptopArray)){
-
+    public function createLaptopArray($laptopArray)
+    {
+        while ($row = pg_fetch_assoc($laptopArray)) {
             $laptop = new Laptop();
 
             $laptop->setBrandName($row['brand']);
@@ -119,16 +106,14 @@ class ElectronicCatalog
 
 
             $this->laptopArray[$row['electronics_id']] = $laptop;
-
         }
 
         return $this->laptopArray;
     }
 
-    public function createTabletArray($tabletArray) {
-
-        while($row = pg_fetch_assoc($tabletArray)){
-
+    public function createTabletArray($tabletArray)
+    {
+        while ($row = pg_fetch_assoc($tabletArray)) {
             $tablet = new Tablet();
 
             $tablet->setBrandName($row['brand']);
@@ -151,7 +136,6 @@ class ElectronicCatalog
 
 
             $this->tabletArray[$row['electronics_id']] = $tablet;
-
         }
 
         return $this->tabletArray;
@@ -159,17 +143,18 @@ class ElectronicCatalog
 
 
 
-        public function deleteitem($electronics_id) {
+    public function deleteitem($electronics_id)
+    {
         $electronics_TDG = new ElectronicsTDG();
         $this->getElectronicsTDG()->deleterows($electronics_id);
-        }
+    }
 
-    public function additem($request) {
-
+    public function additem($request)
+    {
         $electronics_TDG= new ElectronicsTDG();
 
-       // if Request is coming from monitor
-        if($request->input('type')=='m') {
+        // if Request is coming from monitor
+        if ($request->input('type')=='m') {
             $e = new Monitor();
             $e->setbrandName($request->input('brandName'));
             $e->setmodelNumber($request->input('modelNumber'));
@@ -184,7 +169,7 @@ class ElectronicCatalog
         }
 
         //if request is coming from laptop
-        elseif($request->input('type')=='l') {
+        elseif ($request->input('type')=='l') {
             $e = new Laptop();
             $e->setbrandName($request->input('brandName'));
             $e->setmodelNumber($request->input('modelNumber'));
@@ -201,7 +186,7 @@ class ElectronicCatalog
             //$this->getElectronicsTDG()->insertLaptopintoDB($e);
         }
         //if request is for tablet
-        elseif($request->input('type')=='t') {
+        elseif ($request->input('type')=='t') {
             $e = new Tablet();
             $e->setbrandName($request->input('brandName'));
             $e->setmodelNumber($request->input('modelNumber'));
@@ -222,7 +207,7 @@ class ElectronicCatalog
             //$this->getElectronicsTDG()->insertTabletintoDB($e);
         }
         //if request is for desktop
-        elseif($request->input('type')=='d') {
+        elseif ($request->input('type')=='d') {
             $e = new Desktop();
             $e->setbrandName($request->input('brandName'));
             $e->setmodelNumber($request->input('modelNumber'));
@@ -243,21 +228,21 @@ class ElectronicCatalog
         return $e; // returning the elctronics object after initializing
     }
 
-    public function viewInventory($type) {
+    public function viewInventory($type)
+    {
         $ret = $this->getElectronicsTDG()->viewInventory($type);
         return $ret;
     }
 
-    public function deleteInventory($type) {
-                $ret = $this->getElectronicsTDG()->deleteInventory($type);
-                return $ret;
-            }
+    public function deleteInventory($type)
+    {
+        $ret = $this->getElectronicsTDG()->deleteInventory($type);
+        return $ret;
+    }
 
-    public function modifyInventory($item , $type, $request) {
-
-        if($type == 1) {
-
-
+    public function modifyInventory($item, $type, $request)
+    {
+        if ($type == 1) {
             $item->setBrandName($request->input('brand'));
             $item->setModelNumber($request->input('modelNumber'));
             $item->setPrice($request->input('price'));
@@ -274,8 +259,7 @@ class ElectronicCatalog
             return $item;
         }
 
-        if($type == 2) {
-
+        if ($type == 2) {
             $item->setBrandName($request->input('brand'));
             $item->setModelNumber($request->input('modelNumber'));
             $item->setPrice($request->input('price'));
@@ -286,8 +270,7 @@ class ElectronicCatalog
             return $item;
         }
 
-        if($type == 3) {
-
+        if ($type == 3) {
             $item->setBrandName($request->input('brand'));
             $item->setModelNumber($request->input('modelNumber'));
             $item->setPrice($request->input('price'));
@@ -304,8 +287,7 @@ class ElectronicCatalog
             return $item;
         }
 
-        if($type == 4) {
-
+        if ($type == 4) {
             $item->setBrandName($request->input('brand'));
             $item->setModelNumber($request->input('modelNumber'));
             $item->setPrice($request->input('price'));
@@ -325,7 +307,5 @@ class ElectronicCatalog
 
             return $item;
         }
-
-
     }
 }

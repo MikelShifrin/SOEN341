@@ -1,40 +1,32 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vivek
- * Date: 13-10-2017
- * Time: 21:25
- */
-
 namespace App\Model;
-
 
 class User
 {
-    private $user_id;
-    private $email_id;
+    private $userId;
+    private $emailId;
     private $password;
-    private $first_name;
-    private $last_name;
-    private $user_type;
-    private $physical_address_line1;
-    private $physical_address_line2;
-    private $phone_number;
+    private $firstName;
+    private $lastName;
+    private $userType;
+    private $physicalAddressLine1;
+    private $physicalAddresskLine2;
+    private $phoneNumber;
 
     /**
      * @return mixed
      */
     public function getUserId()
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
     /**
      * @param mixed $user_id
      */
-    public function setUserId($user_id)
+    public function setUserId($userId)
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
     }
 
     /**
@@ -42,15 +34,15 @@ class User
      */
     public function getEmailId()
     {
-        return $this->email_id;
+        return $this->emailId;
     }
 
     /**
      * @param mixed $email_id
      */
-    public function setEmailId($email_id)
+    public function setEmailId($emailId)
     {
-        $this->email_id = $email_id;
+        $this->emailId = $emailId;
     }
 
     /**
@@ -74,15 +66,15 @@ class User
      */
     public function getFirstName()
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
     /**
      * @param mixed $first_name
      */
-    public function setFirstName($first_name)
+    public function setFirstName($firstName)
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
     }
 
     /**
@@ -90,15 +82,15 @@ class User
      */
     public function getLastName()
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
     /**
      * @param mixed $last_name
      */
-    public function setLastName($last_name)
+    public function setLastName($lastName)
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
     }
 
     /**
@@ -106,15 +98,15 @@ class User
      */
     public function getUserType()
     {
-        return $this->user_type;
+        return $this->userType;
     }
 
     /**
      * @param mixed $user_type
      */
-    public function setUserType($user_type)
+    public function setUserType($userType)
     {
-        $this->user_type = $user_type;
+        $this->userType = $userType;
     }
 
     /**
@@ -122,15 +114,15 @@ class User
      */
     public function getPhysicalAddressLine1()
     {
-        return $this->physical_address_line1;
+        return $this->physicalAddressLine1;
     }
 
     /**
      * @param mixed $physical_address_line1
      */
-    public function setPhysicalAddressLine1($physical_address_line1)
+    public function setPhysicalAddressLine1($physicalAddressLine1)
     {
-        $this->physical_address_line1 = $physical_address_line1;
+        $this->physicalAddressLine1 = $physicalAddressLine1;
     }
 
     /**
@@ -138,15 +130,15 @@ class User
      */
     public function getPhysicalAddressLine2()
     {
-        return $this->physical_address_line2;
+        return $this->physicalAddressLine2;
     }
 
     /**
      * @param mixed $physical_address_line2
      */
-    public function setPhysicalAddressLine2($physical_address_line2)
+    public function setPhysicalAddressLine2($physicalAddressLine2)
     {
-        $this->physical_address_line2 = $physical_address_line2;
+        $this->physicalAddressLine2 = $physicalAddressLine2;
     }
 
     /**
@@ -154,15 +146,14 @@ class User
      */
     public function getPhoneNumber()
     {
-        return $this->phone_number;
+        return $this->phoneNumber;
     }
 
     /**
      * @param mixed $phone_number
      */
-    public function setPhoneNumber($phone_number)
+    public function setPhoneNumber($phoneNumber)
     {
-        $this->phone_number = $phone_number;
+        $this->phoneNumber = $phoneNumber;
     }
-
 }

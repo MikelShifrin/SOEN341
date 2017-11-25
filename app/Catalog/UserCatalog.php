@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vivek
- * Date: 13-10-2017
- * Time: 22:07
- */
-
 namespace App\Catalog;
 
 use App\TDG\UserTDG;
@@ -17,7 +10,8 @@ class UserCatalog
 {
     private $user;
     private $userTDG;
-    public function __construct() {
+    public function __construct()
+    {
         $user = new User();
         $userTDG = new UserTDG();
         $this->setUser($user);
@@ -59,23 +53,22 @@ class UserCatalog
 
 
 
-    public function authenticate($username, $password,$user_type) {
+    public function authenticate($username, $password, $user_type)
+    {
+        $login = $this->getUserTDG()->checkAuthentication($username, $password, $user_type);
 
-       $login = $this->getUserTDG()->checkAuthentication($username, $password,$user_type);
-
-       if($login==false){
-           return $login;
-       } else {
-//           Session::put('user', $login);
-//           $_SESSION['user'] = $login;
-           $this->setUser($login);
-           return $login;
+        if ($login==false) {
+            return $login;
+        } else {
+            //           Session::put('user', $login);
+            //           $_SESSION['user'] = $login;
+            $this->setUser($login);
+            return $login;
         }
-
     }
 
-    public function createNewUser($username,$password,$firstName,$lastName,$addressLineOne,$addressLineTwo,$telephone) {
-
+    public function createNewUser($username, $password, $firstName, $lastName, $addressLineOne, $addressLineTwo, $telephone)
+    {
         $this->getUser()->setEmailId($username);
         $this->getUser()->setPassword($password);
         $this->getUser()->setFirstName($firstName);
@@ -86,8 +79,5 @@ class UserCatalog
         $this->getUser()->setUserType("user");
 
         return $this->getUser();
-
     }
 }
-
-?>
