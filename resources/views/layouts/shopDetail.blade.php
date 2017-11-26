@@ -7,7 +7,7 @@
     <meta name="googlebot" content="index,follow,snippet,archive">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Universal - All In 1 Template</title>
+    <title>EShop - Welcome!</title>
 
     <meta name="keywords" content="">
 
@@ -77,8 +77,16 @@ _________________________________________________________ -->
                     <div class="navbar-collapse collapse" id="navigation">
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown active">
-                                <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
+                            <li class="nav-item active">
+                                <a href="{{route('welcomeUser')}}">Home<b class="caret"></b></a>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">My WishList<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{route('viewWishList')}}">WishList</a>
+                                    </li>
+                                </ul>
                             </li>
 
                         {{----}}
@@ -308,91 +316,16 @@ _________________________________________________________ -->
 
                     <div class="panel panel-default sidebar-menu">
 
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Brands</h3>
-                            <a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> <span class="hidden-sm">Clear</span></a>
-                        </div>
 
-                        <div class="panel-body">
-
-                            <form>
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">Dell
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">Samsung
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">Lenovo
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">HP
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <button class="btn btn-default btn-sm btn-template-main"><i class="fa fa-pencil"></i> Apply</button>
-                                {{csrf_field()}}
-                            </form>
-
-                        </div>
                     </div>
 
                     <div class="panel panel-default sidebar-menu">
 
-                        <div class="panel-heading">
-                            <h3 class="panel-title clearfix">Price</h3>
-                            <a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> <span class="hidden-sm">Clear</span></a>
-                        </div>
 
-                        <div class="panel-body">
-
-                            <form>
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> $250-$500
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> $500-$750
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> $1000-$2000
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> $2000+
-                                        </label>
-                                    </div>
-                                </div>
-                                {{csrf_field()}}
-                                <button class="btn btn-default btn-sm btn-template-main"><i class="fa fa-pencil"></i> Apply</button>
-
-                            </form>
-
-                        </div>
                     </div>
 
                     <!-- *** MENUS AND FILTERS END *** -->
 
-                    <div class="banner">
-                        <a href="shop-category.html">
-                            apply more filters here
-                        </a>
-                    </div>
                     <!-- /.banner -->
 
                 </div>
