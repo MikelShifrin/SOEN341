@@ -728,6 +728,16 @@ class EshopController extends Controller
     }
 
 
+    public function viewWishList() {
+
+        session_start();
+        $email = $_SESSION['email'];
+        $ret = Mapper::Instance()->findAllWishList($email);
+
+
+        return view ('userViews.viewAssorted');
+    }
+
     }
 
 

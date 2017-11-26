@@ -202,6 +202,13 @@ Route::get('AddtoWishList/{type}/{electronicsId}', [
     'as'    => 'AddtoWishList'
 ]);
 
+
+Route::get('viewWishList', [
+    'uses'  => 'EshopController@viewWishList',
+    'as'    => 'viewWishList'
+]);
+
+
 ?>
 
 

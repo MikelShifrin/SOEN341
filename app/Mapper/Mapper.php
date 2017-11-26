@@ -704,4 +704,11 @@ class Mapper
         }
 
     }
+
+    public function findAllWishList($email) {
+
+
+
+
+    }
 }
