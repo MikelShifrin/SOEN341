@@ -16,6 +16,14 @@ class IdentityMap
     private $tabletArray = [];
     private $wishArray = [];
     private $testString;
+
+    /**
+     * @return array
+     */
+    public function getWishArray(): array
+    {
+        return $this->wishArray;
+    }
     private static $inst;
 
     /**
@@ -232,8 +240,6 @@ class IdentityMap
 
 //        $this->desktopArray = array($desktop->getDesktopId()=>$desktop);
         $wishId = $wish->getWishId();
-
-
         $this->wishArray[$wishId] = $wish;
         //$session->put('desktopArray', array($desktop->getDesktopId()=>$desktop));
 
