@@ -7,7 +7,7 @@
     <meta name="googlebot" content="index,follow,snippet,archive">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Universal - All In 1 Template</title>
+    <title>EShop - Welcome!</title>
 
     <meta name="keywords" content="">
 
@@ -64,7 +64,7 @@ _________________________________________________________ -->
 
                         <a class="navbar-brand home" href="#">
                             {{--<img src="img/logo.png" alt="Universal logo" class="hidden-xs hidden-sm">--}}
-                            <img src="img/logo-small.png" alt="Universal logo" class="visible-xs visible-sm"><span class="sr-only">Universal - go to homepage</span>
+                            <img src="img/logo-small.png" alt="Universal logo" class="visible-xs visible-sm"><span class="sr-only">EShop - Welcome!</span>
                         </a>
                         <div class="navbar-buttons">
                             <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -78,8 +78,8 @@ _________________________________________________________ -->
                     <div class="navbar-collapse collapse" id="navigation">
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown active">
-                                <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
+                            <li class="nav-item active">
+                                <a href="{{route('welcomeUser')}}">Home <b class="caret"></b></a>
                             </li>
 
                             <li class="dropdown">
@@ -267,26 +267,26 @@ _________________________________________________________ -->
 
                     <div class="pages">
 
-                        <p class="loadMore">
-                            <a href="#" class="btn btn-template-main"><i class="fa fa-chevron-down"></i> Load more</a>
-                        </p>
+                        {{--<p class="loadMore">--}}
+                            {{--<a href="#" class="btn btn-template-main"><i class="fa fa-chevron-down"></i> Load more</a>--}}
+                        {{--</p>--}}
 
-                        <ul class="pagination">
-                            <li><a href="#">&laquo;</a>
-                            </li>
-                            <li class="active"><a href="#">1</a>
-                            </li>
-                            <li><a href="#">2</a>
-                            </li>
-                            <li><a href="#">3</a>
-                            </li>
-                            <li><a href="#">4</a>
-                            </li>
-                            <li><a href="#">5</a>
-                            </li>
-                            <li><a href="#">&raquo;</a>
-                            </li>
-                        </ul>
+                        {{--<ul class="pagination">--}}
+                            {{--<li><a href="#">&laquo;</a>--}}
+                            {{--</li>--}}
+                            {{--<li class="active"><a href="#">1</a>--}}
+                            {{--</li>--}}
+                            {{--<li><a href="#">2</a>--}}
+                            {{--</li>--}}
+                            {{--<li><a href="#">3</a>--}}
+                            {{--</li>--}}
+                            {{--<li><a href="#">4</a>--}}
+                            {{--</li>--}}
+                            {{--<li><a href="#">5</a>--}}
+                            {{--</li>--}}
+                            {{--<li><a href="#">&raquo;</a>--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
                     </div>
 
 
