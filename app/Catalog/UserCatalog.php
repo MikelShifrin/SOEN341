@@ -55,7 +55,25 @@ class UserCatalog
     {
         $this->user = $user;
     }
+    public function createUser($userresultset)
+    {
+        $row = $userresultset;
+        while ($row) {
+//        while($row = pg_fetch_array($userresultset)){
 
+            $user=new user();
+            $user->setUserId($row['user_id']);
+            //$user->setEmailId($row['EMAIL_ID']);
+//            $user->setPassword($row['PASSWORD']);
+//            $user->setFirstName($row['FIRST_NAME']);
+//            $user->setLastName($row['LAST_NAME']);
+//            $user->setUserType($row['USER_TYPE']);
+//            $user->setPhysicalAddressLine1($row['physical_address_line1']);
+//            $user->setPhysicalAddressLine2($row['physical_address_line2']);
+//            $user->setPhoneNumber($row['phone_number']);
+        }
+        return $user;
+    }
 
 
 

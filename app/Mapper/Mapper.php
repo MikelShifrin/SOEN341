@@ -2,8 +2,10 @@
 
 namespace App\Mapper;
 
+use App\Catalog\WishCatalog;
 use App\IdentityMap\IdentityMap;
 use App\Model\Monitor;
+use App\TDG\WishTDG;
 use App\UnitOfWork\UnitOfWork;
 use App\Catalog\ClientLogCatalog;
 use App\Catalog\ElectronicCatalog;
@@ -22,6 +24,18 @@ class Mapper
     private $clientLogTDG;
     private $electronicsTDG;
     private $userTDG;
+    private $wishCatalog;
+    private $wishTDG;
+
+    /**
+     * @return mixed
+     */
+
+
+    /**
+     * @return mixed
+     */
+
     private static $inst = null;
 
     public static function Instance()
@@ -39,6 +53,8 @@ class Mapper
         $this->userCatalog = new UserCatalog();
         $this->clientLogTDG = new ClientLogTDG();
         $this->setElectronicsTDG( new ElectronicsTDG());
+        $this->setWishCatalog( new WishCatalog());
+        $this->setWishTDG( new WishTDG());
         $this->userTDG = new UserTDG();
     }
 
@@ -122,6 +138,31 @@ class Mapper
     public function getUserTDG()
     {
         return $this->userTDG;
+    }
+    public function getWishCatalog()
+    {
+        return $this->wishCatalog;
+    }
+
+    /**
+     * @param mixed $wishCatalog
+     */
+    public function setWishCatalog($wishCatalog)
+    {
+        $this->wishCatalog = $wishCatalog;
+    }
+
+    public function getWishTDG()
+    {
+        return $this->wishTDG;
+    }
+
+    /**
+     * @param mixed $wishTDG
+     */
+    public function setWishTDG($wishTDG)
+    {
+        $this->wishTDG = $wishTDG;
     }
 
     public function createElectronics($request){
@@ -677,10 +718,11 @@ class Mapper
         }
     }
 
-    public function AddtoWishList($electronicsId)
+    public function AddtoWishList($electronics,$userresultset)
     {
-        $item=$this->getWishTDG()->additem($electronicsId);
-        if ($request->input('type')=='d'){
+        $user=$userresultset['user_id'];//$this->getUserCatalog()->createUser($userresultset);
+        $wish=$this->getWishCatalog()->createWish($electronics,$user);
+
             if(isset($_SESSION['singletonMap'])){
                 $singletonIdMap = $_SESSION['singletonMap'];
 
@@ -689,19 +731,45 @@ class Mapper
                 $singletonIdMap = IdentityMap::Instance();
 
             }
-            $singletonIdMap->addDesktop($item);
+            $singletonIdMap->addWish($wish);
             $_SESSION['singletonMap'] = $singletonIdMap;
             if(isset($_SESSION['singletonUOW'])){
                 $singletonUOW = $_SESSION['singletonUOW'];
-                echo spl_object_hash ($singletonUOW);
+//                echo spl_object_hash ($singletonUOW);
 
             } else {
                 $singletonUOW = UnitOfWork::Instance();
 
             }
-            $singletonUOW->registerNew($item,1);// regiter desktop new
-            $_SESSION['singletonUOW'] = $singletonUOW;
-        }
+            $singletonUOW->registerNewWishList($wish);// regiter wish new
 
+                $_SESSION['singletonUOW'] = $singletonUOW;
+
+
+
+    }
+
+    public function commitWishList()
+    {
+        if (isset($_SESSION['singletonUOW'])) {
+
+            $houseKeepingArray = $_SESSION['singletonUOW']->commitWishList();
+            print_r($houseKeepingArray);
+
+            if ($houseKeepingArray!=null) {
+                foreach ($houseKeepingArray as $wish) {
+                    $this->getWishTDG()->insertWishintoDB($wish);
+                }
+            }
+
+
+            unset($_SESSION['singletonUOW']);
+            unset($_SESSION['singletonMap']);
+
+
+//        print_r($houseKeepingArray['desktopAddArray']);
+
+
+        }
     }
 }
