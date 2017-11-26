@@ -736,6 +736,7 @@ class Mapper
         if($type==4) {
             $item = $_SESSION['singletonMap']->getTablet($electronicsId);
         }
+
         $userId=$user['user_id'];//$this->getUserCatalog()->createUser($userresultset);
 
         $wish=$this->getWishCatalog()->createWish($item,$userId);
@@ -815,6 +816,13 @@ class Mapper
         $ret = $_SESSION['singletonMap']->getWishArray();
 
         return $ret;
+
+    }
+
+
+    public function logActivity($user_id) {
+
+        $this->getClientLogTDG()->logActivity($user_id);
 
     }
 

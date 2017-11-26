@@ -26,6 +26,23 @@ class EshopController extends Controller
     //private $electronic_catalog;
 
     private $mapper;
+private $SuccessTest;
+
+    /**
+     * @return mixed
+     */
+    public function getSuccessTest()
+    {
+        return $this->SuccessTest;
+    }
+
+    /**
+     * @param mixed $SuccessTest
+     */
+    public function setSuccessTest($SuccessTest)
+    {
+        $this->SuccessTest = $SuccessTest;
+    }
 
     public function __construct() {
 
@@ -33,8 +50,8 @@ class EshopController extends Controller
         //$user_catalog = new UserCatalog();
         //$this->setUserCatalog($user_catalog);
 
-        //$client_log_catalog = new ClientLogCatalog();
-        //$this->setClientLogCatalog($client_log_catalog);
+//        $client_log_catalog = new ClientLogCatalog();
+//        $this->setClientLogCatalog($client_log_catalog);
 
         //$electronic_catalog = new ElectronicCatalog();
         //$this->setElectronicCatalog($electronic_catalog);
@@ -87,8 +104,7 @@ class EshopController extends Controller
         } else {
             $user_id = $login['user_id'];
 //            session_start();
-
-
+            Mapper::Instance()->logActivity($user_id);
             $_SESSION['user'] = $login;
             $_SESSION['email'] = $login['email_id'];
             if($user_type=="admin") {
@@ -772,6 +788,7 @@ class EshopController extends Controller
 
         $item = Mapper::Instance()->AddtoWishList($type,$electronicsId);
         $Success="Added succesfully to wishlist";
+        $this->setSuccessTest("Added succesfully to wishlist");
 //        return view('welcomeUser');
         if($type==1) {
             return view('userViews.viewDesktopShopDetail', ['item' => $item, 'Success' => $Success]);
