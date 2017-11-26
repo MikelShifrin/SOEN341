@@ -96,9 +96,12 @@ class EshopController extends Controller
                 $_SESSION['loggedin'] = true;
                 $_SESSION['ElectronicsIdAddInternalCounterInitial'] = 10000000;
                 $_SESSION['ElectronicsIdAddInternalCounter'] = 10000000;
+
                 return view( 'loginWelcome');
             } else {
                 $_SESSION['user_type'] = "user";
+                $_SESSION['WishIdAddInternalCounterInitial'] = 10000000;
+                $_SESSION['WishIdAddInternalCounter'] = 10000000;
                 return view('welcomeUser');
             }
         }
@@ -125,6 +128,13 @@ class EshopController extends Controller
     public function logout()
     {
         session_start();
+
+        if(isset($_SESSION['user_type'])) {
+            if ($_SESSION['user_type'] == 'user') {
+                Mapper::Instance()->commitWishList();
+            }
+        }
+
         session_destroy();
 
         return view( 'login');
@@ -721,10 +731,35 @@ class EshopController extends Controller
     public function addtoWishList($type,$electronicsId)
     {
         session_start();
+
+            $user=$_SESSION['user'];
+        if($type==1) {
+            $item = $_SESSION['singletonMap']->getDesktop($electronicsId);
+        }
+        if($type==2) {
+            $item = $_SESSION['singletonMap']->getMonitor($electronicsId);
+        }
+        if($type==3) {
+            $item = $_SESSION['singletonMap']->getLaptop($electronicsId);
+        }
+        if($type==4) {
+            $item = $_SESSION['singletonMap']->getTablet($electronicsId);
+        }
+        Mapper::Instance()->AddtoWishList($item,$user);
         $Success="Added succesfully to wishlist";
 //        return view('welcomeUser');
-        return view('userViews.viewDesktopShopDetail',['item'=>$_SESSION['singletonMap']->getDesktop($electronicsId),'Success'=>$Success]);
-
+        if($type==1) {
+            return view('userViews.viewDesktopShopDetail', ['item' => $item, 'Success' => $Success]);
+        }
+        if($type==2) {
+            return view('userViews.viewMonitorShopDetail', ['item' => $item, 'Success' => $Success]);
+        }
+        if($type==3) {
+            return view('userViews.viewLaptopShopDetail', ['item' => $item, 'Success' => $Success]);
+        }
+        if($type==4) {
+            return view('userViews.viewTabletShopDetail', ['item' => $item, 'Success' => $Success]);
+        }
     }
 
 

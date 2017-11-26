@@ -14,31 +14,38 @@ use App\TDG\WishTDG;
 class WishCatalog
 {
 
-    private $WishListTDG;
+    private $Wishlist;
 
     /**
      * @return mixed
      */
-    public function getWishListTDG()
+    public function getWishlist()
     {
-        return $this->WishListTDG;
+        return $this->Wishlist;
     }
 
     /**
-     * @param mixed $WishListTDG
+     * @param mixed $Wishlist
      */
-    public function setWishListTDG($WishListTDG)
+    public function setWishlist($Wishlist)
     {
-        $this->WishListTDG = $WishListTDG;
+        $this->Wishlist = $Wishlist;
     }
 
-    /**
-     * @return mixed
-     */
 
     public function __construct() {
-        $WishListTDG = new WishTDG();
-        $this->setWishListTDG($WishListTDG);
+
+        $this->setWishList(new WishList());
+    }
+
+    public function createWish($electronics,$user)
+    {
+        $wishlist = new WishList();
+        $wishlist->setUser($user);
+        $wishlist->setElectronics($electronics);
+        $wishlist->setWishId($_SESSION['WishIdAddInternalCounter']);
+        $_SESSION['WishIdAddInternalCounter']=$_SESSION['WishIdAddInternalCounter']+1;
+        return $wishlist;
     }
 
 

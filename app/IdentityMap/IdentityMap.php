@@ -6,6 +6,7 @@ use App\Model\Desktop;
 use App\Model\Laptop;
 use App\Model\Monitor;
 use App\Model\Tablet;
+use App\Model\WishList;
 
 class IdentityMap
 {
@@ -13,6 +14,7 @@ class IdentityMap
     private $laptopArray = [];
     private $monitorArray = [];
     private $tabletArray = [];
+    private $wishArray = [];
     private $testString;
     private static $inst;
 
@@ -223,5 +225,19 @@ class IdentityMap
     public function deleteTablet(int $electronicsId)
     {
         unset($this->tabletArray[$electronicsId]);
+    }
+
+    public function addWish(WishList $wish)
+    {
+
+//        $this->desktopArray = array($desktop->getDesktopId()=>$desktop);
+        $wishId = $wish->getWishId();
+
+
+        $this->wishArray[$wishId] = $wish;
+        //$session->put('desktopArray', array($desktop->getDesktopId()=>$desktop));
+
+//        $this->desktopArray = array($desktop->getElectronicsId()=>$desktop);
+
     }
 }

@@ -11,7 +11,39 @@ namespace App\Model;
 
 class WishList
 {
-    private $wishId, $ElectronicsID, $ClientID;
+    private $wishId, $Electronics, $user;
+
+    /**
+     * @return mixed
+     */
+    public function getElectronics()
+    {
+        return $this->Electronics;
+    }
+
+    /**
+     * @param mixed $Electronics
+     */
+    public function setElectronics($Electronics)
+    {
+        $this->Electronics = $Electronics;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
 
     /**
      * @return mixed
@@ -32,34 +64,6 @@ class WishList
     /**
      * @return mixed
      */
-    public function getClientID()
-    {
-        return $this->ClientID;
-    }
-
-    /**
-     * @param mixed $ClientID
-     */
-    public function setClientID($ClientID)
-    {
-        $this->ClientID = $ClientID;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getElectronicsID()
-    {
-        return $this->ElectronicsID;
-    }
-
-    /**
-     * @param mixed $ElectronicsID
-     */
-    public function setElectronicsID($ElectronicsID)
-    {
-        $this->ElectronicsID = $ElectronicsID;
-    }
 
 
 }
