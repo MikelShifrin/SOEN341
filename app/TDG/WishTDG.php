@@ -18,6 +18,7 @@ class WishTDG
     private $port        = "port = 5432";
     private $dbname      = "dbname = deh4j5oag07pgv";
     private $credentials = "user = tynrrnfvnesgly password=2ceea303af5c85f704098528a6a4e5e6674ad3f481f41bda62512567522d2cbc";
+
     public function insertWishintoDB(WishList $wish)
     {
         $ElectronicsID=$wish->getElectronics()->getElectronicsId();
@@ -32,6 +33,29 @@ class WishTDG
 
         pg_close($db);
         return true;
+    }
+
+
+    public function findAllWishList($email) {
+
+
+        $sql="select distinct a.*,b.*
+              from wishlist a
+              inner join electronics b
+              on a.electronics_id = b.electronics_id
+              where a.user_id in (select user_id from \"USER\" where email_id = '".$email."')";
+
+        $db = pg_connect( "$this->host $this->port $this->dbname $this->credentials"  );
+        $ret = pg_query($db, $sql);
+
+        if(!$ret) {
+            pg_close($db);
+
+        }
+
+        pg_close($db);
+        return $ret;
+
     }
 
 }

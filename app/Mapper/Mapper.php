@@ -336,19 +336,20 @@ class Mapper
     {
         $desktopArray = array();
         if(isset($_SESSION['singletonMap'])){
-            $desktopArray = $_SESSION['singletonMap']->getAllDesktop();
-        }
+            $singletonMap = $_SESSION['singletonMap'];
+                    }
         else {
-            $desktopArray = IdentityMap::Instance()->getAllDesktop();                                 //Message to idmap to get all desktops
+            $singletonMap = IdentityMap::Instance();
         }
+        $desktopArray = $singletonMap->getAllDesktop();                                 //Message to idmap to get all desktops
 
         if($desktopArray == null)
         {
-            $desktopArray = $this->electronicsTDG->viewInventory(1);                   //Fetch from DB
-            $desktopArray = $this->electronicCatalog->createDesktopArray($desktopArray);    //create objects through catalog
+            $desktopArray = $this->electronicsTDG->viewInventory(1);                                //Fetch from DB
+            $desktopArray = $this->electronicCatalog->createDesktopArray($desktopArray);            //create objects through catalog
 
-            IdentityMap::Instance()->setDesktopArray($desktopArray);                             //add array to idmap
-            $_SESSION['singletonMap'] = IdentityMap::Instance();
+            $singletonMap->setDesktopArray($desktopArray);                                          //add array to idmap
+            $_SESSION['singletonMap'] = $singletonMap;
         }
         return $desktopArray;
     }
@@ -356,19 +357,19 @@ class Mapper
     {
         $laptopArray = array();
         if(isset($_SESSION['singletonMap'])){
-            $laptopArray = $_SESSION['singletonMap']->getAllLaptop();
+            $singletonMap = $_SESSION['singletonMap'];
         }
         else {
-            $laptopArray = IdentityMap::Instance()->getAllLaptop();                                 //Message to idmap to get all desktops
+            $singletonMap = IdentityMap::Instance();
         }
-
+        $laptopArray = $singletonMap->getAllLaptop();
         if($laptopArray == null)
         {
             $laptopArray = $this->electronicsTDG->viewInventory(3);                   //Fetch from DB
             $laptopArray = $this->electronicCatalog->createLaptopArray($laptopArray);    //create objects through catalog
 
-            IdentityMap::Instance()->setLaptopArray($laptopArray);                             //add array to idmap
-            $_SESSION['singletonMap'] = IdentityMap::Instance();
+            $singletonMap->setLaptopArray($laptopArray);                             //add array to idmap
+            $_SESSION['singletonMap'] = $singletonMap;
         }
         return $laptopArray;
     }
@@ -376,19 +377,20 @@ class Mapper
     {
         $monitorArray = array();
         if(isset($_SESSION['singletonMap'])){
-            $monitorArray = $_SESSION['singletonMap']->getAllMonitor();
+            $singletonMap = $_SESSION['singletonMap'];
         }
         else {
-            $monitorArray = IdentityMap::Instance()->getAllMonitor();                                 //Message to idmap to get all desktops
+            $singletonMap = IdentityMap::Instance();
         }
+        $monitorArray = $singletonMap->getAllMonitor();
 
         if($monitorArray == null)
         {
             $monitorArray = $this->electronicsTDG->viewInventory(2);                   //Fetch from DB
             $monitorArray = $this->electronicCatalog->createMonitorArray($monitorArray);    //create objects through catalog
 
-            IdentityMap::Instance()->setMonitorArray($monitorArray);                             //add array to idmap
-            $_SESSION['singletonMap'] = IdentityMap::Instance();
+            $singletonMap->setMonitorArray($monitorArray);                             //add array to idmap
+            $_SESSION['singletonMap'] = $singletonMap;
         }
         return $monitorArray;
     }
@@ -396,19 +398,20 @@ class Mapper
     {
         $tabletArray = array();
         if(isset($_SESSION['singletonMap'])){
-            $tabletArray = $_SESSION['singletonMap']->getAllTablet();
+            $singletonMap = $_SESSION['singletonMap'];
         }
         else {
-            $tabletArray = IdentityMap::Instance()->getAllTablet();                                 //Message to idmap to get all desktops
+            $singletonMap = IdentityMap::Instance();
         }
+        $tabletArray = $singletonMap->getAllTablet();
 
         if($tabletArray == null)
         {
             $tabletArray = $this->electronicsTDG->viewInventory(4);                   //Fetch from DB
             $tabletArray = $this->electronicCatalog->createTabletArray($tabletArray);    //create objects through catalog
 
-            IdentityMap::Instance()->setTabletArray($tabletArray);                             //add array to idmap
-            $_SESSION['singletonMap'] = IdentityMap::Instance();
+            $singletonMap->setTabletArray($tabletArray);                             //add array to idmap
+            $_SESSION['singletonMap'] = $singletonMap;
         }
         return $tabletArray;
     }
@@ -733,6 +736,7 @@ class Mapper
             }
             $singletonIdMap->addWish($wish);
             $_SESSION['singletonMap'] = $singletonIdMap;
+
             if(isset($_SESSION['singletonUOW'])){
                 $singletonUOW = $_SESSION['singletonUOW'];
 //                echo spl_object_hash ($singletonUOW);
@@ -754,7 +758,7 @@ class Mapper
         if (isset($_SESSION['singletonUOW'])) {
 
             $houseKeepingArray = $_SESSION['singletonUOW']->commitWishList();
-            print_r($houseKeepingArray);
+//            print_r($houseKeepingArray);
 
             if ($houseKeepingArray!=null) {
                 foreach ($houseKeepingArray as $wish) {
@@ -772,4 +776,32 @@ class Mapper
 
         }
     }
+
+    public function findAllWishList($email) {
+
+        $ret = $this->getWishTDG()->findAllWishList($email);
+
+        $ret = $this->getWishCatalog()->getAllWish($ret);
+            if(isset($_SESSION['singletonMap'])) {
+                $singletonIdMap = $_SESSION['singletonMap'];
+            } else {
+                $singletonIdMap = IdentityMap::Instance();
+            }
+            foreach ($ret as $wish) {
+
+                $singletonIdMap->addWish($wish);
+
+            }
+            $_SESSION['singletonMap'] = $singletonIdMap;
+
+    }
+
+    public function getAllWishList() {
+
+        $ret = $_SESSION['singletonMap']->getWishArray();
+
+        return $ret;
+
+    }
+
 }

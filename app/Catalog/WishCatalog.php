@@ -7,6 +7,7 @@
  */
 
 namespace App\Catalog;
+use App\Model\ElectronicSpecification;
 use App\Model\WishList;
 
 use App\TDG\WishTDG;
@@ -15,6 +16,27 @@ class WishCatalog
 {
 
     private $Wishlist;
+
+    private $wishListArray = [];
+
+    /**
+     * @return array
+     */
+    public function getWishListArray(): array
+    {
+        return $this->wishListArray;
+    }
+
+    /**
+     * @param array $wishListArray
+     */
+    public function setWishListArray(array $wishListArray)
+    {
+        $this->wishListArray = $wishListArray;
+    }
+
+
+
 
     /**
      * @return mixed
@@ -48,5 +70,24 @@ class WishCatalog
         return $wishlist;
     }
 
+    public function getAllWish($ret) {
 
+
+        while($row = pg_fetch_assoc($ret)) {
+
+        $wish = new WishList();
+        $es = new ElectronicSpecification();
+
+            $wish->setWishId($row['wish_id']);
+            $es->setElectronicsId($row['electronics_id']);
+            $es->setBrandName($row['brand']);
+            $es->setPrice($row['price']);
+            $es->setType($row['type']);
+            $wish->setElectronics($es);
+            $wish->setUser($row['user_id']);
+            $this->wishListArray[$row['wish_id']] = $wish;
+        }
+
+        return $this->getWishListArray();
+    }
 }

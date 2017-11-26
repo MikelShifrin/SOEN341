@@ -82,6 +82,14 @@ _________________________________________________________ -->
                                 <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
                             </li>
 
+                            <li class="dropdown">
+                                <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">My WishList<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{route('viewWishList')}}">WishList</a>
+                                    </li>
+                                </ul>
+                            </li>
+
                         {{----}}
                         <!-- ========== FULL WIDTH MEGAMENU END ================== -->
 

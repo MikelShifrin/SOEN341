@@ -189,7 +189,7 @@ class UnitOfWork
         $this->array['monitorAddArray'] = $this->monitorAddArray;
         $this->array['laptopAddArray'] = $this->laptopAddArray;
         $this->array['tabletAddArray'] = $this->tabletAddArray;
-        
+
 
 
     }

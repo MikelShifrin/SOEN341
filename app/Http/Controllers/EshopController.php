@@ -99,6 +99,14 @@ class EshopController extends Controller
 
                 return view( 'loginWelcome');
             } else {
+
+
+                Mapper::Instance()->findAllWishList($_SESSION['email']);
+                Mapper::Instance()->findAllDesktop();
+                Mapper::Instance()->findAllMonitor();
+                Mapper::Instance()->findAllLaptop();
+                Mapper::Instance()->findAllTablet();
+
                 $_SESSION['user_type'] = "user";
                 $_SESSION['WishIdAddInternalCounterInitial'] = 10000000;
                 $_SESSION['WishIdAddInternalCounter'] = 10000000;
@@ -309,29 +317,58 @@ class EshopController extends Controller
     {
 
         session_start();
+
+
+        $wishArray = $_SESSION['singletonMap']->getWishArray();
+        $flag = false;
+        foreach ($wishArray as $wish) {
+
+            $es = $wish->getElectronics();
+            if($id == $es->getElectronicsId()) {
+                $flag = true;
+            }
+
+        }
+
         if ($type == 1) {
 
             $itemArray = $_SESSION['singletonMap']->getDesktopArray();
             $item = $itemArray[$id];
-            return view('userViews.viewDesktopShopDetail', ['item' => $item]);
+            if($flag) {
+                return view('userViews.viewDesktopShopDetail', ['item' => $item,'Success' => "Set"]);
+            } else {
+                return view('userViews.viewDesktopShopDetail', ['item' => $item]);
+            }
 
         } elseif ($type == 2) {
 
             $itemArray = $_SESSION['singletonMap']->getMonitorArray();
             $item = $itemArray[$id];
-            return view('userViews.viewMonitorShopDetail', ['item' => $item]);
+            if($flag) {
+            return view('userViews.viewMonitorShopDetail', ['item' => $item,'Success' => "Set"]);
+            } else {
+                return view('userViews.viewMonitorShopDetail', ['item' => $item]);
+            }
 
         } elseif ($type == 3) {
 
             $itemArray = $_SESSION['singletonMap']->getLaptopArray();
             $item = $itemArray[$id];
-            return view('userViews.viewLaptopShopDetail', ['item' => $item]);
+            if($flag) {
+                return view('userViews.viewLaptopShopDetail', ['item' => $item, 'Success' => "Set"]);
+            } else {
+                return view('userViews.viewLaptopShopDetail', ['item' => $item]);
+            }
 
         } else {
 
             $itemArray = $_SESSION['singletonMap']->getTabletArray();
             $item = $itemArray[$id];
-            return view('userViews.viewTabletShopDetail', ['item' => $item]);
+            if($flag) {
+                return view('userViews.viewTabletShopDetail', ['item' => $item, 'Success' => "Set"]);
+            } else {
+                return view('userViews.viewTabletShopDetail', ['item' => $item]);
+            }
 
         }
     }
@@ -762,6 +799,17 @@ class EshopController extends Controller
         }
     }
 
+
+    public function viewWishList() {
+
+        session_start();
+        $email = $_SESSION['email'];
+
+        $ret = Mapper::Instance()->getAllWishList();
+
+//        print_r($ret);
+        return view ('userViews.viewWishList',['ret' => $ret]);
+    }
 
     }
 
