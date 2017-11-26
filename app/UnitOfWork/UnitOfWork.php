@@ -29,6 +29,8 @@ class UnitOfWork
     private $tabletModifiedArray = [];
     private $tabletDeleteArray = [];
 
+    private $wishAddArray =[];
+
     private $array = array();
     private static $inst;
     private function __construct()
@@ -76,6 +78,7 @@ class UnitOfWork
             $id = $tablet->getElectronicsId();
             $this->tabletAddArray[$id] = $item;
         }
+
         $this->array['desktopAddArray'] = $this->desktopAddArray;
         $this->array['monitorAddArray'] = $this->monitorAddArray;
         $this->array['laptopAddArray'] = $this->laptopAddArray;
@@ -194,6 +197,21 @@ class UnitOfWork
     public function commit() {
 
         return $this->array;
+
+    }
+
+    public function registerNewWishList($wish){
+
+
+
+        $id = $wish->getWishId();
+        $this->wishAddArray[$id] = $wish;
+
+    }
+
+    public function commitWishList() {
+
+        return $this->wishAddArray;
 
     }
 

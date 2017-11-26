@@ -100,9 +100,13 @@
 
 @section('addtowishlist')
 
-    <i class="fa fa-shopping-cart"></i><a href="{{route('AddtoWishList',['type'=>1,'electronicsId'=>$item->getElectronicsId()])}}" class=""> Add to Wishlist</a>
+
+
     @if(isset($Success))
-        <i class="fa fa-shopping-cart"></i> Add to Wishlist
+        <i class="fa fa-shopping-cart"></i> Added to wish list
+
+    @else
+    <i class="fa fa-shopping-cart"></i><a href="{{route('AddtoWishList',['type'=>1,'item'=>$item->getElectronicsId()])}}" class=""> Add to Wishlist</a>
     @endif
     {{--<button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Add to wishlist"><i class="fa fa-heart-o"></i>--}}
     {{--</button>--}}
