@@ -769,20 +769,8 @@ class EshopController extends Controller
     {
         session_start();
 
-            $user=$_SESSION['user'];
-        if($type==1) {
-            $item = $_SESSION['singletonMap']->getDesktop($electronicsId);
-        }
-        if($type==2) {
-            $item = $_SESSION['singletonMap']->getMonitor($electronicsId);
-        }
-        if($type==3) {
-            $item = $_SESSION['singletonMap']->getLaptop($electronicsId);
-        }
-        if($type==4) {
-            $item = $_SESSION['singletonMap']->getTablet($electronicsId);
-        }
-        Mapper::Instance()->AddtoWishList($item,$user);
+
+        Mapper::Instance()->AddtoWishList($type,$electronicsId);
         $Success="Added succesfully to wishlist";
 //        return view('welcomeUser');
         if($type==1) {
