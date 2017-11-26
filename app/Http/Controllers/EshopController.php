@@ -770,7 +770,7 @@ class EshopController extends Controller
         session_start();
 
 
-        Mapper::Instance()->AddtoWishList($type,$electronicsId);
+        $item = Mapper::Instance()->AddtoWishList($type,$electronicsId);
         $Success="Added succesfully to wishlist";
 //        return view('welcomeUser');
         if($type==1) {

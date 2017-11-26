@@ -763,7 +763,7 @@ class Mapper
 
                 $_SESSION['singletonUOW'] = $singletonUOW;
 
-
+            return $item;
 
     }
 
