@@ -721,10 +721,24 @@ class Mapper
         }
     }
 
-    public function AddtoWishList($electronics,$userresultset)
+    public function AddtoWishList($type,$electronicsId)
     {
-        $user=$userresultset['user_id'];//$this->getUserCatalog()->createUser($userresultset);
-        $wish=$this->getWishCatalog()->createWish($electronics,$user);
+        $user=$_SESSION['user'];
+        if($type==1) {
+            $item = $_SESSION['singletonMap']->getDesktop($electronicsId);
+        }
+        if($type==2) {
+            $item = $_SESSION['singletonMap']->getMonitor($electronicsId);
+        }
+        if($type==3) {
+            $item = $_SESSION['singletonMap']->getLaptop($electronicsId);
+        }
+        if($type==4) {
+            $item = $_SESSION['singletonMap']->getTablet($electronicsId);
+        }
+        $userId=$user['user_id'];//$this->getUserCatalog()->createUser($userresultset);
+
+        $wish=$this->getWishCatalog()->createWish($item,$userId);
 
             if(isset($_SESSION['singletonMap'])){
                 $singletonIdMap = $_SESSION['singletonMap'];
@@ -749,7 +763,7 @@ class Mapper
 
                 $_SESSION['singletonUOW'] = $singletonUOW;
 
-
+            return $item;
 
     }
 
