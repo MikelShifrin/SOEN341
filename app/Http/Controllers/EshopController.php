@@ -364,7 +364,7 @@ class EshopController extends Controller
 
             $itemArray = $_SESSION['singletonMap']->getTabletArray();
             $item = $itemArray[$id];
-            if(flag) {
+            if($flag) {
                 return view('userViews.viewTabletShopDetail', ['item' => $item, 'Success' => "Set"]);
             } else {
                 return view('userViews.viewTabletShopDetail', ['item' => $item]);

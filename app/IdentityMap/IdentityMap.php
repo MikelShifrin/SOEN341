@@ -152,7 +152,7 @@ class IdentityMap
 
     public function getTablet(int $electronicsId)
     {
-        return $this->desktopArray[$electronicsId];
+        return $this->tabletArray[$electronicsId];
     }
     public function getAllDesktop()
     {

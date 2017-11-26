@@ -88,7 +88,7 @@ class ElectronicCatalog
             $monitor->setSize($row['display_size']);
             $monitor->setWeight($row['weight']);
             $monitor->setElectronicsId($row['electronics_id']);
-
+            $monitor->setType($row['type']);
 
             $this->monitorArray[$row['electronics_id']] = $monitor;
 
@@ -116,7 +116,7 @@ class ElectronicCatalog
             $laptop->setWeight($row['weight']);
             $laptop->setElectronicsId($row['electronics_id']);
             $laptop->setLaptopId($row['laptop_id']);
-
+            $laptop->setType($row['type']);
 
             $this->laptopArray[$row['electronics_id']] = $laptop;
 
@@ -148,7 +148,7 @@ class ElectronicCatalog
             $tablet->setWeight($row['weight']);
             $tablet->setElectronicsId($row['electronics_id']);
             $tablet->setTabletId($row['tablet_id']);
-
+            $tablet->setType($row['type']);
 
             $this->tabletArray[$row['electronics_id']] = $tablet;
 

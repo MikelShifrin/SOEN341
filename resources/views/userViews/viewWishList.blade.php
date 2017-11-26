@@ -13,12 +13,16 @@
 
     if($wish->getElectronics()->getType()=='d') {
         $type = 1;
+        $image = 'desktop.png';
     } elseif ($wish->getElectronics()->getType()=='m') {
         $type = 2;
+        $image = 'monitor.png';
     } elseif ($wish->getElectronics()->getType()=='l') {
         $type = 3;
+        $image = 'laptop.png';
     } else {
         $type = 4;
+        $image = 'tablet.png';
     }
 
 
@@ -27,7 +31,7 @@
     <div class="product">
     <div class="image">
     <a href="">
-    <img src="{{URL::to('img/wish.png')}}" alt="" class="img-responsive image1">
+    <img src="{{URL::to('img/'.$image)}}" alt="" class="img-responsive image1">
     </a>
     </div>
     <!-- /.image -->
